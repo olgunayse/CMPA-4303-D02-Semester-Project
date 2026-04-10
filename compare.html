@@ -1,47 +1,112 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Compare Properties</title>
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-    <h1 style="padding: 20px;">Compare Properties</h1>
-
-    <!-- Simple Form -->
-    <div style="padding: 20px;">
-        <input id="propA" type="text" placeholder="Property A" style="padding:10px;">
-        <input id="propB" type="text" placeholder="Property B" style="padding:10px;">
-        <button onclick="compare()" style="padding:10px;">Compare</button>
-    </div>
-
-    <!-- Results -->
-    <div class="container">
-        <div class="card" id="cardA">
-            <h3>Property A</h3>
-            <p>Price: --</p>
-            <p>Size: --</p>
+    <nav class="navbar">
+        <div class="nav-logo">HomeCompare</div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="compare.html">Compare</a>
         </div>
+    </nav>
 
-        <div class="card" id="cardB">
-            <h3>Property B</h3>
-            <p>Price: --</p>
-            <p>Size: --</p>
+    <header class="page-header">
+        <div class="page-header-text">
+            <p class="small-label">Property Comparison</p>
+            <h1>Compare two homes side by side</h1>
+            <p>
+                This page is a simple first draft of a real estate comparison tool.
+                It helps show how buyers can look at two properties in one place.
+            </p>
         </div>
-    </div>
+    </header>
 
-    <!-- Simple Script -->
+    <section class="compare-form-section">
+        <div class="form-box">
+            <h2>Start a comparison</h2>
+            <p>Enter two property names or descriptions below.</p>
+
+            <div class="compare-form">
+                <input id="propA" type="text" placeholder="Example: Downtown Condo">
+                <input id="propB" type="text" placeholder="Example: Suburban House">
+                <button onclick="compareProperties()">Compare</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="compare-results">
+        <div class="results-grid">
+            <div class="result-card" id="cardA">
+                <h3>Property A</h3>
+                <ul>
+                    <li>Price: --</li>
+                    <li>Size: --</li>
+                    <li>Location: --</li>
+                    <li>Style: --</li>
+                </ul>
+            </div>
+
+            <div class="result-card" id="cardB">
+                <h3>Property B</h3>
+                <ul>
+                    <li>Price: --</li>
+                    <li>Size: --</li>
+                    <li>Location: --</li>
+                    <li>Style: --</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="info-section">
+        <div class="info-box">
+            <h2>Why this tool matters</h2>
+            <p>
+                Buyers often look at multiple listings and get overwhelmed by the details.
+                This tool is meant to make those comparisons easier by putting important
+                information into one side by side view.
+            </p>
+        </div>
+    </section>
+
     <script>
-        function compare() {
-            let a = document.getElementById("propA").value;
-            let b = document.getElementById("propB").value;
+        function compareProperties() {
+            let propertyA = document.getElementById("propA").value;
+            let propertyB = document.getElementById("propB").value;
 
-            document.getElementById("cardA").innerHTML =
-                "<h3>" + a + "</h3><p>Price: Example</p><p>Size: Example</p>";
+            if (propertyA === "") {
+                propertyA = "Property A";
+            }
 
-            document.getElementById("cardB").innerHTML =
-                "<h3>" + b + "</h3><p>Price: Example</p><p>Size: Example</p>";
+            if (propertyB === "") {
+                propertyB = "Property B";
+            }
+
+            document.getElementById("cardA").innerHTML = `
+                <h3>${propertyA}</h3>
+                <ul>
+                    <li>Price: $350,000</li>
+                    <li>Size: 1,800 sq ft</li>
+                    <li>Location: Suburban Area</li>
+                    <li>Style: Traditional</li>
+                </ul>
+            `;
+
+            document.getElementById("cardB").innerHTML = `
+                <h3>${propertyB}</h3>
+                <ul>
+                    <li>Price: $420,000</li>
+                    <li>Size: 1,500 sq ft</li>
+                    <li>Location: Downtown</li>
+                    <li>Style: Modern</li>
+                </ul>
+            `;
         }
     </script>
 

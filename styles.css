@@ -1,31 +1,163 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background: #ffffff;
-    color: #000000;
+    background-color: #f7f7f7;
+    color: #222222;
 }
 
-.container {
+* {
+    box-sizing: border-box;
+}
+
+.navbar {
+    background-color: #ffffff;
+    border-bottom: 1px solid #dddddd;
+    padding: 18px 40px;
     display: flex;
-    gap: 20px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-logo {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #222222;
+    margin-left: 20px;
+    font-size: 15px;
+}
+
+.page-header {
+    background-color: #e9eef3;
+    padding: 60px 40px;
+}
+
+.page-header-text {
+    max-width: 700px;
+}
+
+.small-label {
+    font-size: 13px;
+    text-transform: uppercase;
+    color: #666666;
+    margin-bottom: 10px;
+}
+
+.page-header h1 {
+    font-size: 42px;
+    margin: 0 0 15px 0;
+}
+
+.page-header p {
+    font-size: 17px;
+    line-height: 1.6;
+}
+
+.compare-form-section {
     padding: 40px;
 }
 
-.card {
-    border: 1px solid #ccc;
-    padding: 20px;
-    flex: 1;
+.form-box {
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+    padding: 30px;
 }
 
-.card-number {
+.form-box h2 {
+    margin-top: 0;
+}
+
+.compare-form {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.compare-form input {
+    padding: 12px;
+    border: 1px solid #cccccc;
+    min-width: 220px;
     font-size: 14px;
-    color: gray;
 }
 
-h3 {
-    margin: 10px 0;
-}
-
-p {
+.compare-form button {
+    padding: 12px 18px;
+    border: none;
+    background-color: #222222;
+    color: #ffffff;
+    cursor: pointer;
     font-size: 14px;
+}
+
+.compare-results {
+    padding: 0 40px 40px 40px;
+}
+
+.results-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.result-card {
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+    padding: 25px;
+}
+
+.result-card h3 {
+    margin-top: 0;
+}
+
+.result-card ul {
+    padding-left: 18px;
+    margin: 0;
+}
+
+.result-card li {
+    margin-bottom: 10px;
+}
+
+.info-section {
+    padding: 0 40px 60px 40px;
+}
+
+.info-box {
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+    padding: 30px;
+}
+
+.info-box h2 {
+    margin-top: 0;
+}
+
+.info-box p {
+    max-width: 700px;
+    line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+    .results-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .nav-links a {
+        margin-left: 0;
+        margin-right: 16px;
+    }
+
+    .page-header h1 {
+        font-size: 32px;
+    }
 }

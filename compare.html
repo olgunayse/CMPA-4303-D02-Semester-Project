@@ -1,72 +1,49 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Compare Homes Smarter</title>
-    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Compare Properties</title>
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <nav class="navbar">
-        <div class="nav-logo">Compare Homes Smarter</div>
-        <div class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="compare.html">Compare</a>
+
+    <h1 style="padding: 20px;">Compare Properties</h1>
+
+    <!-- Simple Form -->
+    <div style="padding: 20px;">
+        <input id="propA" type="text" placeholder="Property A" style="padding:10px;">
+        <input id="propB" type="text" placeholder="Property B" style="padding:10px;">
+        <button onclick="compare()" style="padding:10px;">Compare</button>
+    </div>
+
+    <!-- Results -->
+    <div class="container">
+        <div class="card" id="cardA">
+            <h3>Property A</h3>
+            <p>Price: --</p>
+            <p>Size: --</p>
         </div>
-    </nav>
 
-    <main>
-        <section class="compare-hero">
-            <span class="eyebrow">Comparison View</span>
-            <h1>Side by side property comparison</h1>
-            <p>
-                A simple example of how buyers can better understand value, trade offs, and which option fits their priorities.
-            </p>
-        </section>
+        <div class="card" id="cardB">
+            <h3>Property B</h3>
+            <p>Price: --</p>
+            <p>Size: --</p>
+        </div>
+    </div>
 
-        <section class="compare-section">
-            <div class="compare-grid">
-                <article class="compare-card">
-                    <div class="compare-card-top">
-                        <span class="property-tag">Home A</span>
-                        <h2>More space, lower price</h2>
-                    </div>
+    <!-- Simple Script -->
+    <script>
+        function compare() {
+            let a = document.getElementById("propA").value;
+            let b = document.getElementById("propB").value;
 
-                    <ul class="property-list">
-                        <li><i class="fa-solid fa-house"></i> Price: $300,000</li>
-                        <li><i class="fa-solid fa-location-dot"></i> Location: Suburb</li>
-                        <li><i class="fa-solid fa-ruler-combined"></i> Size: 2,000 sqft</li>
-                        <li><i class="fa-solid fa-user"></i> Best for: Buyers who want more space</li>
-                    </ul>
-                </article>
+            document.getElementById("cardA").innerHTML =
+                "<h3>" + a + "</h3><p>Price: Example</p><p>Size: Example</p>";
 
-                <article class="compare-card">
-                    <div class="compare-card-top">
-                        <span class="property-tag">Home B</span>
-                        <h2>Stronger location, less space</h2>
-                    </div>
+            document.getElementById("cardB").innerHTML =
+                "<h3>" + b + "</h3><p>Price: Example</p><p>Size: Example</p>";
+        }
+    </script>
 
-                    <ul class="property-list">
-                        <li><i class="fa-solid fa-house"></i> Price: $350,000</li>
-                        <li><i class="fa-solid fa-location-dot"></i> Location: City</li>
-                        <li><i class="fa-solid fa-ruler-combined"></i> Size: 1,500 sqft</li>
-                        <li><i class="fa-solid fa-user"></i> Best for: Buyers who want a stronger location</li>
-                    </ul>
-                </article>
-            </div>
-
-            <div class="insight-panel">
-                <span class="eyebrow">Trade off summary</span>
-                <h2>What changes between these two options?</h2>
-                <p>
-                    Home A offers more square footage for a lower price, while Home B offers a more convenient location but less space. This makes the decision less about which home is “better” overall and more about what matters more to the buyer.
-                </p>
-            </div>
-
-            <div class="compare-actions">
-                <a href="index.html" class="secondary-button">Back to Home</a>
-            </div>
-        </section>
-    </main>
 </body>
 </html>

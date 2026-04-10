@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Compare Homes Smarter</title>
     <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
@@ -30,9 +32,11 @@
                 </div>
 
                 <div class="hero-search">
-                    <input type="text" placeholder="Search by city, price, or feature...">
-                    <button>Search</button>
+                    <input type="text" id="searchInput" placeholder="Search by city, price, or feature...">
+                    <button id="searchButton" type="button">Search</button>
                 </div>
+
+                <p id="searchResult" class="search-result"></p>
             </div>
 
             <div class="hero-visual">
@@ -58,7 +62,7 @@
             <p>Designed to make buyer conversations feel more confident, clear, and informed.</p>
         </section>
 
-        <section class="section section-features" id="features">
+        <section class="section section-features reveal" id="features">
             <div class="section-heading">
                 <span class="eyebrow">What it does</span>
                 <h2>A cleaner way to explain property value.</h2>
@@ -88,7 +92,7 @@
             </div>
         </section>
 
-        <section class="section section-process">
+        <section class="section section-process reveal">
             <div class="section-heading">
                 <span class="eyebrow">How it works</span>
                 <h2>Built for simple decision-making.</h2>
@@ -115,7 +119,7 @@
             </div>
         </section>
 
-        <section class="section section-cta">
+        <section class="section section-cta reveal">
             <div class="cta-box">
                 <span class="eyebrow">Live example</span>
                 <h2>See the comparison page in action.</h2>
@@ -126,5 +130,7 @@
             </div>
         </section>
     </main>
+
+    <script src="script.js"></script>
 </body>
 </html>

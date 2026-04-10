@@ -1,6 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Compare Homes Smarter</title>
     <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
@@ -25,8 +27,25 @@
         </section>
 
         <section class="compare-section">
-            <div class="compare-grid">
-                <article class="compare-card">
+            <div class="preference-box reveal">
+                <span class="eyebrow">Interactive Feature</span>
+                <h2>Choose what matters most</h2>
+                <p>Select a buyer priority to see which home may be the better fit.</p>
+
+                <div class="priority-buttons">
+                    <button type="button" onclick="showRecommendation('budget')">Best for Budget</button>
+                    <button type="button" onclick="showRecommendation('space')">Best for Space</button>
+                    <button type="button" onclick="showRecommendation('location')">Best for Location</button>
+                    <button type="button" onclick="showRecommendation('balance')">Most Balanced</button>
+                </div>
+
+                <p id="recommendationText" class="recommendation-text">
+                    Click a priority to see the recommended home.
+                </p>
+            </div>
+
+            <div class="compare-grid reveal">
+                <article class="compare-card" id="homeA">
                     <div class="compare-card-top">
                         <span class="property-tag">Home A</span>
                         <h2>More space, lower price</h2>
@@ -40,7 +59,7 @@
                     </ul>
                 </article>
 
-                <article class="compare-card">
+                <article class="compare-card" id="homeB">
                     <div class="compare-card-top">
                         <span class="property-tag">Home B</span>
                         <h2>Stronger location, less space</h2>
@@ -55,11 +74,11 @@
                 </article>
             </div>
 
-            <div class="insight-panel">
+            <div class="insight-panel reveal" id="tradeOffSummary">
                 <span class="eyebrow">Trade off summary</span>
                 <h2>What changes between these two options?</h2>
                 <p>
-                    Home A offers more square footage for a lower price, while Home B offers a more convenient location but less space. This makes the decision less about which home is “better” overall and more about what matters more to the buyer.
+                    Home A offers more square footage for a lower price, while Home B offers a more convenient location but less space. This makes the decision less about which home is better overall and more about what matters more to the buyer.
                 </p>
             </div>
 
@@ -68,5 +87,7 @@
             </div>
         </section>
     </main>
+
+    <script src="script.js"></script>
 </body>
 </html>

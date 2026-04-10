@@ -1,29 +1,26 @@
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
+    font-family: 'Inter', sans-serif;
     background-color: #0f0f10;
     color: #e5e7eb;
 }
 
 .container {
-    width: 85%;
-    max-width: 1100px;
-    margin: 40px auto;
-    background-color: #18181b;
-    padding: 40px;
-    border-radius: 16px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+    width: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 .hero-image {
-    height: 420px;
+    height: 500px;
+    width: 100%;
     background-image: url("https://ssl.cdn-redfin.com/photo/90/bigphoto/959/20131959_1.jpg");
     background-size: cover;
     background-position: center;
     position: relative;
-    border-radius: 16px;
+    border-radius: 0;
     overflow: hidden;
-    margin-bottom: 30px;
+    margin-bottom: 0;
 }
 
 .hero-image::after {
@@ -90,10 +87,19 @@ body {
     background: #e4e4e7;
 }
 
+.section {
+    padding: 60px 8%;
+}
+
 h1 {
     font-size: 40px;
     margin-bottom: 10px;
     color: #ffffff;
+}
+
+h2, h3 {
+    font-family: 'Lora', serif;
+    letter-spacing: 0.5px;
 }
 
 h2 {
@@ -130,15 +136,12 @@ a:hover {
     background-color: #e4e4e7;
 }
 
-.section {
-    margin-top: 30px;
-}
-
 .card-grid {
     display: flex;
     gap: 20px;
     flex-wrap: wrap;
     margin-top: 20px;
+    max-width: 1100px;
 }
 
 .card {
@@ -168,6 +171,7 @@ ul {
     border-left: 5px solid #ffffff;
     padding: 18px;
     border-radius: 10px;
+    max-width: 1100px;
 }
 
 .label {

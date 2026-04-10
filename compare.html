@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Semester Project</title>
-    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <title>Compare Homes Smarter</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
@@ -15,42 +15,58 @@
         </div>
     </nav>
 
-    <div class="container">
-        <div class="section">
-            <h1>Home Comparison</h1>
-            <h3>Example Property Comparison</h3>
+    <main>
+        <section class="compare-hero">
+            <span class="eyebrow">Comparison View</span>
+            <h1>Side by side property comparison</h1>
+            <p>
+                A simple example of how buyers can better understand value, trade offs, and which option fits their priorities.
+            </p>
+        </section>
 
-            <div class="card-grid">
-                <div class="card">
-                    <h2>Home A</h2>
-                    <ul>
+        <section class="compare-section">
+            <div class="compare-grid">
+                <article class="compare-card">
+                    <div class="compare-card-top">
+                        <span class="property-tag">Home A</span>
+                        <h2>More space, lower price</h2>
+                    </div>
+
+                    <ul class="property-list">
                         <li><i class="fa-solid fa-house"></i> Price: $300,000</li>
                         <li><i class="fa-solid fa-location-dot"></i> Location: Suburb</li>
                         <li><i class="fa-solid fa-ruler-combined"></i> Size: 2,000 sqft</li>
                         <li><i class="fa-solid fa-user"></i> Best for: Buyers who want more space</li>
                     </ul>
-                </div>
+                </article>
 
-                <div class="card">
-                    <h2>Home B</h2>
-                    <ul>
+                <article class="compare-card">
+                    <div class="compare-card-top">
+                        <span class="property-tag">Home B</span>
+                        <h2>Stronger location, less space</h2>
+                    </div>
+
+                    <ul class="property-list">
                         <li><i class="fa-solid fa-house"></i> Price: $350,000</li>
                         <li><i class="fa-solid fa-location-dot"></i> Location: City</li>
                         <li><i class="fa-solid fa-ruler-combined"></i> Size: 1,500 sqft</li>
                         <li><i class="fa-solid fa-user"></i> Best for: Buyers who want a stronger location</li>
                     </ul>
-                </div>
+                </article>
             </div>
 
-            <div class="tradeoff-box">
-                <h2>Main Trade Off</h2>
+            <div class="insight-panel">
+                <span class="eyebrow">Trade off summary</span>
+                <h2>What changes between these two options?</h2>
                 <p>
-                    Home A offers more space for a lower price, while Home B offers a better location but less space. This shows how buyers may need to choose between square footage and convenience.
+                    Home A offers more square footage for a lower price, while Home B offers a more convenient location but less space. This makes the decision less about which home is “better” overall and more about what matters more to the buyer.
                 </p>
             </div>
 
-            <a href="index.html">Back to Home</a>
-        </div>
-    </div>
+            <div class="compare-actions">
+                <a href="index.html" class="secondary-button">Back to Home</a>
+            </div>
+        </section>
+    </main>
 </body>
 </html>

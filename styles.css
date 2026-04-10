@@ -6,13 +6,13 @@ body {
     margin: 0;
     font-family: Arial, sans-serif;
     line-height: 1.6;
-    background-color: #f7f7f7;
     color: #222222;
+    background-color: #f6f6f6;
 }
 
 .site-header {
     background-color: #ffffff;
-    border-bottom: 1px solid #dcdcdc;
+    border-bottom: 1px solid #dddddd;
 }
 
 .container {
@@ -21,114 +21,131 @@ body {
     margin: 0 auto;
 }
 
-.nav {
+.narrow {
+    max-width: 850px;
+}
+
+.top-bar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 18px 0;
 }
 
-.logo {
-    font-size: 1.3rem;
-    margin: 0;
+.site-title {
+    font-size: 1.25rem;
+    font-weight: bold;
 }
 
-nav a {
+.site-nav a {
     text-decoration: none;
     color: #222222;
     margin-left: 18px;
     font-weight: bold;
 }
 
-nav a:hover {
+.site-nav a:hover {
     text-decoration: underline;
 }
 
-.hero {
-    background-color: #e9eef5;
+.intro-section {
+    background-color: #e8edf3;
     padding: 60px 0;
 }
 
-.small-hero {
+.intro-small {
     padding: 45px 0;
 }
 
-.label {
+.small-label {
+    margin: 0 0 10px 0;
     font-size: 0.9rem;
-    font-weight: bold;
     text-transform: uppercase;
-    color: #555555;
-    margin-bottom: 10px;
+    font-weight: bold;
+    color: #5a5a5a;
 }
 
-.hero h2 {
-    font-size: 2rem;
+h1 {
+    font-size: 2.2rem;
     margin-top: 0;
     margin-bottom: 15px;
 }
 
-.intro {
-    max-width: 700px;
-    margin-bottom: 24px;
+h2 {
+    margin-top: 0;
+    margin-bottom: 14px;
 }
 
-.section {
-    padding: 50px 0;
-}
-
-.alt-section {
-    background-color: #ffffff;
-    border-top: 1px solid #e2e2e2;
-}
-
-.button {
-    display: inline-block;
-    background-color: #222222;
-    color: #ffffff;
-    text-decoration: none;
-    padding: 12px 20px;
-    border: none;
-    cursor: pointer;
-    font-size: 1rem;
-}
-
-.button:hover {
-    background-color: #444444;
-}
-
-.feature-list {
-    margin-top: 25px;
-}
-
-.feature-item {
-    padding: 18px 20px;
-    border-left: 4px solid #222222;
-    margin-bottom: 15px;
-    background: #ffffff;
-}
-
-.feature-item h4 {
+h3 {
     margin-top: 0;
     margin-bottom: 8px;
 }
 
-.feature-item p {
-    margin: 0;
+.main-intro {
+    max-width: 760px;
+    margin-bottom: 24px;
 }
 
-.tool-box {
+.main-button {
+    display: inline-block;
+    background-color: #222222;
+    color: #ffffff;
+    text-decoration: none;
+    border: none;
+    padding: 12px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.main-button:hover {
+    background-color: #444444;
+}
+
+.content-section {
+    padding: 50px 0;
+}
+
+.alt-background {
     background-color: #ffffff;
-    border: 1px solid #dcdcdc;
-    padding: 20px;
+    border-top: 1px solid #e1e1e1;
+}
+
+.feature-list {
+    margin-top: 24px;
+}
+
+.feature-row {
+    background-color: #ffffff;
+    border-left: 4px solid #222222;
+    padding: 18px 20px;
+    margin-bottom: 16px;
+}
+
+.feature-row p {
+    margin-bottom: 0;
+}
+
+.tool-area {
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+    padding: 22px;
     margin-bottom: 24px;
+}
+
+.tool-text {
+    margin-top: 0;
 }
 
 .tool-controls {
     display: flex;
-    gap: 12px;
-    align-items: center;
     flex-wrap: wrap;
-    margin-top: 12px;
+    align-items: center;
+    gap: 12px;
+    margin-top: 14px;
+}
+
+.tool-controls label {
+    font-weight: bold;
 }
 
 .tool-controls select {
@@ -136,72 +153,67 @@ nav a:hover {
     font-size: 1rem;
 }
 
-.result-box {
+.result-text {
     margin-top: 18px;
-    padding: 14px;
     background-color: #f1f1f1;
     border-left: 4px solid #222222;
+    padding: 14px;
 }
 
-.compare-layout {
+.comparison-layout {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
 }
 
-.compare-column {
-    background-color: #ffffff;
-    padding: 0;
-}
-
-.compare-card {
+.home-panel {
     background-color: #ffffff;
     border-left: 4px solid #222222;
     padding: 20px;
-    min-height: 100%;
 }
 
-.compare-card h3 {
+.panel-label {
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    color: #555555;
     margin-top: 0;
+    margin-bottom: 8px;
 }
 
-.compare-card ul {
-    padding-left: 18px;
+.home-panel ul {
     margin-bottom: 0;
+    padding-left: 20px;
 }
 
-.summary-box {
+.summary-area {
+    margin-top: 24px;
     background-color: #ffffff;
     border-left: 4px solid #222222;
     padding: 20px;
-    margin-top: 24px;
 }
 
-.summary-box h3 {
-    margin-top: 0;
-}
-
-.active-card {
-    background-color: #f0f4f8;
+.active-home {
+    background-color: #eef3f7;
 }
 
 @media (max-width: 768px) {
-    .nav {
+    .top-bar {
         flex-direction: column;
         align-items: flex-start;
         gap: 10px;
     }
 
-    nav a {
+    .site-nav a {
         margin-left: 0;
         margin-right: 14px;
     }
 
-    .compare-layout {
+    .comparison-layout {
         grid-template-columns: 1fr;
     }
 
-    .hero h2 {
-        font-size: 1.6rem;
+    h1 {
+        font-size: 1.8rem;
     }
 }

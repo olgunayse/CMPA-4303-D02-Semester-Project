@@ -8,9 +8,9 @@
 </head>
 <body>
     <header class="site-header">
-        <div class="container nav">
-            <h1 class="logo">Compare Homes Smarter</h1>
-            <nav>
+        <div class="container top-bar">
+            <div class="site-title">Compare Homes Smarter</div>
+            <nav class="site-nav">
                 <a href="index.html">Home</a>
                 <a href="compare.html">Compare</a>
             </nav>
@@ -18,67 +18,68 @@
     </header>
 
     <main>
-        <section class="hero small-hero">
+        <section class="intro-section intro-small">
             <div class="container">
-                <p class="label">Comparison Page</p>
-                <h2>Compare two homes side by side</h2>
-                <p class="intro">
-                    Choose what matters most to the buyer, then see which home may be the better fit.
+                <p class="small-label">Comparison Page</p>
+                <h1>Compare two homes side by side</h1>
+                <p class="main-intro">
+                    The feature on this page lets the user choose what matters most, then see which home may be the better fit.
                 </p>
             </div>
         </section>
 
-        <section class="section">
+        <section class="content-section">
             <div class="container">
-                <div class="tool-box">
-                    <h3>Choose a buyer priority</h3>
+                <div class="tool-area">
+                    <h2>Choose what matters more</h2>
+                    <p class="tool-text">
+                        This is the interactive part of the project. Select a buyer priority, then click the button to update the recommendation.
+                    </p>
+
                     <div class="tool-controls">
-                        <label for="prioritySelect">Priority:</label>
+                        <label for="prioritySelect">Buyer priority</label>
                         <select id="prioritySelect">
                             <option value="price">Lower price</option>
                             <option value="space">More space</option>
                             <option value="location">Better location</option>
                             <option value="balance">Overall balance</option>
                         </select>
-                        <button class="button" onclick="runComparison()">Compare</button>
+                        <button class="main-button" onclick="runComparison()">Compare</button>
                     </div>
 
-                    <p id="comparisonResult" class="result-box">
-                        Result: Select a priority and click Compare.
+                    <p id="comparisonResult" class="result-text">
+                        <strong>Result:</strong> Select a priority and click Compare.
                     </p>
                 </div>
 
-                <div class="compare-layout">
-                    <div class="compare-column">
-                        <div class="compare-card" id="homeA">
-                            <h3>Home A</h3>
-                            <ul>
-                                <li>Price: $300,000</li>
-                                <li>Location: Suburb</li>
-                                <li>Size: 2,000 sqft</li>
-                                <li>Best for: More space and lower price</li>
-                            </ul>
-                        </div>
-                    </div>
+                <div class="comparison-layout">
+                    <section class="home-panel" id="homeA">
+                        <p class="panel-label">Home A</p>
+                        <h2>More space for a lower price</h2>
+                        <ul>
+                            <li>Price: $300,000</li>
+                            <li>Location: Suburb</li>
+                            <li>Size: 2,000 square feet</li>
+                            <li>Best for: A buyer who wants more room and a lower price</li>
+                        </ul>
+                    </section>
 
-                    <div class="compare-column">
-                        <div class="compare-card" id="homeB">
-                            <h3>Home B</h3>
-                            <ul>
-                                <li>Price: $350,000</li>
-                                <li>Location: City</li>
-                                <li>Size: 1,500 sqft</li>
-                                <li>Best for: Stronger location</li>
-                            </ul>
-                        </div>
-                    </div>
+                    <section class="home-panel" id="homeB">
+                        <p class="panel-label">Home B</p>
+                        <h2>Better location, but less space</h2>
+                        <ul>
+                            <li>Price: $350,000</li>
+                            <li>Location: City</li>
+                            <li>Size: 1,500 square feet</li>
+                            <li>Best for: A buyer who cares more about location</li>
+                        </ul>
+                    </section>
                 </div>
 
-                <div class="summary-box">
-                    <h3>Trade off summary</h3>
+                <div class="summary-area">
+                    <h2>Trade off summary</h2>
                     <p id="tradeOffText">
-                        Home A gives the buyer more space for a lower price, while Home B offers a stronger
-                        location but less square footage. The better option depends on what matters more to the buyer.
+                        Home A gives the buyer more space for a lower price, while Home B offers a stronger location but less square footage. The better option depends on what matters more to the buyer.
                     </p>
                 </div>
             </div>

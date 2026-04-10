@@ -8,105 +8,66 @@
 </head>
 <body>
 
-    <nav class="navbar">
-        <div class="nav-logo">HomeCompare</div>
-        <div class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="compare.html">Compare</a>
-        </div>
-    </nav>
-
-    <header class="page-header">
-        <div class="page-header-text">
-            <p class="small-label">Property Comparison</p>
-            <h1>Compare two homes side by side</h1>
-            <p>
-                This page is a simple first draft of a real estate comparison tool.
-                It helps show how buyers can look at two properties in one place.
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <p class="small-text">Comparison Tool</p>
+            <h1>Compare two properties</h1>
+            <p class="hero-description">
+                Enter two properties below to view a side-by-side comparison.
             </p>
         </div>
-    </header>
+    </section>
 
-    <section class="compare-form-section">
-        <div class="form-box">
+    <!-- Form Section -->
+    <section class="features">
+
+        <div class="section-title">
             <h2>Start a comparison</h2>
-            <p>Enter two property names or descriptions below.</p>
-
-            <div class="compare-form">
-                <input id="propA" type="text" placeholder="Example: Downtown Condo">
-                <input id="propB" type="text" placeholder="Example: Suburban House">
-                <button onclick="compareProperties()">Compare</button>
-            </div>
+            <p>This is a basic version using example data.</p>
         </div>
-    </section>
 
-    <section class="compare-results">
-        <div class="results-grid">
-            <div class="result-card" id="cardA">
+        <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 30px;">
+            <input id="propA" type="text" placeholder="Property A" style="padding:12px; min-width:200px;">
+            <input id="propB" type="text" placeholder="Property B" style="padding:12px; min-width:200px;">
+            <button onclick="compareProperties()" style="padding:12px 18px;">Compare</button>
+        </div>
+
+        <!-- Results -->
+        <div class="card-grid">
+
+            <div class="card" id="cardA">
                 <h3>Property A</h3>
-                <ul>
-                    <li>Price: --</li>
-                    <li>Size: --</li>
-                    <li>Location: --</li>
-                    <li>Style: --</li>
-                </ul>
+                <p>Price: --</p>
+                <p>Size: --</p>
+                <p>Location: --</p>
             </div>
 
-            <div class="result-card" id="cardB">
+            <div class="card" id="cardB">
                 <h3>Property B</h3>
-                <ul>
-                    <li>Price: --</li>
-                    <li>Size: --</li>
-                    <li>Location: --</li>
-                    <li>Style: --</li>
-                </ul>
+                <p>Price: --</p>
+                <p>Size: --</p>
+                <p>Location: --</p>
             </div>
+
         </div>
+
     </section>
 
-    <section class="info-section">
-        <div class="info-box">
-            <h2>Why this tool matters</h2>
-            <p>
-                Buyers often look at multiple listings and get overwhelmed by the details.
-                This tool is meant to make those comparisons easier by putting important
-                information into one side by side view.
-            </p>
-        </div>
-    </section>
-
+    <!-- Script -->
     <script>
         function compareProperties() {
-            let propertyA = document.getElementById("propA").value;
-            let propertyB = document.getElementById("propB").value;
+            let a = document.getElementById("propA").value;
+            let b = document.getElementById("propB").value;
 
-            if (propertyA === "") {
-                propertyA = "Property A";
-            }
+            if (a === "") a = "Property A";
+            if (b === "") b = "Property B";
 
-            if (propertyB === "") {
-                propertyB = "Property B";
-            }
+            document.getElementById("cardA").innerHTML =
+                "<h3>" + a + "</h3><p>Price: $350,000</p><p>Size: 1,800 sqft</p><p>Location: Suburbs</p>";
 
-            document.getElementById("cardA").innerHTML = `
-                <h3>${propertyA}</h3>
-                <ul>
-                    <li>Price: $350,000</li>
-                    <li>Size: 1,800 sq ft</li>
-                    <li>Location: Suburban Area</li>
-                    <li>Style: Traditional</li>
-                </ul>
-            `;
-
-            document.getElementById("cardB").innerHTML = `
-                <h3>${propertyB}</h3>
-                <ul>
-                    <li>Price: $420,000</li>
-                    <li>Size: 1,500 sq ft</li>
-                    <li>Location: Downtown</li>
-                    <li>Style: Modern</li>
-                </ul>
-            `;
+            document.getElementById("cardB").innerHTML =
+                "<h3>" + b + "</h3><p>Price: $420,000</p><p>Size: 1,500 sqft</p><p>Location: Downtown</p>";
         }
     </script>
 

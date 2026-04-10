@@ -471,4 +471,91 @@ main {
     .compare-hero h1 {
         font-size: 36px;
     }
+    body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    background: #0b0b0d;
+    color: #f4f4f5;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 8%;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.nav-links a {
+    margin-left: 15px;
+    color: #d4d4d8;
+    text-decoration: none;
+}
+
+.compare-hero {
+    padding: 60px 8% 20px;
+}
+
+.compare-section {
+    padding: 20px 8% 60px;
+}
+
+/* MODERN TAB BUTTONS */
+.priority-buttons {
+    display: inline-flex;
+    border: 1px solid rgba(255,255,255,0.15);
+    margin-bottom: 20px;
+}
+
+.priority-buttons button {
+    padding: 12px 18px;
+    background: transparent;
+    color: #d4d4d8;
+    border: none;
+    border-right: 1px solid rgba(255,255,255,0.15);
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.priority-buttons button:last-child {
+    border-right: none;
+}
+
+.priority-buttons button:hover {
+    background: rgba(255,255,255,0.05);
+    color: #ffffff;
+}
+
+.priority-buttons button.active {
+    background: #ffffff;
+    color: #0b0b0d;
+}
+
+/* RESULT TEXT */
+.comparison-result {
+    margin-bottom: 20px;
+    font-size: 16px;
+    color: #f4f4f5;
+}
+
+/* CARDS */
+.compare-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.compare-card {
+    padding: 25px;
+    border: 1px solid rgba(255,255,255,0.1);
+    background: #121217;
+    transition: 0.2s;
+}
+
+.compare-card:hover {
+    transform: translateY(-5px);
+}
+
+.active-card {
+    border: 2px solid #ffffff;
+}
 }

@@ -44,7 +44,7 @@ main {
     font-size: 15px;
     font-weight: 500;
     padding: 8px 14px;
-    border-radius: 999px;
+    border-radius: 0;
     transition: 0.2s ease;
 }
 
@@ -108,7 +108,7 @@ main {
     justify-content: center;
     text-decoration: none;
     padding: 14px 22px;
-    border-radius: 12px;
+    border-radius: 0;
     font-size: 15px;
     font-weight: 600;
     transition: 0.2s ease;
@@ -144,7 +144,7 @@ main {
     flex: 1;
     min-width: 260px;
     padding: 16px 18px;
-    border-radius: 14px;
+    border-radius: 0;
     border: 1px solid rgba(255, 255, 255, 0.08);
     background: #151519;
     color: #ffffff;
@@ -155,7 +155,7 @@ main {
 .hero-search button {
     padding: 16px 20px;
     border: none;
-    border-radius: 14px;
+    border-radius: 0;
     background: #ffffff;
     color: #0b0b0d;
     font-weight: 600;
@@ -178,7 +178,7 @@ main {
     right: 0;
     width: 100%;
     max-width: 520px;
-    border-radius: 28px;
+    border-radius: 0;
     overflow: hidden;
     border: 1px solid rgba(255, 255, 255, 0.08);
     box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
@@ -194,7 +194,7 @@ main {
     position: absolute;
     background: rgba(20, 20, 24, 0.94);
     border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 22px;
+    border-radius: 0;
     padding: 22px;
     width: 270px;
     box-shadow: 0 20px 45px rgba(0, 0, 0, 0.28);
@@ -290,7 +290,7 @@ main {
 .cta-box {
     background: #121217;
     border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 24px;
+    border-radius: 0;
     padding: 28px;
 }
 
@@ -317,78 +317,20 @@ main {
     letter-spacing: 1.2px;
 }
 
-.section-cta {
-    padding-top: 10px;
-}
-
-.cta-box {
-    max-width: 820px;
-}
-
-.compare-hero {
-    padding: 80px 8% 35px;
-}
-
-.compare-section {
-    padding: 0 8% 80px;
-}
-
-.compare-card-top {
-    margin-bottom: 18px;
-}
-
 .property-tag {
     display: inline-block;
     margin-bottom: 12px;
     padding: 7px 12px;
-    border-radius: 999px;
+    border-radius: 0;
     background: rgba(255, 255, 255, 0.08);
     color: #d4d4d8;
     font-size: 13px;
     font-weight: 600;
 }
 
-.property-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.property-list li {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 14px 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-    color: #d4d4d8;
-    font-size: 16px;
-}
-
-.property-list li:last-child {
-    border-bottom: none;
-}
-
-.property-list i {
-    color: #ffffff;
-    width: 18px;
-}
-
-.insight-panel {
-    margin-top: 28px;
-    max-width: 900px;
-}
-
-.compare-actions {
-    margin-top: 26px;
-}
-
 @media (max-width: 980px) {
     .hero {
         grid-template-columns: 1fr;
-    }
-
-    .hero-visual {
-        min-height: 480px;
     }
 
     .feature-grid,
@@ -411,9 +353,7 @@ main {
     }
 
     .hero,
-    .section,
-    .compare-hero,
-    .compare-section {
+    .section {
         padding-left: 6%;
         padding-right: 6%;
     }
@@ -421,24 +361,5 @@ main {
     .hero-text h1,
     .compare-hero h1 {
         font-size: 36px;
-    }
-
-    .hero-visual {
-        min-height: 420px;
-    }
-
-    .floating-card {
-        width: 220px;
-        padding: 18px;
-    }
-
-    .floating-card-one {
-        left: 0;
-        bottom: 100px;
-    }
-
-    .floating-card-two {
-        right: 0;
-        bottom: -20px;
     }
 }

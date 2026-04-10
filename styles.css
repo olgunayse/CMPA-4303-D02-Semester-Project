@@ -44,6 +44,7 @@ body {
     padding: 12px 20px;
     font-weight: bold;
     border: 1px solid white;
+    border-radius: 4px;
 }
 
 .features {
@@ -66,16 +67,49 @@ body {
     color: #555;
 }
 
+.input-row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+}
+
+.input-row input {
+    padding: 12px;
+    min-width: 220px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    border-radius: 4px;
+}
+
+.input-row button {
+    padding: 12px 18px;
+    border: none;
+    background-color: #1f2937;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
 .card-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
     gap: 20px;
+}
+
+.three-cards {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.two-cards {
+    grid-template-columns: repeat(2, 1fr);
 }
 
 .card {
     background-color: white;
     border: 1px solid #dcdcdc;
     padding: 25px;
+    border-radius: 4px;
 }
 
 .card-number {
@@ -96,7 +130,8 @@ body {
 }
 
 @media (max-width: 900px) {
-    .card-grid {
+    .three-cards,
+    .two-cards {
         grid-template-columns: 1fr;
     }
 

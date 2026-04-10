@@ -8,34 +8,31 @@
 </head>
 <body>
 
-    <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
-            <p class="small-text">Comparison Tool</p>
-            <h1>Compare two properties</h1>
+            <p class="small-text">Interactive Feature</p>
+            <h1>Compare Two Properties</h1>
             <p class="hero-description">
-                Enter two properties below to view a side-by-side comparison.
+                Enter two properties below to view a side by side comparison.
             </p>
+            <a href="index.html" class="button">Back to Home</a>
         </div>
     </section>
 
-    <!-- Form Section -->
     <section class="features">
-
         <div class="section-title">
-            <h2>Start a comparison</h2>
+            <h2>Start a Comparison</h2>
             <p>This is a basic version using example data.</p>
+            <p><strong>Interactive Feature:</strong> Enter two properties and click compare.</p>
         </div>
 
-        <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 30px;">
-            <input id="propA" type="text" placeholder="Property A" style="padding:12px; min-width:200px;">
-            <input id="propB" type="text" placeholder="Property B" style="padding:12px; min-width:200px;">
-            <button onclick="compareProperties()" style="padding:12px 18px;">Compare</button>
+        <div class="input-row">
+            <input id="propA" type="text" placeholder="Property A">
+            <input id="propB" type="text" placeholder="Property B">
+            <button onclick="compareProperties()">Compare</button>
         </div>
 
-        <!-- Results -->
-        <div class="card-grid">
-
+        <div class="card-grid two-cards">
             <div class="card" id="cardA">
                 <h3>Property A</h3>
                 <p>Price: --</p>
@@ -49,19 +46,18 @@
                 <p>Size: --</p>
                 <p>Location: --</p>
             </div>
-
         </div>
-
     </section>
 
-    <!-- Script -->
     <script>
         function compareProperties() {
-            let a = document.getElementById("propA").value;
-            let b = document.getElementById("propB").value;
+            let a = document.getElementById("propA").value.trim();
+            let b = document.getElementById("propB").value.trim();
 
-            if (a === "") a = "Property A";
-            if (b === "") b = "Property B";
+            if (a === "" || b === "") {
+                alert("Please enter both properties to compare.");
+                return;
+            }
 
             document.getElementById("cardA").innerHTML =
                 "<h3>" + a + "</h3><p>Price: $350,000</p><p>Size: 1,800 sqft</p><p>Location: Suburbs</p>";

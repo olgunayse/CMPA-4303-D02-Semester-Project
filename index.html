@@ -4,133 +4,63 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Compare Homes Smarter</title>
-    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <nav class="navbar">
-        <div class="nav-logo">Compare Homes Smarter</div>
-        <div class="nav-links">
-            <a href="index.html">Home</a>
-            <a href="compare.html">Compare</a>
+    <header class="site-header">
+        <div class="container nav">
+            <h1 class="logo">Compare Homes Smarter</h1>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="compare.html">Compare</a>
+            </nav>
         </div>
-    </nav>
+    </header>
 
     <main>
         <section class="hero">
-            <div class="hero-text">
-                <span class="eyebrow">Property Decision Platform</span>
-                <h1>Make home comparisons feel clear, not overwhelming.</h1>
-                <p>
-                    Compare pricing, location, space, and trade offs in a way that helps buyers understand what they are actually choosing between.
+            <div class="container">
+                <p class="label">Semester Project</p>
+                <h2>Make home comparisons easier to understand.</h2>
+                <p class="intro">
+                    This project is a simple web tool that helps buyers compare two homes side by side.
+                    Instead of looking at listings separately, users can view important differences in
+                    price, size, and location in one place.
                 </p>
-
-                <div class="hero-actions">
-                    <a href="compare.html" class="primary-button">Start Comparing</a>
-                    <a href="#features" class="secondary-button">See Features</a>
-                </div>
-
-                <div class="hero-search">
-                    <input type="text" id="searchInput" placeholder="Search by city, price, or feature...">
-                    <button id="searchButton" type="button">Search</button>
-                </div>
-
-                <p id="searchResult" class="search-result"></p>
-            </div>
-
-            <div class="hero-visual">
-                <div class="hero-image-card">
-                    <img src="https://ssl.cdn-redfin.com/photo/90/bigphoto/959/20131959_1.jpg" alt="Modern property exterior">
-                </div>
-
-                <div class="floating-card">
-                    <p class="floating-label">Pricing Insight</p>
-                    <h3>Why is one home more expensive?</h3>
-                    <p>See how location, size, and convenience can affect price.</p>
-                </div>
-
-                <div class="floating-card">
-                    <p class="floating-label">Buyer Fit</p>
-                    <h3>Which home matches the buyer better?</h3>
-                    <p>Compare what works best for space, budget, or location.</p>
-                </div>
-            </div>
-        </section>
-
-        <section class="trusted-strip">
-            <p>Designed to make buyer conversations feel more confident, clear, and informed.</p>
-        </section>
-
-        <section class="section" id="features">
-            <div class="section-heading">
-                <span class="eyebrow">What it does</span>
-                <h2>A cleaner way to explain property value.</h2>
-                <p>
-                    Instead of just showing listings, this project helps users understand what makes one home different from another.
-                </p>
-            </div>
-
-            <div class="feature-grid">
-                <div class="feature-item">
-                    <i class="fa-solid fa-scale-balanced"></i>
-                    <h3>Show trade offs clearly</h3>
-                    <p>Help buyers see what they gain in one property and what they give up in another.</p>
-                </div>
-
-                <div class="feature-item">
-                    <i class="fa-solid fa-chart-line"></i>
-                    <h3>Explain pricing better</h3>
-                    <p>Show why a smaller home may cost more because of location, features, or convenience.</p>
-                </div>
-
-                <div class="feature-item">
-                    <i class="fa-solid fa-user-check"></i>
-                    <h3>Match homes to buyer needs</h3>
-                    <p>Point out which option may fit a buyer who values space, location, or balance.</p>
-                </div>
+                <a class="button" href="compare.html">Go to Comparison Page</a>
             </div>
         </section>
 
         <section class="section">
-            <div class="section-heading">
-                <span class="eyebrow">How it works</span>
-                <h2>Built for simple decision-making.</h2>
-            </div>
-
-            <div class="process-grid">
-                <div class="process-step">
-                    <span class="step-number">01</span>
-                    <h3>Review two properties</h3>
-                    <p>Place homes side by side instead of switching between separate listing pages.</p>
-                </div>
-
-                <div class="process-step">
-                    <span class="step-number">02</span>
-                    <h3>Compare key differences</h3>
-                    <p>Highlight price, size, location, and overall buyer value in one place.</p>
-                </div>
-
-                <div class="process-step">
-                    <span class="step-number">03</span>
-                    <h3>Explain the decision</h3>
-                    <p>Turn listing details into a clearer conversation for buyers.</p>
+            <div class="container">
+                <h3>What this project does</h3>
+                <div class="card-grid">
+                    <div class="card">
+                        <h4>Compare two homes</h4>
+                        <p>View two properties side by side instead of switching between separate pages.</p>
+                    </div>
+                    <div class="card">
+                        <h4>Show trade offs</h4>
+                        <p>Help users understand what they gain in one option and what they give up in another.</p>
+                    </div>
+                    <div class="card">
+                        <h4>Support buyer decisions</h4>
+                        <p>Highlight which home may fit a buyer better depending on their priorities.</p>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section class="section">
-            <div class="cta-box">
-                <span class="eyebrow">Live Example</span>
-                <h2>See the comparison page in action.</h2>
+        <section class="section alt-section">
+            <div class="container">
+                <h3>Why I made it</h3>
                 <p>
-                    View a sample side by side comparison with price, location, size, buyer fit, and a trade off summary.
+                    Buyers can easily feel overwhelmed when they are comparing homes. My goal was to create
+                    a simple layout that makes the comparison process more organized and easier to follow.
+                    This project focuses on clarity rather than showing too much information at once.
                 </p>
-                <a href="compare.html" class="primary-button">Open Comparison Page</a>
             </div>
         </section>
     </main>
-
-    <script src="script.js"></script>
 </body>
 </html>

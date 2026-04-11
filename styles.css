@@ -47,7 +47,7 @@ nav a:hover {
 
 .intro-block {
     max-width: 760px;
-    margin-bottom: 28px;
+    margin-bottom: 34px;
 }
 
 .tiny-label {
@@ -55,6 +55,13 @@ nav a:hover {
     text-transform: uppercase;
     letter-spacing: 0.08em;
     margin-bottom: 8px;
+}
+
+.note-label {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 10px;
 }
 
 h1 {
@@ -85,6 +92,10 @@ h3 {
     max-width: 760px;
 }
 
+.narrow-text {
+    max-width: 700px;
+}
+
 .main-link {
     display: inline-block;
     margin-top: 12px;
@@ -101,11 +112,27 @@ h3 {
     opacity: 0.9;
 }
 
-.note-label {
-    font-size: 0.78rem;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    margin-bottom: 10px;
+.about-section {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 30px;
+    margin-bottom: 34px;
+    padding-top: 30px;
+    border-top: 1px solid #1c1c1c;
+}
+
+.about-right p {
+    margin-bottom: 16px;
+    line-height: 1.7;
+}
+
+.begin-note {
+    font-family: Arial, sans-serif;
+    font-size: 0.9rem;
+    margin-top: 20px;
+    padding-top: 10px;
+    border-top: 1px dashed #1c1c1c;
+    letter-spacing: 0.03em;
 }
 
 .board-row {
@@ -247,58 +274,6 @@ h3 {
     outline: 3px solid #1c1c1c;
 }
 
-.popup-button-wrap {
-    margin-top: 18px;
-}
-
-.info-button {
-    padding: 10px 16px;
-    border: 1px solid #1c1c1c;
-    background: #f8f4ee;
-    color: #161616;
-    cursor: pointer;
-    font-size: 0.95rem;
-    font-family: Arial, sans-serif;
-}
-
-.info-button:hover {
-    background: #161616;
-    color: #f4f0ea;
-}
-
-.popup-overlay {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.55);
-    z-index: 999;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-}
-
-.popup-box {
-    background: #f8f4ee;
-    color: #161616;
-    width: 100%;
-    max-width: 520px;
-    padding: 26px 22px;
-    border: 1px solid #1c1c1c;
-    position: relative;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-}
-
-.close-popup {
-    position: absolute;
-    top: 10px;
-    right: 12px;
-    border: none;
-    background: transparent;
-    font-size: 1.6rem;
-    cursor: pointer;
-    color: #161616;
-}
-
 @media (max-width: 800px) {
     .topbar {
         flex-direction: column;
@@ -311,6 +286,7 @@ h3 {
         margin-right: 14px;
     }
 
+    .about-section,
     .board-row,
     .wide-note,
     .bottom-notes,

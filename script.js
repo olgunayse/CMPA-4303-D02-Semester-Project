@@ -1,3 +1,11 @@
+function openPopup(id) {
+    document.getElementById(id).style.display = "flex";
+}
+
+function closePopup(id) {
+    document.getElementById(id).style.display = "none";
+}
+
 function clearHighlight() {
     const homeA = document.getElementById("homeA");
     const homeB = document.getElementById("homeB");
@@ -37,3 +45,16 @@ function runComparison() {
         tradeOffText.textContent = "Home A is stronger in price and space, while Home B is stronger in location. A balanced choice depends on which trade off feels more important.";
     }
 }
+
+window.addEventListener("click", function (event) {
+    const projectPopup = document.getElementById("projectPopup");
+    const interactivePopup = document.getElementById("interactivePopup");
+
+    if (event.target === projectPopup) {
+        projectPopup.style.display = "none";
+    }
+
+    if (event.target === interactivePopup) {
+        interactivePopup.style.display = "none";
+    }
+});

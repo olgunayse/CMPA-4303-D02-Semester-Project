@@ -1,44 +1,39 @@
-const scenarios = {
-    lifestyle: {
-        p1: { name: "City Loft", price: "$620k", location: 95, space: 30, convenience: 90 },
-        p2: { name: "Suburban Colonial", price: "$595k", location: 40, space: 95, convenience: 50 },
-        take: "In this scenario, the client is trading **Living Space** for **Time**. The City Loft saves roughly 10 hours a week in commuting, which is why the price per square foot is doubled."
-    },
-    investment: {
-        p1: { name: "As-Is Fixer", price: "$320k", location: 70, space: 60, convenience: 10 },
-        p2: { name: "Renovated Ranch", price: "$485k", location: 70, space: 60, convenience: 100 },
-        take: "The 'Fixer' offers instant equity potential. The trade-off is **Liquid Cash vs. Monthly Payment**. A renovated home allows the client to finance the 'newness' over 30 years."
+function clearHighlight() {
+    const homeA = document.getElementById("homeA");
+    const homeB = document.getElementById("homeB");
+
+    if (homeA) {
+        homeA.classList.remove("active-home");
     }
-};
 
-function updateDashboard(type) {
-    const data = scenarios[type];
-    const grid = document.getElementById('property-grid');
-    const logic = document.getElementById('logic-box');
+    if (homeB) {
+        homeB.classList.remove("active-home");
+    }
+}
 
-    // Create the visual cards
-    grid.innerHTML = [data.p1, data.p2].map(p => `
-        <div class="property-card">
-            <h2>${p.name}</h2>
-            <p><strong>List Price:</strong> ${p.price}</p>
-            <div class="stat-row">
-                <div class="stat-label"><span>Location/Walkability</span><span>${p.location}%</span></div>
-                <div class="stat-bar"><div class="stat-fill" style="width: ${p.location}%"></div></div>
-            </div>
-            <div class="stat-row">
-                <div class="stat-label"><span>Interior Space</span><span>${p.space}%</span></div>
-                <div class="stat-bar"><div class="stat-fill" style="width: ${p.space}%"></div></div>
-            </div>
-            <div class="stat-row">
-                <div class="stat-label"><span>Move-in Ready</span><span>${p.convenience}%</span></div>
-                <div class="stat-bar"><div class="stat-fill" style="width: ${p.convenience}%"></div></div>
-            </div>
-        </div>
-    `).join('');
+function runComparison() {
+    const priority = document.getElementById("prioritySelect").value;
+    const result = document.getElementById("comparisonResult");
+    const tradeOffText = document.getElementById("tradeOffText");
+    const homeA = document.getElementById("homeA");
+    const homeB = document.getElementById("homeB");
 
-    // Update the Smarter Take
-    logic.innerHTML = `
-        <h3>The Smarter Take</h3>
-        <p>${data.take}</p>
-    `;
+    clearHighlight();
+
+    if (priority === "price") {
+        result.innerHTML = "<strong>Result:</strong> Home A may be the better fit for a buyer who wants a lower price.";
+        tradeOffText.textContent = "Home A stands out because it gives the buyer more space while also costing less.";
+        homeA.classList.add("active-home");
+    } else if (priority === "space") {
+        result.innerHTML = "<strong>Result:</strong> Home A may be the better fit for a buyer who wants more space.";
+        tradeOffText.textContent = "Home A offers more square footage, so it may work better for someone who values room and flexibility.";
+        homeA.classList.add("active-home");
+    } else if (priority === "location") {
+        result.innerHTML = "<strong>Result:</strong> Home B may be the better fit for a buyer who cares most about location.";
+        tradeOffText.textContent = "Home B stands out because it offers a stronger city location, even though it costs more and gives less space.";
+        homeB.classList.add("active-home");
+    } else if (priority === "balance") {
+        result.innerHTML = "<strong>Result:</strong> Both homes offer different strengths, so the better choice depends on the buyer's overall priorities.";
+        tradeOffText.textContent = "Home A is stronger in price and space, while Home B is stronger in location. A balanced choice depends on which trade off feels more important.";
+    }
 }

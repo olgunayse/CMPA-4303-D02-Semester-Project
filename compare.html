@@ -3,33 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Compare Tool | Compare Homes Smarter</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Compare Homes Smarter</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
-<body class="app-page">
-    <header>
+<body>
+    <header class="topbar">
+        <div class="site-name">Compare Homes Smarter</div>
         <nav>
-            <div class="logo">Compare<span>Homes</span>Smarter</div>
-            <a href="index.html" class="back-link">Return Home</a>
+            <a href="index.html">Home</a>
+            <a href="compare.html">Compare</a>
         </nav>
     </header>
 
-    <main class="dashboard">
-        <aside class="sidebar">
-            <h3>Comparison Logic</h3>
-            <p class="sidebar-hint">Select a scenario to explain to your client.</p>
-            <div class="scenario-list">
-                <button class="scenario-btn active" onclick="updateDashboard('lifestyle', this)">Urban vs. Suburban</button>
-                <button class="scenario-btn" onclick="updateDashboard('investment', this)">Fixer vs. Turn-Key</button>
-                <button class="scenario-btn" onclick="updateDashboard('age', this)">New Build vs. Historic</button>
-            </div>
-        </aside>
+    <main class="compare-layout">
+        <section class="compare-header">
+            <p class="tiny-label">Comparison Page</p>
+            <h1>Pick what matters more, then compare the homes.</h1>
+            <p class="lead narrow-text">
+                This is the interactive part of the project. The recommendation changes depending on what the buyer cares about most.
+            </p>
+        </section>
 
-        <section class="main-view">
-            <div class="comparison-cards" id="property-grid"></div>
-            <div class="logic-insight" id="logic-box">
-                <div class="insight-placeholder">Select a scenario to analyze the trade-offs</div>
+        <section class="control-strip">
+            <div class="control-left">
+                <label for="prioritySelect">Buyer priority</label>
+                <select id="prioritySelect">
+                    <option value="price">Lower price</option>
+                    <option value="space">More space</option>
+                    <option value="location">Better location</option>
+                    <option value="balance">Overall balance</option>
+                </select>
             </div>
+
+            <div class="control-right">
+                <button class="compare-button" onclick="runComparison()">Compare</button>
+            </div>
+        </section>
+
+        <section class="result-panel">
+            <p id="comparisonResult"><strong>Result:</strong> Select a priority and click Compare.</p>
+        </section>
+
+        <section class="comparison-board">
+            <article class="home-sheet left-sheet" id="homeA">
+                <p class="sheet-tag">Home A</p>
+                <h2>More space for a lower price</h2>
+                <ul>
+                    <li>Price: $300,000</li>
+                    <li>Location: Suburb</li>
+                    <li>Size: 2,000 square feet</li>
+                    <li>Best for: buyers who want more room and a lower price</li>
+                </ul>
+            </article>
+
+            <article class="home-sheet right-sheet" id="homeB">
+                <p class="sheet-tag">Home B</p>
+                <h2>Better location, but less space</h2>
+                <ul>
+                    <li>Price: $350,000</li>
+                    <li>Location: City</li>
+                    <li>Size: 1,500 square feet</li>
+                    <li>Best for: buyers who care more about location</li>
+                </ul>
+            </article>
+        </section>
+
+        <section class="summary-note">
+            <p class="note-label">Trade off summary</p>
+            <p id="tradeOffText">
+                Home A gives the buyer more space for a lower price, while Home B offers a stronger location but less square footage. The better option depends on what matters more to the buyer.
+            </p>
         </section>
     </main>
 

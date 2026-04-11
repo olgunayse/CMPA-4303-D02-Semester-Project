@@ -3,36 +3,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smarter Comparison | Compare Homes Smarter</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Compare Homes Smarter</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
-<body class="app-page">
-    <header>
+<body>
+    <header class="topbar">
+        <div class="site-name">Compare Homes Smarter</div>
         <nav>
-            <div class="logo">Compare<span>Homes</span>Smarter</div>
-            <a href="index.html" class="back-link">Return Home</a>
+            <a href="index.html">Home</a>
+            <a href="compare.html">Compare</a>
         </nav>
     </header>
 
-    <main class="dashboard">
-        <div class="sidebar">
-            <h3>Comparison Scenarios</h3>
-            <button onclick="updateDashboard('lifestyle')">Urban vs. Suburban</button>
-            <button onclick="updateDashboard('investment')">Fixer vs. Turn-Key</button>
-            <button onclick="updateDashboard('age')">New Build vs. Historic</button>
-        </div>
+    <main class="home-layout">
+        <section class="intro-block">
+            <p class="tiny-label">Semester Project</p>
+            <h1>Comparing two homes should not feel harder than the actual decision.</h1>
+            <p class="lead">
+                This project is built around one idea: make the comparison clearer. Instead of opening multiple listings and trying to remember everything, the user can look at two homes in one place and focus on the trade offs.
+            </p>
+            <a class="main-link" href="compare.html">Open comparison page</a>
+        </section>
 
-        <div class="main-view">
-            <div class="comparison-cards" id="property-grid">
-                <!-- JavaScript will populate two .property-card elements here -->
+        <aside class="side-note dark-note">
+            <p class="note-label">Project idea</p>
+            <p>
+                I wanted this to feel more practical than a random demo site. Since home buyers usually compare more than one factor at a time, I built the page around price, space, and location.
+            </p>
+        </aside>
+
+        <section class="board-row">
+            <div class="paper one">
+                <h2>What the tool helps with</h2>
+                <p>
+                    It keeps the main details visible at the same time, so the user does not have to keep switching between separate pages.
+                </p>
             </div>
 
-            <div class="logic-insight" id="logic-box">
-                <div class="insight-placeholder">Select a scenario to analyze the trade-offs</div>
+            <div class="paper two">
+                <h2>What I wanted to avoid</h2>
+                <p>
+                    I did not want the page to feel overloaded or too polished. The main goal was clarity, not trying to fit in every possible feature.
+                </p>
             </div>
-        </div>
+        </section>
+
+        <section class="wide-note">
+            <div class="wide-note-left">
+                <p class="note-label">Main idea behind the layout</p>
+                <h2>One home may be better in price, while the other may be better in location.</h2>
+            </div>
+            <div class="wide-note-right">
+                <p>
+                    That is what this tool is meant to show. It is less about picking a single “best” home and more about making the differences easier to read.
+                </p>
+            </div>
+        </section>
+
+        <section class="bottom-notes">
+            <div class="mini-note">
+                <h3>Useful</h3>
+                <p>Built around a real comparison problem.</p>
+            </div>
+            <div class="mini-note">
+                <h3>Simple</h3>
+                <p>Only the main details are shown.</p>
+            </div>
+            <div class="mini-note">
+                <h3>Interactive</h3>
+                <p>The compare page updates based on buyer priorities.</p>
+            </div>
+        </section>
     </main>
-
-    <script src="script.js"></script>
 </body>
 </html>

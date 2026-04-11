@@ -3,83 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Compare Homes Smarter</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Compare Tool | Compare Homes Smarter</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <header class="site-header">
-        <div class="container header-row">
-            <div class="brand">Compare Homes Smarter</div>
-            <nav class="site-nav">
-                <a href="index.html">Home</a>
-                <a href="compare.html">Compare</a>
-            </nav>
-        </div>
+<body class="app-page">
+    <header>
+        <nav>
+            <div class="logo">Compare<span>Homes</span>Smarter</div>
+            <a href="index.html" class="back-link">Return Home</a>
+        </nav>
     </header>
 
-    <main>
-        <section class="hero-section hero-small">
-            <div class="container compare-hero">
-                <div class="compare-hero-left">
-                    <p class="eyebrow">Comparison Page</p>
-                    <h1>See which home may fit better</h1>
-                    <p class="hero-text">
-                        Choose what matters most, then compare the two homes below.
-                    </p>
-                </div>
-
-                <div class="compare-hero-right">
-                    <div class="control-card">
-                        <h2>Choose a buyer priority</h2>
-                        <label for="prioritySelect">Priority</label>
-                        <select id="prioritySelect">
-                            <option value="price">Lower price</option>
-                            <option value="space">More space</option>
-                            <option value="location">Better location</option>
-                            <option value="balance">Overall balance</option>
-                        </select>
-                        <button class="main-button full-button" onclick="runComparison()">Compare</button>
-                    </div>
-                </div>
+    <main class="dashboard">
+        <aside class="sidebar">
+            <h3>Comparison Logic</h3>
+            <p class="sidebar-hint">Select a scenario to explain to your client.</p>
+            <div class="scenario-list">
+                <button class="scenario-btn active" onclick="updateDashboard('lifestyle', this)">Urban vs. Suburban</button>
+                <button class="scenario-btn" onclick="updateDashboard('investment', this)">Fixer vs. Turn-Key</button>
+                <button class="scenario-btn" onclick="updateDashboard('age', this)">New Build vs. Historic</button>
             </div>
-        </section>
+        </aside>
 
-        <section class="compare-main">
-            <div class="container">
-                <p id="comparisonResult" class="result-box">
-                    <strong>Result:</strong> Select a priority and click Compare.
-                </p>
-
-                <div class="comparison-grid">
-                    <section class="home-card" id="homeA">
-                        <p class="card-tag">Home A</p>
-                        <h2>More space for a lower price</h2>
-                        <ul>
-                            <li>Price: $300,000</li>
-                            <li>Location: Suburb</li>
-                            <li>Size: 2,000 square feet</li>
-                            <li>Best for: buyers who want more room and a lower price</li>
-                        </ul>
-                    </section>
-
-                    <section class="home-card" id="homeB">
-                        <p class="card-tag">Home B</p>
-                        <h2>Better location, but less space</h2>
-                        <ul>
-                            <li>Price: $350,000</li>
-                            <li>Location: City</li>
-                            <li>Size: 1,500 square feet</li>
-                            <li>Best for: buyers who care more about location</li>
-                        </ul>
-                    </section>
-                </div>
-
-                <section class="summary-card">
-                    <h2>Trade off summary</h2>
-                    <p id="tradeOffText">
-                        Home A gives the buyer more space for a lower price, while Home B offers a stronger location but less square footage. The better option depends on what matters more to the buyer.
-                    </p>
-                </section>
+        <section class="main-view">
+            <div class="comparison-cards" id="property-grid"></div>
+            <div class="logic-insight" id="logic-box">
+                <div class="insight-placeholder">Select a scenario to analyze the trade-offs</div>
             </div>
         </section>
     </main>

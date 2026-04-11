@@ -1,53 +1,44 @@
-const propertyData = {
-    city: {
-        h1: "City Luxury Condo",
-        h2: "Suburban Family Home",
-        price1: "$550,000",
-        price2: "$525,000",
-        size1: "950 sq ft",
-        size2: "2,400 sq ft",
-        loc1: "Walk to Work/Dining",
-        loc2: "30-min Commute",
-        logic: "In the city, you are paying for **Location & Lifestyle**. In the suburbs, you are paying for **Space & Privacy**.",
-        buyer: "Best for: High-earning singles or couples who value time over square footage."
+const scenarios = {
+    lifestyle: {
+        p1: { name: "City Loft", price: "$620k", location: 95, space: 30, convenience: 90 },
+        p2: { name: "Suburban Colonial", price: "$595k", location: 40, space: 95, convenience: 50 },
+        take: "In this scenario, the client is trading **Living Space** for **Time**. The City Loft saves roughly 10 hours a week in commuting, which is why the price per square foot is doubled."
     },
-    renovated: {
-        h1: "The 'Fixer Upper'",
-        h2: "The 'Turn-Key' Home",
-        price1: "$350,000",
-        price2: "$475,000",
-        size1: "Same",
-        size2: "Same",
-        loc1: "Established Area",
-        loc2: "Same Area",
-        logic: "The Fixer Upper saves you $125k upfront, but requires 'Sweat Equity'. The Turn-Key costs more but rolls the renovation costs into a low-interest mortgage.",
-        buyer: "Best for: Buyers with cash reserves vs. Buyers who want a predictable monthly payment."
+    investment: {
+        p1: { name: "As-Is Fixer", price: "$320k", location: 70, space: 60, convenience: 10 },
+        p2: { name: "Renovated Ranch", price: "$485k", location: 70, space: 60, convenience: 100 },
+        take: "The 'Fixer' offers instant equity potential. The trade-off is **Liquid Cash vs. Monthly Payment**. A renovated home allows the client to finance the 'newness' over 30 years."
     }
 };
 
-function compareProperties(type) {
-    const display = document.getElementById('comparison-display');
-    const item = propertyData[type];
+function updateDashboard(type) {
+    const data = scenarios[type];
+    const grid = document.getElementById('property-grid');
+    const logic = document.getElementById('logic-box');
 
-    display.innerHTML = `
-        <table>
-            <thead>
-                <tr>
-                    <th>Feature</th>
-                    <th>${item.h1}</th>
-                    <th>${item.h2}</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr><td>Price</td><td>${item.price1}</td><td>${item.price2}</td></tr>
-                <tr><td>Size</td><td>${item.size1}</td><td>${item.size2}</td></tr>
-                <tr><td>Location</td><td>${item.loc1}</td><td>${item.loc2}</td></tr>
-            </tbody>
-        </table>
-        <div class="tradeoff-summary">
-            <h3>The Smarter Take:</h3>
-            <p>${item.logic}</p>
-            <p><em>${item.buyer}</em></p>
+    // Create the visual cards
+    grid.innerHTML = [data.p1, data.p2].map(p => `
+        <div class="property-card">
+            <h2>${p.name}</h2>
+            <p><strong>List Price:</strong> ${p.price}</p>
+            <div class="stat-row">
+                <div class="stat-label"><span>Location/Walkability</span><span>${p.location}%</span></div>
+                <div class="stat-bar"><div class="stat-fill" style="width: ${p.location}%"></div></div>
+            </div>
+            <div class="stat-row">
+                <div class="stat-label"><span>Interior Space</span><span>${p.space}%</span></div>
+                <div class="stat-bar"><div class="stat-fill" style="width: ${p.space}%"></div></div>
+            </div>
+            <div class="stat-row">
+                <div class="stat-label"><span>Move-in Ready</span><span>${p.convenience}%</span></div>
+                <div class="stat-bar"><div class="stat-fill" style="width: ${p.convenience}%"></div></div>
+            </div>
         </div>
+    `).join('');
+
+    // Update the Smarter Take
+    logic.innerHTML = `
+        <h3>The Smarter Take</h3>
+        <p>${data.take}</p>
     `;
 }

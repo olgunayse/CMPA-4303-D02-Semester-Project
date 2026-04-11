@@ -25,12 +25,19 @@
             <a class="main-link" href="compare.html">Open comparison page</a>
         </section>
 
-        <aside class="side-note dark-note">
-            <p class="note-label">Project idea</p>
-            <p>
-                I wanted this to feel more practical than a random demo site. Since home buyers usually compare more than one factor at a time, I built the page around price, space, and location.
-            </p>
-        </aside>
+        <div class="popup-button-wrap">
+    <button class="info-button" onclick="openPopup('projectPopup')">Project idea</button>
+</div>
+
+<div id="projectPopup" class="popup-overlay">
+    <div class="popup-box">
+        <button class="close-popup" onclick="closePopup('projectPopup')">&times;</button>
+        <p class="note-label">Project idea</p>
+        <p>
+            I wanted this to feel more practical than a random demo site. Since home buyers usually compare more than one factor at a time, I built the page around price, space, and location.
+        </p>
+    </div>
+</div>
 
         <section class="board-row">
             <div class="paper one">

@@ -23,21 +23,21 @@
                 This project is built around one idea: make the comparison clearer. Instead of opening multiple listings and trying to remember everything, the user can look at two homes in one place and focus on the trade offs.
             </p>
             <a class="main-link" href="compare.html">Open comparison page</a>
+
+            <div class="popup-button-wrap">
+                <button class="info-button" onclick="openPopup('projectPopup')">Project idea</button>
+            </div>
         </section>
 
-        <div class="popup-button-wrap">
-    <button class="info-button" onclick="openPopup('projectPopup')">Project idea</button>
-</div>
-
-<div id="projectPopup" class="popup-overlay">
-    <div class="popup-box">
-        <button class="close-popup" onclick="closePopup('projectPopup')">&times;</button>
-        <p class="note-label">Project idea</p>
-        <p>
-            I wanted this to feel more practical than a random demo site. Since home buyers usually compare more than one factor at a time, I built the page around price, space, and location.
-        </p>
-    </div>
-</div>
+        <div id="projectPopup" class="popup-overlay">
+            <div class="popup-box">
+                <button class="close-popup" onclick="closePopup('projectPopup')">&times;</button>
+                <p class="note-label">Project idea</p>
+                <p>
+                    I wanted this to feel more practical than a random demo site. Since home buyers usually compare more than one factor at a time, I built the page around price, space, and location.
+                </p>
+            </div>
+        </div>
 
         <section class="board-row">
             <div class="paper one">
@@ -62,7 +62,7 @@
             </div>
             <div class="wide-note-right">
                 <p>
-                    That is what this tool is meant to show. It is less about picking a single “best” home and more about making the differences easier to read.
+                    That is what this tool is meant to show. It is less about picking a single best home and more about making the differences easier to read.
                 </p>
             </div>
         </section>
@@ -82,5 +82,7 @@
             </div>
         </section>
     </main>
+
+    <script src="script.js"></script>
 </body>
 </html>

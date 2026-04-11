@@ -1,9 +1,15 @@
 function openPopup(id) {
-    document.getElementById(id).style.display = "flex";
+    const popup = document.getElementById(id);
+    if (popup) {
+        popup.style.display = "flex";
+    }
 }
 
 function closePopup(id) {
-    document.getElementById(id).style.display = "none";
+    const popup = document.getElementById(id);
+    if (popup) {
+        popup.style.display = "none";
+    }
 }
 
 function clearHighlight() {
@@ -50,11 +56,11 @@ window.addEventListener("click", function (event) {
     const projectPopup = document.getElementById("projectPopup");
     const interactivePopup = document.getElementById("interactivePopup");
 
-    if (event.target === projectPopup) {
+    if (projectPopup && event.target === projectPopup) {
         projectPopup.style.display = "none";
     }
 
-    if (event.target === interactivePopup) {
+    if (interactivePopup && event.target === interactivePopup) {
         interactivePopup.style.display = "none";
     }
 });

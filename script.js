@@ -1,39 +1,53 @@
-function clearHighlight() {
-    const homeA = document.getElementById("homeA");
-    const homeB = document.getElementById("homeB");
-
-    if (homeA) {
-        homeA.classList.remove("active-home");
+const propertyData = {
+    city: {
+        h1: "City Luxury Condo",
+        h2: "Suburban Family Home",
+        price1: "$550,000",
+        price2: "$525,000",
+        size1: "950 sq ft",
+        size2: "2,400 sq ft",
+        loc1: "Walk to Work/Dining",
+        loc2: "30-min Commute",
+        logic: "In the city, you are paying for **Location & Lifestyle**. In the suburbs, you are paying for **Space & Privacy**.",
+        buyer: "Best for: High-earning singles or couples who value time over square footage."
+    },
+    renovated: {
+        h1: "The 'Fixer Upper'",
+        h2: "The 'Turn-Key' Home",
+        price1: "$350,000",
+        price2: "$475,000",
+        size1: "Same",
+        size2: "Same",
+        loc1: "Established Area",
+        loc2: "Same Area",
+        logic: "The Fixer Upper saves you $125k upfront, but requires 'Sweat Equity'. The Turn-Key costs more but rolls the renovation costs into a low-interest mortgage.",
+        buyer: "Best for: Buyers with cash reserves vs. Buyers who want a predictable monthly payment."
     }
+};
 
-    if (homeB) {
-        homeB.classList.remove("active-home");
-    }
-}
+function compareProperties(type) {
+    const display = document.getElementById('comparison-display');
+    const item = propertyData[type];
 
-function runComparison() {
-    const priority = document.getElementById("prioritySelect").value;
-    const result = document.getElementById("comparisonResult");
-    const tradeOffText = document.getElementById("tradeOffText");
-    const homeA = document.getElementById("homeA");
-    const homeB = document.getElementById("homeB");
-
-    clearHighlight();
-
-    if (priority === "price") {
-        result.innerHTML = "<strong>Result:</strong> Home A may be the better fit for a buyer who wants a lower price.";
-        tradeOffText.textContent = "Home A stands out because it gives the buyer more space while also costing less.";
-        homeA.classList.add("active-home");
-    } else if (priority === "space") {
-        result.innerHTML = "<strong>Result:</strong> Home A may be the better fit for a buyer who wants more space.";
-        tradeOffText.textContent = "Home A offers more square footage, so it may work better for someone who values room and flexibility.";
-        homeA.classList.add("active-home");
-    } else if (priority === "location") {
-        result.innerHTML = "<strong>Result:</strong> Home B may be the better fit for a buyer who cares most about location.";
-        tradeOffText.textContent = "Home B stands out because it offers a stronger city location, even though it costs more and gives less space.";
-        homeB.classList.add("active-home");
-    } else if (priority === "balance") {
-        result.innerHTML = "<strong>Result:</strong> Both homes offer different strengths, so the better choice depends on the buyer's overall priorities.";
-        tradeOffText.textContent = "Home A is stronger in price and space, while Home B is stronger in location. A balanced choice depends on which trade off feels more important.";
-    }
+    display.innerHTML = `
+        <table>
+            <thead>
+                <tr>
+                    <th>Feature</th>
+                    <th>${item.h1}</th>
+                    <th>${item.h2}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>Price</td><td>${item.price1}</td><td>${item.price2}</td></tr>
+                <tr><td>Size</td><td>${item.size1}</td><td>${item.size2}</td></tr>
+                <tr><td>Location</td><td>${item.loc1}</td><td>${item.loc2}</td></tr>
+            </tbody>
+        </table>
+        <div class="tradeoff-summary">
+            <h3>The Smarter Take:</h3>
+            <p>${item.logic}</p>
+            <p><em>${item.buyer}</em></p>
+        </div>
+    `;
 }

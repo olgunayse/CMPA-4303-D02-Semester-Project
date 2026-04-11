@@ -3,66 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Compare Homes Smarter</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Compare Homes Smarter | Agent Tool</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header class="site-header">
-        <div class="container header-row">
-            <div class="brand">Compare Homes Smarter</div>
-            <nav class="site-nav">
-                <a href="index.html">Home</a>
-                <a href="compare.html">Compare</a>
-            </nav>
-        </div>
+    <header>
+        <nav>
+            <div class="logo">Compare<span>Homes</span>Smarter</div>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#compare">Compare Tool</a></li>
+                <li><a href="#">Trade-off Guide</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <main>
-        <section class="hero-section">
-            <div class="container hero-grid">
-                <div class="hero-left">
-                    <p class="eyebrow">Semester Project</p>
-                    <h1>Compare two homes without jumping back and forth between listings</h1>
-                    <p class="hero-text">
-                        This project is a simple comparison tool that helps users look at two homes side by side. It focuses on price, size, and location so the decision feels easier to follow.
-                    </p>
-                    <a class="main-button" href="compare.html">Start comparing</a>
-                </div>
+    <section class="hero">
+        <h1>Demystifying the Home Search</h1>
+        <p>Helping your clients understand <strong>exactly</strong> what they are paying for.</p>
+    </section>
 
-                <div class="hero-right">
-                    <div class="hero-card dark-card">
-                        <h2>Quick project summary</h2>
-                        <p>This site is meant to make home comparisons feel clearer and less overwhelming.</p>
-                        <div class="mini-lines">
-                            <div class="mini-line">Side by side comparison</div>
-                            <div class="mini-line">Simple interactive feature</div>
-                            <div class="mini-line">Mobile friendly layout</div>
-                        </div>
-                    </div>
+    <main id="compare">
+        <section class="comparison-container">
+            <div class="selection-area">
+                <h2>Property Logic Comparison</h2>
+                <p>Select a scenario to show your client the trade-offs:</p>
+                <div class="controls">
+                    <button onclick="compareProperties('city')">City vs. Suburbs</button>
+                    <button onclick="compareProperties('renovated')">Fixer vs. Turn-Key</button>
                 </div>
             </div>
-        </section>
 
-        <section class="strip-section">
-            <div class="container">
-                <div class="strip-grid">
-                    <div class="strip-item">
-                        <h3>Why this is useful</h3>
-                        <p>It keeps the important details in one place instead of making the user compare separate pages.</p>
-                    </div>
-
-                    <div class="strip-item">
-                        <h3>What it shows</h3>
-                        <p>It makes trade offs easier to see, especially when one home is stronger in price and another is stronger in location.</p>
-                    </div>
-
-                    <div class="strip-item">
-                        <h3>Why I chose it</h3>
-                        <p>I wanted to build something practical and connected to real estate instead of making a random demo project.</p>
-                    </div>
-                </div>
+            <!-- This area updates dynamically via JavaScript -->
+            <div id="comparison-display" class="hidden">
+                <!-- Data will be injected here -->
             </div>
         </section>
     </main>
+
+    <script src="script.js"></script>
 </body>
 </html>

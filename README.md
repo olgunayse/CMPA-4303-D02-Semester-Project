@@ -1,18 +1,22 @@
 # Compare Homes Smarter
 
 ## Project Overview
-This project is a website designed to help users compare two homes. It focuses on making property decisions clearer by showing differences between price, location, and space.
+Compare Homes Smarter is a simple web project that helps users compare two homes. The project focuses on making home comparisons easier to understand by showing price, location, size, and trade offs all in one place.
+
+## Why I Made It
+I wanted to create a project related to real estate. Buyers usually compare homes using more than just one factor, so I liked the idea of building something that organizes those differences in a much simpler way.
 
 ## Features
-- Home comparison
-- Interactive priority selection (price, space, location, balance)
-- Simple search interaction on the homepage
+- Home page explaining the project
+- Compare page with home details
+- Interactive comparison tool using JavaScript
+- About page explaining the purpose of the project
 
 ## Tools Used
-- HTML for structure
-- CSS for design and layout
-- JavaScript for interactivity
-- GitHub Pages for deployment
+- HTML
+- CSS
+- JavaScript
+- GitHub Pages
 
 ## Link
 Link to site:

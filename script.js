@@ -2,13 +2,8 @@ function clearHighlight() {
     const homeA = document.getElementById("homeA");
     const homeB = document.getElementById("homeB");
 
-    if (homeA) {
-        homeA.classList.remove("active-home");
-    }
-
-    if (homeB) {
-        homeB.classList.remove("active-home");
-    }
+    homeA.classList.remove("highlight");
+    homeB.classList.remove("highlight");
 }
 
 function runComparison() {
@@ -21,19 +16,19 @@ function runComparison() {
     clearHighlight();
 
     if (priority === "price") {
-        result.innerHTML = "<strong>Result:</strong> Home A may be the better fit for a buyer who wants a lower price.";
-        tradeOffText.textContent = "Home A stands out because it gives the buyer more space while also costing less.";
-        homeA.classList.add("active-home");
+        result.textContent = "Home A may be the better fit for a buyer who wants a lower price.";
+        tradeOffText.textContent = "Home A costs less and also offers more space.";
+        homeA.classList.add("highlight");
     } else if (priority === "space") {
-        result.innerHTML = "<strong>Result:</strong> Home A may be the better fit for a buyer who wants more space.";
-        tradeOffText.textContent = "Home A offers more square footage, so it may work better for someone who values room and flexibility.";
-        homeA.classList.add("active-home");
+        result.textContent = "Home A may be the better fit for a buyer who wants more space.";
+        tradeOffText.textContent = "Home A offers more square footage than Home B.";
+        homeA.classList.add("highlight");
     } else if (priority === "location") {
-        result.innerHTML = "<strong>Result:</strong> Home B may be the better fit for a buyer who cares most about location.";
-        tradeOffText.textContent = "Home B stands out because it offers a stronger city location, even though it costs more and gives less space.";
-        homeB.classList.add("active-home");
+        result.textContent = "Home B may be the better fit for a buyer who cares most about location.";
+        tradeOffText.textContent = "Home B offers a stronger city location, even though it has less space and a higher price.";
+        homeB.classList.add("highlight");
     } else if (priority === "balance") {
-        result.innerHTML = "<strong>Result:</strong> Both homes offer different strengths, so the better choice depends on the buyer's overall priorities.";
-        tradeOffText.textContent = "Home A is stronger in price and space, while Home B is stronger in location. A balanced choice depends on which trade off feels more important.";
+        result.textContent = "Both homes offer different strengths depending on what the buyer values more.";
+        tradeOffText.textContent = "Home A is stronger in price and space, while Home B is stronger in location.";
     }
 }

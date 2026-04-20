@@ -14,8 +14,8 @@ function setPreview(type, element) {
     }
 
     const messages = {
-        price: "Lower price increases flexibility and long-term financial stability.",
-        space: "More space improves comfort and long-term usability.",
+        price: "Lower price increases flexibility and long term financial stability.",
+        space: "More space improves comfort and long term usability.",
         location: "Better location enhances lifestyle and resale value.",
         balance: "Balanced decisions consider cost, livability, and overall lifestyle fit together."
     };
@@ -128,13 +128,13 @@ function runComparison() {
     } else if (priority === "space") {
         if (spaceA > spaceB) {
             resultText = "Home A is the stronger space-focused choice.";
-            noteText = "It offers more room for comfort and long-term livability.";
-            buyerText = "Best for: growing family or long-term owner.";
+            noteText = "It offers more room for comfort and long term livability.";
+            buyerText = "Best for: growing family or long term owner.";
             winningHome = "A";
         } else if (spaceB > spaceA) {
             resultText = "Home B is the stronger space-focused choice.";
-            noteText = "It offers more room for comfort and long-term livability.";
-            buyerText = "Best for: growing family or long-term owner.";
+            noteText = "It offers more room for comfort and long term livability.";
+            buyerText = "Best for: growing family or long term owner.";
             winningHome = "B";
         }
     } else if (priority === "location") {

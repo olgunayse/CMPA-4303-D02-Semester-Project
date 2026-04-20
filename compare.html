@@ -50,12 +50,16 @@
         </div>
 
         <div class="analysis-controls">
-            <select id="prioritySelect">
-                <option value="price">Price Focus</option>
-                <option value="space">Space Focus</option>
-                <option value="location">Location Focus</option>
-                <option value="balance">Balanced</option>
-            </select>
+            <div class="priority-section">
+    <p class="result-label">Select priority</p>
+
+    <select id="prioritySelect">
+        <option value="price">Focus on Price</option>
+        <option value="space">Focus on Space</option>
+        <option value="location">Focus on Location</option>
+        <option value="balance">Balanced Decision</option>
+    </select>
+</div>
 
             <button class="button" onclick="runComparison()">Analyze</button>
             <button class="button secondary-button" onclick="resetForm()">Reset</button>

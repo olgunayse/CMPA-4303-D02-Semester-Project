@@ -1,9 +1,13 @@
 function clearHighlight() {
     const homeA = document.getElementById("homeA");
     const homeB = document.getElementById("homeB");
+    const homeACard = document.getElementById("homeACard");
+    const homeBCard = document.getElementById("homeBCard");
 
     homeA.classList.remove("highlight");
     homeB.classList.remove("highlight");
+    homeACard.classList.remove("card-highlight");
+    homeBCard.classList.remove("card-highlight");
 }
 
 function runComparison() {
@@ -12,23 +16,28 @@ function runComparison() {
     const tradeOffText = document.getElementById("tradeOffText");
     const homeA = document.getElementById("homeA");
     const homeB = document.getElementById("homeB");
+    const homeACard = document.getElementById("homeACard");
+    const homeBCard = document.getElementById("homeBCard");
 
     clearHighlight();
 
     if (priority === "price") {
         result.textContent = "Home A may be the better fit for a buyer who wants a lower price.";
-        tradeOffText.textContent = "Home A costs less and also offers more space.";
+        tradeOffText.textContent = "Home A costs less and also offers more space, which gives it an advantage for a price-focused buyer.";
         homeA.classList.add("highlight");
+        homeACard.classList.add("card-highlight");
     } else if (priority === "space") {
         result.textContent = "Home A may be the better fit for a buyer who wants more space.";
-        tradeOffText.textContent = "Home A offers more square footage than Home B.";
+        tradeOffText.textContent = "Home A offers more square footage than Home B, which makes it stronger for buyers who care most about room.";
         homeA.classList.add("highlight");
+        homeACard.classList.add("card-highlight");
     } else if (priority === "location") {
         result.textContent = "Home B may be the better fit for a buyer who cares most about location.";
         tradeOffText.textContent = "Home B offers a stronger city location, even though it has less space and a higher price.";
         homeB.classList.add("highlight");
+        homeBCard.classList.add("card-highlight");
     } else if (priority === "balance") {
         result.textContent = "Both homes offer different strengths depending on what the buyer values more.";
-        tradeOffText.textContent = "Home A is stronger in price and space, while Home B is stronger in location.";
+        tradeOffText.textContent = "Home A is stronger in price and space, while Home B is stronger in location, so the better option depends on the buyer's priorities.";
     }
 }

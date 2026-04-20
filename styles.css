@@ -1,29 +1,38 @@
 body {
-    font-family: Arial, sans-serif;
-    margin: 20px;
-    background-color: #f5f5f5;
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    color: #1f2937;
+    background-color: #f7f7f5;
 }
 
-h1 {
-    color: #111;
+.wrapper { width: 90%; max-width: 1000px; margin: 0 auto; }
+
+.site-header { background-color: #111827; color: #ffffff; padding: 18px 0; }
+.nav { display: flex; justify-content: space-between; align-items: center; }
+.site-title { font-size: 1.4rem; margin: 0; font-family: 'Lora', serif; }
+nav a { color: #ffffff; text-decoration: none; margin-left: 16px; font-weight: 500; }
+
+.hero { background-color: #e8ece8; padding: 70px 0; }
+.eyebrow { text-transform: uppercase; letter-spacing: 1px; font-size: 0.8rem; color: #6b7280; }
+
+.button { 
+    display: inline-block; background-color: #111827; color: #ffffff; 
+    padding: 12px 20px; border-radius: 6px; text-decoration: none; 
+    cursor: pointer; border: none; font-size: 1rem;
 }
 
-nav {
-    margin-bottom: 20px;
+.card { 
+    background-color: #ffffff; padding: 24px; 
+    border: 1px solid #e5e7eb; border-radius: 10px; margin-bottom: 24px; 
 }
 
-nav a {
-    margin-right: 15px;
-    text-decoration: none;
-    color: #333;
+.two-column, .compare-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+
+/* Responsive Mobile Layout */
+@media (max-width: 768px) {
+    .two-column, .compare-grid { grid-template-columns: 1fr; }
+    .nav { flex-direction: column; gap: 15px; }
 }
 
-button {
-    padding: 8px 12px;
-    margin-top: 10px;
-    cursor: pointer;
-}
-
-select {
-    padding: 6px;
-}
+#prioritySelect { padding: 10px; margin-right: 10px; border-radius: 5px; }

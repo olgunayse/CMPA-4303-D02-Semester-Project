@@ -22,40 +22,67 @@
 
 <section class="compare-section">
     <div class="wrapper">
-
+        <p class="eyebrow">Interactive Comparison</p>
         <h2>Compare Two Homes</h2>
+        <p class="section-intro">
+            Enter the numbers below to compare two properties side by side and see which one best aligns with the buyer’s priorities.
+        </p>
 
         <div class="compare-grid">
-
-            <div>
+            <div class="home-panel" id="homeA">
+                <p class="panel-label">Property A</p>
                 <h3>Home A</h3>
                 <input type="number" id="priceA" placeholder="Price">
                 <input type="number" id="spaceA" placeholder="Square Feet">
+                <input type="number" id="locationA" placeholder="Location Score (1-10)">
+                <p class="panel-note">Example: lower price, more space, suburban location.</p>
             </div>
 
-            <div>
+            <div class="home-panel" id="homeB">
+                <p class="panel-label">Property B</p>
                 <h3>Home B</h3>
                 <input type="number" id="priceB" placeholder="Price">
                 <input type="number" id="spaceB" placeholder="Square Feet">
+                <input type="number" id="locationB" placeholder="Location Score (1-10)">
+                <p class="panel-note">Example: higher price, smaller footprint, stronger location.</p>
             </div>
-
         </div>
 
         <div class="analysis-controls">
             <select id="prioritySelect">
                 <option value="price">Price Focus</option>
                 <option value="space">Space Focus</option>
+                <option value="location">Location Focus</option>
                 <option value="balance">Balanced</option>
             </select>
 
             <button class="button" onclick="runComparison()">Analyze</button>
+            <button class="button secondary-button" onclick="resetForm()">Reset</button>
         </div>
 
         <div class="result">
+            <p class="result-label">Recommendation</p>
             <h3 id="comparisonResult">Enter values to begin analysis.</h3>
             <p id="tradeOffText"></p>
         </div>
 
+        <div class="details-grid">
+            <div>
+                <p class="result-label">Best For</p>
+                <p id="buyerType">No buyer profile yet.</p>
+            </div>
+            <div>
+                <p class="result-label">Confidence</p>
+                <p id="confidenceText">Confidence statement will appear here.</p>
+            </div>
+        </div>
+
+        <div class="summary-section">
+            <p class="result-label">Summary of Trade-Offs</p>
+            <ul id="summaryList">
+                <li>Home A and Home B have not been compared yet.</li>
+            </ul>
+        </div>
     </div>
 </section>
 

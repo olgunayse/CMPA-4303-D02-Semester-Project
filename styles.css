@@ -2,6 +2,8 @@
     --bg: #fdfbf7;
     --text: #1c1c1c;
     --accent: #8b7355;
+    --soft: #6f6a63;
+    --line: #ddd5cc;
 }
 
 body {
@@ -19,7 +21,7 @@ body {
 
 header {
     padding: 40px 0;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid var(--line);
 }
 
 .header-flex {
@@ -32,6 +34,7 @@ header {
     font-size: 1rem;
     letter-spacing: 0.2rem;
     text-transform: uppercase;
+    font-weight: 400;
 }
 
 nav a {
@@ -41,19 +44,51 @@ nav a {
     font-size: 0.7rem;
     letter-spacing: 0.1rem;
     text-transform: uppercase;
+    transition: opacity 0.3s ease;
+}
+
+nav a:hover {
+    opacity: 0.6;
+}
+
+h2 {
+    font-size: 2.2rem;
+    font-weight: 400;
+    margin: 0 0 15px 0;
+    letter-spacing: -0.02rem;
+}
+
+h3 {
+    font-size: 1.2rem;
+    font-weight: 400;
+    margin-bottom: 12px;
+}
+
+p {
+    line-height: 1.7;
+}
+
+.eyebrow {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14rem;
+    color: var(--accent);
+    margin-bottom: 18px;
 }
 
 .hero {
-    padding: 100px 0;
+    padding: 110px 0 90px 0;
 }
 
 .hero-sub {
-    color: #666;
-    max-width: 500px;
+    color: var(--soft);
+    max-width: 540px;
+    margin-bottom: 30px;
 }
 
 .split {
-    padding: 80px 0;
+    padding: 70px 0;
+    border-top: 1px solid var(--line);
 }
 
 .split-grid {
@@ -63,22 +98,64 @@ nav a {
 }
 
 .interactive {
-    padding: 80px 0;
+    padding: 70px 0;
+    border-top: 1px solid var(--line);
+}
+
+.options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    margin: 20px 0;
 }
 
 .options span {
-    margin-right: 25px;
     cursor: pointer;
     font-size: 0.8rem;
     text-transform: uppercase;
+    letter-spacing: 0.08rem;
+    border-bottom: 1px solid transparent;
+    padding-bottom: 4px;
+    transition: border-color 0.3s ease, opacity 0.3s ease;
 }
 
 .options span:hover {
-    text-decoration: underline;
+    border-color: var(--text);
+    opacity: 0.8;
+}
+
+#previewText {
+    max-width: 560px;
+    color: var(--soft);
+    min-height: 28px;
+}
+
+.process {
+    padding: 70px 0 100px 0;
+    border-top: 1px solid var(--line);
+}
+
+.process-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+}
+
+.process-number {
+    font-size: 0.75rem;
+    letter-spacing: 0.14rem;
+    color: var(--accent);
+    margin-bottom: 12px;
 }
 
 .compare-section {
-    padding: 80px 0;
+    padding: 90px 0;
+}
+
+.section-intro {
+    max-width: 620px;
+    color: var(--soft);
+    margin-bottom: 40px;
 }
 
 .compare-grid {
@@ -88,35 +165,183 @@ nav a {
     margin-top: 20px;
 }
 
+.home-panel {
+    padding: 0 0 18px 0;
+    border-bottom: 1px solid var(--line);
+    transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.home-panel.winner {
+    border-bottom: 2px solid var(--accent);
+    transform: translateY(-2px);
+}
+
+.panel-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12rem;
+    color: var(--accent);
+    margin-bottom: 6px;
+}
+
+.panel-note {
+    color: var(--soft);
+    font-size: 0.95rem;
+    margin-top: 8px;
+}
+
 input {
     display: block;
-    margin-bottom: 15px;
     width: 100%;
-    padding: 8px;
+    margin-bottom: 16px;
+    padding: 10px 0;
     border: none;
-    border-bottom: 1px solid #000;
+    border-bottom: 1px solid var(--text);
     background: transparent;
+    font-family: Georgia, serif;
+    font-size: 1rem;
+    color: var(--text);
+    outline: none;
+}
+
+input::placeholder {
+    color: #8a847d;
 }
 
 .analysis-controls {
-    margin-top: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    align-items: center;
+    margin-top: 34px;
 }
 
 select {
-    margin-right: 20px;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--text);
+    padding: 10px 0;
+    font-family: Georgia, serif;
+    font-size: 1rem;
+    color: var(--text);
+    outline: none;
 }
 
 .button {
     border: 1px solid var(--text);
     background: transparent;
-    padding: 10px 20px;
+    padding: 11px 22px;
     cursor: pointer;
+    text-transform: uppercase;
+    font-size: 0.72rem;
+    letter-spacing: 0.1rem;
+    color: var(--text);
+    transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.button:hover {
+    background: var(--text);
+    color: var(--bg);
+}
+
+.secondary-button {
+    border-color: var(--line);
+}
+
+.secondary-button:hover {
+    background: transparent;
+    color: var(--text);
+    border-color: var(--text);
 }
 
 .result {
-    margin-top: 40px;
+    margin-top: 46px;
+    padding-top: 10px;
+    transition: all 0.3s ease;
+}
+
+.result-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12rem;
+    color: var(--accent);
+    margin-bottom: 8px;
+}
+
+#comparisonResult {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+#tradeOffText,
+#buyerType,
+#confidenceText {
+    color: var(--soft);
+}
+
+.details-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-top: 30px;
+    padding-top: 26px;
+    border-top: 1px solid var(--line);
+}
+
+.summary-section {
+    margin-top: 34px;
+    padding-top: 26px;
+    border-top: 1px solid var(--line);
+}
+
+.summary-section ul {
+    margin: 0;
+    padding-left: 18px;
+    color: var(--soft);
+}
+
+.summary-section li {
+    margin-bottom: 10px;
 }
 
 .about-section {
-    padding: 80px 0;
+    padding: 90px 0 50px 0;
+}
+
+.about-values {
+    padding: 40px 0 90px 0;
+    border-top: 1px solid var(--line);
+}
+
+@media (max-width: 768px) {
+    .wrapper {
+        width: 88%;
+    }
+
+    .header-flex {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+
+    nav a {
+        margin-left: 0;
+        margin-right: 18px;
+    }
+
+    .split-grid,
+    .compare-grid,
+    .details-grid,
+    .process-grid {
+        grid-template-columns: 1fr;
+        gap: 28px;
+    }
+
+    .hero {
+        padding: 80px 0 70px 0;
+    }
+
+    h2 {
+        font-size: 1.8rem;
+    }
 }

@@ -1,8 +1,16 @@
-function setPreview(type) {
+// ===== HOMEPAGE PREVIEW INTERACTION =====
+function setPreview(type, element) {
     const text = document.getElementById("previewText");
+    const options = document.querySelectorAll(".options span");
 
-    if (!text) {
-        return;
+    if (!text) return;
+
+    options.forEach(function(opt) {
+        opt.classList.remove("active");
+    });
+
+    if (element) {
+        element.classList.add("active");
     }
 
     const messages = {
@@ -15,6 +23,7 @@ function setPreview(type) {
     text.textContent = messages[type];
 }
 
+// ===== COMPARISON TOOL =====
 function runComparison() {
     const priceAField = document.getElementById("priceA");
     const priceBField = document.getElementById("priceB");
@@ -72,6 +81,7 @@ function runComparison() {
 
     const summaryItems = [];
 
+    // SUMMARY
     if (priceA < priceB) {
         summaryItems.push("Home A offers the stronger price advantage.");
     } else if (priceB < priceA) {
@@ -96,6 +106,7 @@ function runComparison() {
         summaryItems.push("Both homes have the same location score.");
     }
 
+    // LOGIC
     if (priority === "price") {
         if (priceA < priceB) {
             resultText = "Home A is the stronger price-focused choice.";
@@ -113,57 +124,30 @@ function runComparison() {
                 ? "This is a strong recommendation based on a meaningful price difference."
                 : "This recommendation is moderate because the pricing difference is present but not dramatic.";
             winningHome = "B";
-        } else {
-            resultText = "Both homes are equally strong on price.";
-            noteText = "Price does not separate these options, so space and location become more important.";
-            buyerText = "Best for: buyer who wants to compare based on non-price priorities.";
-            confidence = "Confidence is moderate because the homes are tied on the selected priority.";
         }
     } else if (priority === "space") {
         if (spaceA > spaceB) {
             resultText = "Home A is the stronger space-focused choice.";
-            noteText = "It offers more room for comfort, flexibility, and long-term livability.";
+            noteText = "It offers more room for comfort and long-term livability.";
             buyerText = "Best for: growing family or long-term owner.";
-            confidence = Math.abs(spaceA - spaceB) >= 300
-                ? "This is a strong recommendation based on a noticeable space advantage."
-                : "This recommendation is moderate because the size difference is relatively small.";
             winningHome = "A";
         } else if (spaceB > spaceA) {
             resultText = "Home B is the stronger space-focused choice.";
-            noteText = "It offers more room for comfort, flexibility, and long-term livability.";
+            noteText = "It offers more room for comfort and long-term livability.";
             buyerText = "Best for: growing family or long-term owner.";
-            confidence = Math.abs(spaceA - spaceB) >= 300
-                ? "This is a strong recommendation based on a noticeable space advantage."
-                : "This recommendation is moderate because the size difference is relatively small.";
             winningHome = "B";
-        } else {
-            resultText = "Both homes are equally strong on space.";
-            noteText = "Square footage does not separate these options, so price and location matter more.";
-            buyerText = "Best for: buyer who values layout, cost, and location more than raw square footage.";
-            confidence = "Confidence is moderate because the homes are tied on the selected priority.";
         }
     } else if (priority === "location") {
         if (locationA > locationB) {
             resultText = "Home A is the stronger location-focused choice.";
-            noteText = "It appears to offer stronger positioning, convenience, and lifestyle value.";
-            buyerText = "Best for: lifestyle-focused buyer or future resale-minded buyer.";
-            confidence = Math.abs(locationA - locationB) >= 2
-                ? "This is a strong recommendation based on a clear location advantage."
-                : "This recommendation is moderate because the location scores are fairly close.";
+            noteText = "It offers better positioning and lifestyle value.";
+            buyerText = "Best for: lifestyle-focused buyer.";
             winningHome = "A";
         } else if (locationB > locationA) {
             resultText = "Home B is the stronger location-focused choice.";
-            noteText = "It appears to offer stronger positioning, convenience, and lifestyle value.";
-            buyerText = "Best for: lifestyle-focused buyer or future resale-minded buyer.";
-            confidence = Math.abs(locationA - locationB) >= 2
-                ? "This is a strong recommendation based on a clear location advantage."
-                : "This recommendation is moderate because the location scores are fairly close.";
+            noteText = "It offers better positioning and lifestyle value.";
+            buyerText = "Best for: lifestyle-focused buyer.";
             winningHome = "B";
-        } else {
-            resultText = "Both homes are equally strong on location.";
-            noteText = "Location does not separate these options, so price and space carry more weight.";
-            buyerText = "Best for: buyer who wants to compare based on affordability or size.";
-            confidence = "Confidence is moderate because the homes are tied on the selected priority.";
         }
     } else {
         const scoreA = (locationA * 10) + spaceA - (priceA / 1000);
@@ -171,25 +155,14 @@ function runComparison() {
 
         if (scoreA > scoreB) {
             resultText = "Home A offers the stronger overall balance.";
-            noteText = "It presents the better blend of cost, space, and location based on the entered values.";
-            buyerText = "Best for: practical buyer seeking overall value.";
-            confidence = Math.abs(scoreA - scoreB) >= 20
-                ? "This is a strong recommendation because one home shows a clearer overall advantage."
-                : "This recommendation is moderate because both homes are fairly competitive overall.";
+            noteText = "Better mix of cost, space, and location.";
+            buyerText = "Best for: practical buyer.";
             winningHome = "A";
         } else if (scoreB > scoreA) {
             resultText = "Home B offers the stronger overall balance.";
-            noteText = "It presents the better blend of cost, space, and location based on the entered values.";
-            buyerText = "Best for: practical buyer seeking overall value.";
-            confidence = Math.abs(scoreA - scoreB) >= 20
-                ? "This is a strong recommendation because one home shows a clearer overall advantage."
-                : "This recommendation is moderate because both homes are fairly competitive overall.";
+            noteText = "Better mix of cost, space, and location.";
+            buyerText = "Best for: practical buyer.";
             winningHome = "B";
-        } else {
-            resultText = "Both homes offer a very similar overall balance.";
-            noteText = "This decision likely depends on personal preferences and buyer lifestyle.";
-            buyerText = "Best for: buyer who wants to look deeper at personal priorities before choosing.";
-            confidence = "Confidence is moderate because the homes perform similarly across the main factors.";
         }
     }
 
@@ -212,59 +185,36 @@ function runComparison() {
     }
 }
 
+// ===== RESET =====
 function resetForm() {
     const inputs = document.querySelectorAll("input");
-    const summaryList = document.getElementById("summaryList");
-    const result = document.getElementById("comparisonResult");
-    const note = document.getElementById("tradeOffText");
-    const buyerType = document.getElementById("buyerType");
-    const confidenceText = document.getElementById("confidenceText");
-    const prioritySelect = document.getElementById("prioritySelect");
-    const homeA = document.getElementById("homeA");
-    const homeB = document.getElementById("homeB");
+    inputs.forEach(input => input.value = "");
 
-    inputs.forEach(function(input) {
-        input.value = "";
-    });
+    document.getElementById("comparisonResult").textContent = "Enter values to begin analysis.";
+    document.getElementById("tradeOffText").textContent = "";
+    document.getElementById("buyerType").textContent = "No buyer profile yet.";
+    document.getElementById("confidenceText").textContent = "Confidence statement will appear here.";
+    document.getElementById("summaryList").innerHTML = "<li>Home A and Home B have not been compared yet.</li>";
 
-    if (prioritySelect) {
-        prioritySelect.value = "price";
-    }
-
-    if (result) {
-        result.textContent = "Enter values to begin analysis.";
-    }
-
-    if (note) {
-        note.textContent = "";
-    }
-
-    if (buyerType) {
-        buyerType.textContent = "No buyer profile yet.";
-    }
-
-    if (confidenceText) {
-        confidenceText.textContent = "Confidence statement will appear here.";
-    }
-
-    if (summaryList) {
-        summaryList.innerHTML = "<li>Home A and Home B have not been compared yet.</li>";
-    }
-
-    if (homeA) {
-        homeA.classList.remove("winner");
-    }
-
-    if (homeB) {
-        homeB.classList.remove("winner");
-    }
+    document.getElementById("homeA").classList.remove("winner");
+    document.getElementById("homeB").classList.remove("winner");
 }
 
+// ===== PAGE LOAD =====
 document.addEventListener("DOMContentLoaded", function() {
+
+    // Auto-select preview option
+    const first = document.querySelector(".options span");
+    if (first) {
+        first.click();
+    }
+
+    // Live comparison updates
     const liveFields = document.querySelectorAll("#priceA, #priceB, #spaceA, #spaceB, #locationA, #locationB, #prioritySelect");
 
     liveFields.forEach(function(field) {
         field.addEventListener("input", runComparison);
         field.addEventListener("change", runComparison);
     });
+
 });

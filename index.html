@@ -41,7 +41,7 @@
             </p>
         </div>
         <div>
-            <h3>Understand trade offs</h3>
+            <h3>Understand the trade offs</h3>
             <p>
                 Every decision involves compromise. The goal is to make those trade offs clear so buyers can move forward with more confidence.
             </p>
@@ -51,16 +51,17 @@
 
 <section class="interactive">
     <div class="wrapper">
-        <h3>What matters most?</h3>
+        <h3>Select what matters most</h3>
+        <p class="section-intro">Choose one to see how the recommendation changes.</p>
 
         <div class="options">
-            <span onclick="setPreview('price')">Price</span>
-            <span onclick="setPreview('space')">Space</span>
-            <span onclick="setPreview('location')">Location</span>
-            <span onclick="setPreview('balance')">Balance</span>
+            <span class="active" onclick="setPreview('price', this)">Price</span>
+            <span onclick="setPreview('space', this)">Space</span>
+            <span onclick="setPreview('location', this)">Location</span>
+            <span onclick="setPreview('balance', this)">Balance</span>
         </div>
 
-        <p id="previewText">Select a priority to explore how decisions shift.</p>
+        <p id="previewText"></p>
     </div>
 </section>
 
@@ -87,5 +88,6 @@
 </main>
 
 <script src="script.js"></script>
+
 </body>
 </html>

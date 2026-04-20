@@ -6,7 +6,7 @@ My website, Smarter Comparisons, is a project that helps users compare two homes
 ## Why does it exist?
 I wanted to create a project related to real estate. Being in the field, I've come to realize that buyers usually compare homes using more than just one factor, so I liked the idea of building something that organizes those differences in a much simpler way.
 
-What tools did I use?
+## What tools did I use?
 - I used HTML to structure everything and keep the pages organized.
 - I used CSS to keep the design consistent and make sure it looks clean on different screen sizes, such as mobile devices.
 - I used JavaScript to build the comparison feature so users can enter their own numbers and see a recommendation based on the information.

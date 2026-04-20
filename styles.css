@@ -1,40 +1,74 @@
 :root {
-    --ink: #1a1a1a;
-    --paper: #f4f4f4;
-    --accent: #d9480f; /* A bold, raw accent color */
+    --text-color: #2c3e50;
+    --bg-color: #fdfdfc;
+    --accent-color: #5d6d7e;
 }
 
 body {
     margin: 0;
     font-family: 'Georgia', serif;
-    line-height: 1.6;
-    color: var(--ink);
-    background-color: var(--paper);
+    line-height: 1.8;
+    color: var(--text-color);
+    background-color: var(--bg-color);
 }
 
-.wrapper { width: 90%; max-width: 800px; margin: 0 auto; }
+.wrapper { 
+    width: 85%; 
+    max-width: 800px; 
+    margin: 0 auto; 
+}
 
-header { border-bottom: 4px solid var(--ink); padding: 2rem 0; margin-bottom: 3rem; }
-.site-title { font-family: 'Courier New', monospace; font-size: 1.2rem; margin: 0; }
-nav a { text-decoration: none; color: var(--ink); font-family: 'Courier New', monospace; margin-left: 20px; text-transform: uppercase; font-size: 0.8rem; }
+/* Header: Simple and clean text-based navigation */
+header { padding: 40px 0; }
+.site-title { 
+    font-size: 1.5rem; 
+    letter-spacing: -0.5px; 
+    font-weight: 700; 
+}
+nav { margin-top: 10px; }
+nav a { 
+    text-decoration: none; 
+    color: var(--accent-color); 
+    margin-right: 20px; 
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
 
-/* The "Anti-Boxy" Container Style */
+/* Content: No borders, just clean spacing */
 .card { 
-    background: white; 
-    border: 3px solid var(--ink); 
-    padding: 40px; 
-    margin-bottom: 30px;
-    position: relative;
+    background: transparent; 
+    padding: 20px 0; 
+    margin-bottom: 40px;
+    border: none;
 }
 
-h2, h3 { font-family: 'Courier New', monospace; text-transform: uppercase; }
+h2, h3 { 
+    font-family: sans-serif; 
+    font-weight: 600; 
+    color: var(--text-color); 
+    margin-bottom: 15px;
+}
 
+/* Subtle button style */
 .button { 
-    display: inline-block; background: var(--ink); color: white; 
-    padding: 10px 20px; text-decoration: none; border: none; cursor: pointer;
-    font-family: 'Courier New', monospace;
+    display: inline-block; 
+    background: transparent; 
+    color: var(--text-color); 
+    padding: 10px 0; 
+    text-decoration: none; 
+    border-bottom: 2px solid var(--text-color);
+    font-family: sans-serif;
+    cursor: pointer;
 }
+.button:hover { opacity: 0.7; }
 
-.compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+/* Comparison result area */
+#comparisonResult { font-size: 1.2rem; font-style: italic; }
 
-@media (max-width: 600px) { .compare-grid { grid-template-columns: 1fr; } }
+select { 
+    padding: 8px; 
+    background: white; 
+    border: 1px solid #ddd; 
+    margin-right: 10px;
+}

@@ -3,26 +3,14 @@ function runComparison() {
     const output = document.getElementById('comparisonResult');
     const note = document.getElementById('tradeOffText');
 
-    const findings = {
-        price: { 
-            result: "Home A is the stronger financial choice.", 
-            note: "It preserves $50k in capital compared to Home B, allowing for potential renovations." 
-        },
-        space: { 
-            result: "Home A wins on volume.", 
-            note: "With 2,000 sq ft, you're getting 500 sq ft of additional usable space." 
-        },
-        location: { 
-            result: "Home B offers superior positioning.", 
-            note: "You're trading square footage for the convenience of being in the city core." 
-        },
-        balance: { 
-            result: "This is a trade-off between value and lifestyle.", 
-            note: "Home A is a standard suburban value play; Home B is a premium location play." 
-        }
+    const analysis = {
+        price: { result: "Home A is the financial play.", note: "You save $50,000 upfront. This is capital that could be used for immediate upgrades." },
+        space: { result: "Home A maximizes your footprint.", note: "At 2,000 sq ft, you gain 500 sq ft over Home B. This is ideal if you value room to grow." },
+        location: { result: "Home B wins on location.", note: "You pay a premium for the city, but save on time and travel costs. Lifestyle choice." },
+        balance: { result: "The trade-off: Suburb vs. City.", note: "Home A is for the long-term value seeker; Home B is for the urban-centric buyer." }
     };
 
-    const data = findings[priority];
+    const data = analysis[priority];
     output.innerHTML = `<strong>${data.result}</strong>`;
     note.textContent = data.note;
 }

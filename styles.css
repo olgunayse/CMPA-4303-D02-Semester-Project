@@ -1,49 +1,40 @@
 :root {
-    --brand-dark: #2d3e4e;
-    --brand-accent: #8a7d6d;
-    --brand-bg: #fdfdfc;
-    --brand-text: #333333;
+    --ink: #1a1a1a;
+    --paper: #f4f4f4;
+    --accent: #d9480f; /* A bold, raw accent color */
 }
 
 body {
     margin: 0;
     font-family: 'Georgia', serif;
-    line-height: 1.7;
-    color: var(--brand-text);
-    background-color: var(--brand-bg);
+    line-height: 1.6;
+    color: var(--ink);
+    background-color: var(--paper);
 }
 
-.wrapper { width: 85%; max-width: 900px; margin: 0 auto; }
+.wrapper { width: 90%; max-width: 800px; margin: 0 auto; }
 
-.site-header { 
-    background-color: var(--brand-dark); 
-    color: white; 
-    padding: 2rem 0; 
-    border-bottom: 3px solid var(--brand-accent);
+header { border-bottom: 4px solid var(--ink); padding: 2rem 0; margin-bottom: 3rem; }
+.site-title { font-family: 'Courier New', monospace; font-size: 1.2rem; margin: 0; }
+nav a { text-decoration: none; color: var(--ink); font-family: 'Courier New', monospace; margin-left: 20px; text-transform: uppercase; font-size: 0.8rem; }
+
+/* The "Anti-Boxy" Container Style */
+.card { 
+    background: white; 
+    border: 3px solid var(--ink); 
+    padding: 40px; 
+    margin-bottom: 30px;
+    position: relative;
 }
 
-.site-title { font-family: sans-serif; letter-spacing: 2px; text-transform: uppercase; font-size: 1.1rem; }
-
-nav a { color: #d1d5db; text-decoration: none; margin-left: 20px; font-size: 0.9rem; }
-
-.hero { padding: 80px 0; border-bottom: 1px solid #e0e0e0; }
-.hero h2 { font-size: 2.5rem; color: var(--brand-dark); margin-bottom: 1rem; }
+h2, h3 { font-family: 'Courier New', monospace; text-transform: uppercase; }
 
 .button { 
-    background-color: var(--brand-dark); color: white; 
-    padding: 15px 30px; text-decoration: none; display: inline-block;
-    transition: background 0.3s ease; border: 1px solid var(--brand-dark);
-}
-.button:hover { background-color: var(--brand-accent); border-color: var(--brand-accent); }
-
-.card { 
-    background: #ffffff; padding: 30px; 
-    box-shadow: 4px 4px 0px rgba(45, 62, 78, 0.1); 
-    border: 1px solid #eee; margin-bottom: 30px;
+    display: inline-block; background: var(--ink); color: white; 
+    padding: 10px 20px; text-decoration: none; border: none; cursor: pointer;
+    font-family: 'Courier New', monospace;
 }
 
-.compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+.compare-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
 
-@media (max-width: 768px) { .compare-grid { grid-template-columns: 1fr; } }
-
-select { padding: 10px; border: 1px solid #ccc; background: white; }
+@media (max-width: 600px) { .compare-grid { grid-template-columns: 1fr; } }

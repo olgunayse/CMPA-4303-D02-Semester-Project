@@ -3,30 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="styles.css">
-    <title>Compare Properties</title>
+    <title>Analysis Tool</title>
 </head>
 <body>
-    <header class="site-header">
-        <div class="wrapper nav">
-            <h1 class="site-title">Compare Homes Smarter</h1>
-            <nav><a href="index.html">Home</a><a href="compare.html">Compare</a><a href="about.html">About</a></nav>
-        </div>
-    </header>
+    <header><div class="wrapper"><h1 class="site-title">HOMES // ANALYZE</h1></div></header>
     <main class="wrapper">
         <section class="card">
-            <h3>Comparison Tool</h3>
-            <label for="prioritySelect">Top Priority:</label>
+            <h3>Set Your Variable</h3>
             <select id="prioritySelect">
-                <option value="price">Lower Price</option>
-                <option value="space">More Space</option>
-                <option value="location">Better Location</option>
-                <option value="balance">Overall Balance</option>
+                <option value="price">Price Focus</option>
+                <option value="space">Space Focus</option>
+                <option value="location">Location Focus</option>
+                <option value="balance">Neutral Balance</option>
             </select>
-            <button class="button" onclick="runComparison()">Analyze</button>
+            <button class="button" onclick="runComparison()">Execute</button>
         </section>
         <section class="card">
-            <p id="comparisonResult">Select a priority and analyze the results.</p>
-            <p id="tradeOffText" style="font-style: italic;"></p>
+            <p id="comparisonResult">Run analysis to see the logic.</p>
+            <p id="tradeOffText" style="font-family: monospace;"></p>
         </section>
     </main>
     <script src="script.js"></script>

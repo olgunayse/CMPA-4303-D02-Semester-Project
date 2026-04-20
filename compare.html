@@ -2,68 +2,33 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Compare | Compare Homes Smarter</title>
-    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <title>Compare Properties</title>
 </head>
 <body>
     <header class="site-header">
         <div class="wrapper nav">
             <h1 class="site-title">Compare Homes Smarter</h1>
-            <nav>
-                <a href="index.html">Home</a>
-                <a href="compare.html">Compare</a>
-                <a href="about.html">About</a>
-            </nav>
+            <nav><a href="index.html">Home</a><a href="compare.html">Compare</a><a href="about.html">About</a></nav>
         </div>
     </header>
-
     <main class="wrapper">
-        <section class="page-intro">
-            <p class="eyebrow">Interactive Comparison</p>
-            <h2>Compare two homes side by side</h2>
+        <section class="card">
+            <h3>Comparison Tool</h3>
+            <label for="prioritySelect">Top Priority:</label>
+            <select id="prioritySelect">
+                <option value="price">Lower Price</option>
+                <option value="space">More Space</option>
+                <option value="location">Better Location</option>
+                <option value="balance">Overall Balance</option>
+            </select>
+            <button class="button" onclick="runComparison()">Analyze</button>
         </section>
-
-        <section class="card controls-card">
-            <label for="prioritySelect">Select your top priority:</label>
-            <div class="controls-row">
-                <select id="prioritySelect">
-                    <option value="price">Lower Price</option>
-                    <option value="space">More Space</option>
-                    <option value="location">Better Location</option>
-                    <option value="balance">Overall Balance</option>
-                </select>
-                <button class="button" onclick="runComparison()">Compare Homes</button>
-            </div>
+        <section class="card">
+            <p id="comparisonResult">Select a priority and analyze the results.</p>
+            <p id="tradeOffText" style="font-style: italic;"></p>
         </section>
-
-        <section class="card result-card">
-            <h3>Recommendation</h3>
-            <p id="comparisonResult">Select a priority above and click Compare to see the results.</p>
-            <p id="tradeOffText" style="font-style: italic; color: #4b5563; margin-top: 10px;"></p>
-        </section>
-
-        <div class="compare-grid">
-            <article class="card">
-                <h3>Home A</h3>
-                <ul>
-                    <li><strong>Price:</strong> $300,000</li>
-                    <li><strong>Location:</strong> Suburb</li>
-                    <li><strong>Size:</strong> 2,000 sq ft</li>
-                </ul>
-            </article>
-            <article class="card">
-                <h3>Home B</h3>
-                <ul>
-                    <li><strong>Price:</strong> $350,000</li>
-                    <li><strong>Location:</strong> City</li>
-                    <li><strong>Size:</strong> 1,500 sq ft</li>
-                </ul>
-            </article>
-        </div>
     </main>
-
     <script src="script.js"></script>
 </body>
 </html>

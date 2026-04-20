@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smarter Comparisons</title>
+    <title>Compare | Smarter Comparisons</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
 <header>
     <div class="wrapper header-flex">
-        <h1 class="site-title">Compare Homes</h1>
+        <h1 class="site-title">Smarter Comparisons</h1>
         <nav>
             <a href="index.html">Home</a>
             <a href="compare.html">Compare</a>
@@ -26,7 +26,7 @@
         <p class="eyebrow">Interactive Comparison</p>
         <h2>Compare Two Homes</h2>
         <p class="section-intro">
-            Enter the numbers below to compare two properties and see which one best aligns with the buyer's priorities.
+            Enter the numbers below to compare two properties side by side and see which one best aligns with the buyer’s priorities.
         </p>
 
         <div class="compare-grid">
@@ -35,7 +35,7 @@
                 <h3>Home A</h3>
                 <input type="number" id="priceA" placeholder="Price">
                 <input type="number" id="spaceA" placeholder="Square Feet">
-                <input type="number" id="locationA" placeholder="Location Score (1-10)">
+                <input type="number" id="locationA" placeholder="Location Score (1 to 10)">
                 <p class="panel-note">Example: lower price, more space, suburban location.</p>
             </div>
 
@@ -44,23 +44,25 @@
                 <h3>Home B</h3>
                 <input type="number" id="priceB" placeholder="Price">
                 <input type="number" id="spaceB" placeholder="Square Feet">
-                <input type="number" id="locationB" placeholder="Location Score (1-10)">
+                <input type="number" id="locationB" placeholder="Location Score (1 to 10)">
                 <p class="panel-note">Example: higher price, smaller footprint, stronger location.</p>
             </div>
         </div>
 
+        <div class="priority-choice">
+            <p class="result-label">Select what matters most</p>
+
+            <div class="options compare-options">
+                <span class="active" onclick="setPriority('price', this)">Price</span>
+                <span onclick="setPriority('space', this)">Space</span>
+                <span onclick="setPriority('location', this)">Location</span>
+                <span onclick="setPriority('balance', this)">Balance</span>
+            </div>
+
+            <input type="hidden" id="prioritySelect" value="price">
+        </div>
+
         <div class="analysis-controls">
-            <div class="priority-section">
-    <p class="result-label">Select priority</p>
-
-    <select id="prioritySelect">
-        <option value="price">Focus on Price</option>
-        <option value="space">Focus on Space</option>
-        <option value="location">Focus on Location</option>
-        <option value="balance">Balanced Decision</option>
-    </select>
-</div>
-
             <button class="button" onclick="runComparison()">Analyze</button>
             <button class="button secondary-button" onclick="resetForm()">Reset</button>
         </div>
@@ -83,7 +85,7 @@
         </div>
 
         <div class="summary-section">
-            <p class="result-label">Summary of Trade Offs</p>
+            <p class="result-label">Summary of Trade-Offs</p>
             <ul id="summaryList">
                 <li>Home A and Home B have not been compared yet.</li>
             </ul>

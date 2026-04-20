@@ -44,8 +44,9 @@ nav a:hover {
     text-decoration: underline;
 }
 
-.page-intro {
-    padding: 40px 0 10px 0;
+.hero {
+    background-color: #e8ece8;
+    padding: 70px 0;
 }
 
 .eyebrow {
@@ -57,16 +58,51 @@ nav a:hover {
     font-weight: 600;
 }
 
+.hero h2,
 .page-intro h2,
-.card h3 {
+.card h3,
+.content-section h3 {
     font-family: 'Lora', serif;
     color: #111827;
 }
 
-.page-intro h2 {
-    font-size: 2rem;
+.hero h2 {
+    font-size: 2.2rem;
     margin: 0 0 15px 0;
     max-width: 700px;
+}
+
+.hero-text {
+    max-width: 650px;
+    margin-bottom: 24px;
+}
+
+.button {
+    display: inline-block;
+    background-color: #111827;
+    color: #ffffff;
+    text-decoration: none;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.button:hover {
+    background-color: #374151;
+}
+
+.content-section,
+.page-intro {
+    padding: 40px 0 10px 0;
+}
+
+.two-column,
+.compare-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
 }
 
 .card {
@@ -101,30 +137,8 @@ select {
     min-width: 220px;
 }
 
-.button {
-    display: inline-block;
-    background-color: #111827;
-    color: #ffffff;
-    text-decoration: none;
-    border: none;
-    padding: 12px 20px;
-    border-radius: 6px;
-    cursor: pointer;
-    font-size: 1rem;
-}
-
-.button:hover {
-    background-color: #374151;
-}
-
 .result-card p {
     margin: 0;
-}
-
-.compare-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
 }
 
 .highlight {
@@ -138,6 +152,7 @@ select {
 }
 
 @media (max-width: 768px) {
+    .two-column,
     .compare-grid {
         grid-template-columns: 1fr;
     }
@@ -147,7 +162,7 @@ select {
         margin-right: 12px;
     }
 
-    .page-intro h2 {
+    .hero h2 {
         font-size: 1.8rem;
     }
 }

@@ -3,24 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="styles.css">
-    <title>Analysis Tool</title>
+    <title>Analysis</title>
 </head>
 <body>
-    <header><div class="wrapper"><h1 class="site-title">HOMES // ANALYZE</h1></div></header>
+    <header>
+        <div class="wrapper">
+            <h1 class="site-title">Compare Homes</h1>
+            <nav><a href="index.html">Home</a><a href="compare.html">Compare</a><a href="about.html">About</a></nav>
+        </div>
+    </header>
     <main class="wrapper">
         <section class="card">
-            <h3>Set Your Variable</h3>
+            <p>Select your primary objective:</p>
             <select id="prioritySelect">
                 <option value="price">Price Focus</option>
                 <option value="space">Space Focus</option>
                 <option value="location">Location Focus</option>
                 <option value="balance">Neutral Balance</option>
             </select>
-            <button class="button" onclick="runComparison()">Execute</button>
+            <button class="button" onclick="runComparison()" style="margin-left: 20px;">Analyze</button>
         </section>
         <section class="card">
-            <p id="comparisonResult">Run analysis to see the logic.</p>
-            <p id="tradeOffText" style="font-family: monospace;"></p>
+            <div id="comparisonResult" style="font-size: 1.5rem; margin-bottom: 10px;">Select a priority to view analysis.</div>
+            <p id="tradeOffText" style="color: #666;"></p>
         </section>
     </main>
     <script src="script.js"></script>

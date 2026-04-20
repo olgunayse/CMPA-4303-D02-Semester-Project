@@ -1,74 +1,37 @@
 :root {
-    --text-color: #2c3e50;
-    --bg-color: #fdfdfc;
-    --accent-color: #5d6d7e;
+    --bg: #fdfbf7;      /* Champagne/Cream */
+    --text: #1c1c1c;    /* Deep Charcoal */
+    --accent: #8b7355;  /* Muted Gold/Bronze */
 }
 
 body {
     margin: 0;
     font-family: 'Georgia', serif;
-    line-height: 1.8;
-    color: var(--text-color);
-    background-color: var(--bg-color);
+    line-height: 1.6;
+    color: var(--text);
+    background-color: var(--bg);
 }
 
-.wrapper { 
-    width: 85%; 
-    max-width: 800px; 
-    margin: 0 auto; 
-}
+.wrapper { width: 80%; max-width: 700px; margin: 0 auto; }
 
-/* Header: Simple and clean text-based navigation */
-header { padding: 40px 0; }
-.site-title { 
-    font-size: 1.5rem; 
-    letter-spacing: -0.5px; 
-    font-weight: 700; 
-}
-nav { margin-top: 10px; }
-nav a { 
-    text-decoration: none; 
-    color: var(--accent-color); 
-    margin-right: 20px; 
-    font-size: 0.9rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
+header { padding: 60px 0; border-bottom: 1px solid #dcdcdc; }
+.site-title { font-size: 1.2rem; letter-spacing: 0.2rem; text-transform: uppercase; font-weight: 400; }
+nav a { text-decoration: none; color: var(--text); font-family: sans-serif; font-size: 0.7rem; letter-spacing: 0.1rem; margin-left: 30px; text-transform: uppercase; }
 
-/* Content: No borders, just clean spacing */
-.card { 
-    background: transparent; 
-    padding: 20px 0; 
-    margin-bottom: 40px;
-    border: none;
-}
+h2, h3 { font-family: 'Georgia', serif; font-weight: 400; letter-spacing: -0.02rem; }
 
-h2, h3 { 
-    font-family: sans-serif; 
-    font-weight: 600; 
-    color: var(--text-color); 
-    margin-bottom: 15px;
-}
+/* Luxurious "Cards" - no borders, just white space */
+.card { padding: 40px 0; margin-bottom: 20px; }
 
-/* Subtle button style */
 .button { 
-    display: inline-block; 
-    background: transparent; 
-    color: var(--text-color); 
-    padding: 10px 0; 
-    text-decoration: none; 
-    border-bottom: 2px solid var(--text-color);
-    font-family: sans-serif;
-    cursor: pointer;
+    background: transparent; border: 1px solid var(--text); 
+    padding: 12px 30px; text-decoration: none; color: var(--text); 
+    font-size: 0.8rem; letter-spacing: 0.1rem; cursor: pointer;
+    text-transform: uppercase; transition: 0.3s;
 }
-.button:hover { opacity: 0.7; }
-
-/* Comparison result area */
-#comparisonResult { font-size: 1.2rem; font-style: italic; }
+.button:hover { background: var(--text); color: white; }
 
 select { 
-    padding: 8px; 
-    background: white; 
-    border: 1px solid #ddd; 
-    margin-right: 10px;
+    background: transparent; border: none; border-bottom: 1px solid var(--text);
+    font-family: 'Georgia', serif; font-size: 1rem; padding: 5px;
 }

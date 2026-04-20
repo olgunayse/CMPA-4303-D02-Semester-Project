@@ -1,16 +1,41 @@
-function runComparison() {
-    const priority = document.getElementById('prioritySelect').value;
-    const output = document.getElementById('comparisonResult');
-    const note = document.getElementById('tradeOffText');
+function setPreview(type) {
+    const text = document.getElementById("previewText");
 
-    const analysis = {
-        price: { result: "Home A is the strategic financial choice.", note: "A savings of $50,000 provides significant capital for future equity growth." },
-        space: { result: "Home A offers greater volume.", note: "With 2,000 sq ft, you gain 500 sq ft of additional space, ideal for long-term comfort." },
-        location: { result: "Home B offers superior urban positioning.", note: "You are investing in location and lifestyle efficiency over square footage." },
-        balance: { result: "A study in trade-offs.", note: "Home A prioritizes foundational value; Home B prioritizes location and prestige." }
+    const messages = {
+        price: "Lower price increases flexibility and long-term financial stability.",
+        space: "More space improves comfort and long-term usability.",
+        location: "Better location enhances lifestyle and resale value."
     };
 
-    const data = analysis[priority];
-    output.innerHTML = `<em>${data.result}</em>`;
-    note.textContent = data.note;
+    text.textContent = messages[type];
+}
+
+function runComparison() {
+    const priceA = parseFloat(document.getElementById("priceA").value);
+    const priceB = parseFloat(document.getElementById("priceB").value);
+    const spaceA = parseFloat(document.getElementById("spaceA").value);
+    const spaceB = parseFloat(document.getElementById("spaceB").value);
+    const priority = document.getElementById("prioritySelect").value;
+
+    const result = document.getElementById("comparisonResult");
+    const note = document.getElementById("tradeOffText");
+
+    if (!priceA || !priceB || !spaceA || !spaceB) {
+        result.textContent = "Please fill in all fields.";
+        note.textContent = "";
+        return;
+    }
+
+    if (priority === "price") {
+        result.textContent = priceA < priceB ? "Home A is more affordable." : "Home B is more affordable.";
+        note.textContent = "Lower cost provides more financial flexibility.";
+    } 
+    else if (priority === "space") {
+        result.textContent = spaceA > spaceB ? "Home A offers more space." : "Home B offers more space.";
+        note.textContent = "More space improves long-term comfort.";
+    } 
+    else {
+        result.textContent = "Each home offers different advantages.";
+        note.textContent = "Your final decision depends on balancing cost and space.";
+    }
 }

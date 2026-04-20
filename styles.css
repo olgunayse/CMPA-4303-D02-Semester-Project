@@ -1,37 +1,122 @@
 :root {
-    --bg: #fdfbf7;      /* Champagne/Cream */
-    --text: #1c1c1c;    /* Deep Charcoal */
-    --accent: #8b7355;  /* Muted Gold/Bronze */
+    --bg: #fdfbf7;
+    --text: #1c1c1c;
+    --accent: #8b7355;
 }
 
 body {
     margin: 0;
-    font-family: 'Georgia', serif;
-    line-height: 1.6;
+    font-family: Georgia, serif;
     color: var(--text);
     background-color: var(--bg);
 }
 
-.wrapper { width: 80%; max-width: 700px; margin: 0 auto; }
-
-header { padding: 60px 0; border-bottom: 1px solid #dcdcdc; }
-.site-title { font-size: 1.2rem; letter-spacing: 0.2rem; text-transform: uppercase; font-weight: 400; }
-nav a { text-decoration: none; color: var(--text); font-family: sans-serif; font-size: 0.7rem; letter-spacing: 0.1rem; margin-left: 30px; text-transform: uppercase; }
-
-h2, h3 { font-family: 'Georgia', serif; font-weight: 400; letter-spacing: -0.02rem; }
-
-/* Luxurious "Cards" - no borders, just white space */
-.card { padding: 40px 0; margin-bottom: 20px; }
-
-.button { 
-    background: transparent; border: 1px solid var(--text); 
-    padding: 12px 30px; text-decoration: none; color: var(--text); 
-    font-size: 0.8rem; letter-spacing: 0.1rem; cursor: pointer;
-    text-transform: uppercase; transition: 0.3s;
+.wrapper {
+    width: 80%;
+    max-width: 900px;
+    margin: 0 auto;
 }
-.button:hover { background: var(--text); color: white; }
 
-select { 
-    background: transparent; border: none; border-bottom: 1px solid var(--text);
-    font-family: 'Georgia', serif; font-size: 1rem; padding: 5px;
+header {
+    padding: 40px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.header-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.site-title {
+    font-size: 1rem;
+    letter-spacing: 0.2rem;
+    text-transform: uppercase;
+}
+
+nav a {
+    margin-left: 30px;
+    text-decoration: none;
+    color: var(--text);
+    font-size: 0.7rem;
+    letter-spacing: 0.1rem;
+    text-transform: uppercase;
+}
+
+.hero {
+    padding: 100px 0;
+}
+
+.hero-sub {
+    color: #666;
+    max-width: 500px;
+}
+
+.split {
+    padding: 80px 0;
+}
+
+.split-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+}
+
+.interactive {
+    padding: 80px 0;
+}
+
+.options span {
+    margin-right: 25px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+}
+
+.options span:hover {
+    text-decoration: underline;
+}
+
+.compare-section {
+    padding: 80px 0;
+}
+
+.compare-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-top: 20px;
+}
+
+input {
+    display: block;
+    margin-bottom: 15px;
+    width: 100%;
+    padding: 8px;
+    border: none;
+    border-bottom: 1px solid #000;
+    background: transparent;
+}
+
+.analysis-controls {
+    margin-top: 30px;
+}
+
+select {
+    margin-right: 20px;
+}
+
+.button {
+    border: 1px solid var(--text);
+    background: transparent;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.result {
+    margin-top: 40px;
+}
+
+.about-section {
+    padding: 80px 0;
 }

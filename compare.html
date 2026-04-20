@@ -3,31 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="styles.css">
-    <title>Analysis</title>
+    <title>Compare Homes</title>
 </head>
 <body>
-    <header>
-        <div class="wrapper">
-            <h1 class="site-title">Compare Homes</h1>
-            <nav><a href="index.html">Home</a><a href="compare.html">Compare</a><a href="about.html">About</a></nav>
+
+<header>
+    <div class="wrapper header-flex">
+        <h1 class="site-title">Compare Homes</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="compare.html">Compare</a>
+            <a href="about.html">About</a>
+        </nav>
+    </div>
+</header>
+
+<main>
+
+<section class="compare-section">
+    <div class="wrapper">
+
+        <h2>Compare Two Homes</h2>
+
+        <div class="compare-grid">
+
+            <div>
+                <h3>Home A</h3>
+                <input type="number" id="priceA" placeholder="Price">
+                <input type="number" id="spaceA" placeholder="Square Feet">
+            </div>
+
+            <div>
+                <h3>Home B</h3>
+                <input type="number" id="priceB" placeholder="Price">
+                <input type="number" id="spaceB" placeholder="Square Feet">
+            </div>
+
         </div>
-    </header>
-    <main class="wrapper">
-        <section class="card">
-            <p>Select your primary objective:</p>
+
+        <div class="analysis-controls">
             <select id="prioritySelect">
                 <option value="price">Price Focus</option>
                 <option value="space">Space Focus</option>
-                <option value="location">Location Focus</option>
-                <option value="balance">Neutral Balance</option>
+                <option value="balance">Balanced</option>
             </select>
-            <button class="button" onclick="runComparison()" style="margin-left: 20px;">Analyze</button>
-        </section>
-        <section class="card">
-            <div id="comparisonResult" style="font-size: 1.5rem; margin-bottom: 10px;">Select a priority to view analysis.</div>
-            <p id="tradeOffText" style="color: #666;"></p>
-        </section>
-    </main>
-    <script src="script.js"></script>
+
+            <button class="button" onclick="runComparison()">Analyze</button>
+        </div>
+
+        <div class="result">
+            <h3 id="comparisonResult">Enter values to begin analysis.</h3>
+            <p id="tradeOffText"></p>
+        </div>
+
+    </div>
+</section>
+
+</main>
+
+<script src="script.js"></script>
 </body>
 </html>

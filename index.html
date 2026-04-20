@@ -3,21 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="styles.css">
-    <title>Compare Homes</title>
+    <title>Smarter Comparisons</title>
 </head>
 <body>
-    <header>
-        <div class="wrapper">
-            <h1 class="site-title">Smarter Comparisons</h1>
-            <nav><a href="index.html">Home</a><a href="compare.html">Compare</a><a href="about.html">About</a></nav>
+
+<header>
+    <div class="wrapper header-flex">
+        <h1 class="site-title">Smarter Comparisons</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="compare.html">Compare</a>
+            <a href="about.html">About</a>
+        </nav>
+    </div>
+</header>
+
+<main>
+
+<section class="hero">
+    <div class="wrapper">
+        <h2>Real estate, refined.</h2>
+        <p class="hero-sub">
+            Strip away the noise. Focus only on what truly defines value in a home.
+        </p>
+        <a class="button" href="compare.html">Start Analysis</a>
+    </div>
+</section>
+
+<section class="split">
+    <div class="wrapper split-grid">
+        <div>
+            <h3>Clarity over clutter</h3>
+            <p>
+                Most listings overwhelm buyers with unnecessary details. This tool simplifies
+                the process by focusing only on what matters.
+            </p>
         </div>
-    </header>
-    <main class="wrapper">
-        <section class="card">
-            <h2>Real estate, refined.</h2>
-            <p>I built this tool to strip away the noise of modern listings. When comparing properties, the decision should be guided by objective trade-offs, not marketing fluff.</p>
-            <a class="button" href="compare.html">Start Analysis</a>
-        </section>
-    </main>
+        <div>
+            <h3>Understand trade-offs</h3>
+            <p>
+                Every decision involves compromise. The goal is to make those trade-offs clear
+                and intentional.
+            </p>
+        </div>
+    </div>
+</section>
+
+<section class="interactive">
+    <div class="wrapper">
+        <h3>What matters most?</h3>
+
+        <div class="options">
+            <span onclick="setPreview('price')">Price</span>
+            <span onclick="setPreview('space')">Space</span>
+            <span onclick="setPreview('location')">Location</span>
+        </div>
+
+        <p id="previewText">Select a priority to explore how decisions shift.</p>
+    </div>
+</section>
+
+</main>
+
+<script src="script.js"></script>
 </body>
 </html>

@@ -404,6 +404,97 @@ input::placeholder {
     margin-bottom: 10px;
 }
 
+/* ── Visual Comparison Chart ─────────────────────────────────────────── */
+
+.chart-section {
+    margin-top: 34px;
+    padding-top: 26px;
+    border-top: 1px solid var(--line);
+}
+
+.chart-section.hidden {
+    display: none;
+}
+
+.chart-intro {
+    font-size: 0.85rem;
+    color: var(--soft);
+    margin-bottom: 28px;
+    max-width: 580px;
+}
+
+.chart-container {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.chart-row {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.chart-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12rem;
+    color: var(--accent);
+    margin: 0 0 4px 0;
+}
+
+.chart-bars {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.chart-home-row {
+    display: grid;
+    grid-template-columns: 90px 1fr 70px;
+    align-items: center;
+    gap: 14px;
+}
+
+.chart-home-name {
+    font-size: 0.78rem;
+    color: var(--soft);
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.chart-bar-track {
+    height: 10px;
+    background: var(--line);
+    border-radius: 1px;
+    overflow: hidden;
+}
+
+.chart-bar {
+    height: 100%;
+    width: 0%;
+    border-radius: 1px;
+    transition: width 0.7s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.bar-a { background: var(--text); }
+.bar-b { background: var(--accent); }
+
+.chart-bar-value {
+    font-size: 0.78rem;
+    color: var(--soft);
+    text-align: right;
+}
+
+.chart-factor-note {
+    font-size: 0.78rem;
+    color: var(--soft);
+    margin: 2px 0 0 0;
+    padding-left: 104px;
+    font-style: italic;
+}
+
 /* ── Cost Projection ──────────────────────────────────────────────────── */
 
 .projection-section {
@@ -619,6 +710,15 @@ input::placeholder {
         left: auto;
         right: 0;
         transform: none;
+    }
+
+    .chart-home-row {
+        grid-template-columns: 70px 1fr 60px;
+        gap: 10px;
+    }
+
+    .chart-factor-note {
+        padding-left: 0;
     }
 }
 

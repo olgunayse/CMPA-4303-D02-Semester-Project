@@ -22,7 +22,6 @@ function setPreview(type, element) {
 
     text.textContent = messages[type];
 
-    // Update the Start Analysis link to carry the selected priority
     if (startBtn) {
         startBtn.href = "compare.html?priority=" + type;
     }
@@ -82,8 +81,6 @@ function formatPrice(num) {
     return "$" + Math.abs(num).toLocaleString();
 }
 
-// Normalize a value: returns 100 if it "wins" on this factor, 0 if tied, 0-100 scaled otherwise.
-// For price: lower is better. For space/location: higher is better.
 function normalizeScore(valA, valB, higherIsBetter) {
     if (valA === valB) return [50, 50];
     const min = Math.min(valA, valB);
@@ -127,43 +124,39 @@ function runComparison() {
 
     if (!result || !note || !buyerType || !confidenceText || !summaryList || !homeA || !homeB) return;
 
-    // Remove winner state
     homeA.classList.remove("winner");
     homeB.classList.remove("winner");
     const existingBadge = document.querySelectorAll(".recommended-badge");
     existingBadge.forEach(function(b) { b.remove(); });
 
-    // If any numeric field is empty, reset output
     if (isNaN(priceA) || isNaN(priceB) || isNaN(spaceA) || isNaN(spaceB) ||
         isNaN(locationA) || isNaN(locationB)) {
-        result.textContent       = "Please fill in all fields.";
-        note.textContent         = "";
-        buyerType.textContent    = "No buyer profile yet.";
+        result.textContent         = "Please fill in all fields.";
+        note.textContent           = "";
+        buyerType.textContent      = "No buyer profile yet.";
         confidenceText.textContent = "Confidence statement will appear here.";
-        summaryList.innerHTML    = "<li>Home A and Home B have not been compared yet.</li>";
+        summaryList.innerHTML      = "<li>Home A and Home B have not been compared yet.</li>";
         return;
     }
 
-    // Validate location range
     if (!validateInputs(priceA, priceB, spaceA, spaceB, locationA, locationB)) {
-        result.textContent       = "Please correct the errors above.";
-        note.textContent         = "";
-        buyerType.textContent    = "";
+        result.textContent         = "Please correct the errors above.";
+        note.textContent           = "";
+        buyerType.textContent      = "";
         confidenceText.textContent = "";
-        summaryList.innerHTML    = "";
+        summaryList.innerHTML      = "";
         return;
     }
 
     const nameA = getLabel("nameA", "Home A");
     const nameB = getLabel("nameB", "Home B");
 
-    let resultText = "";
-    let noteText   = "";
-    let buyerText  = "";
-    let confidence = "";
+    let resultText  = "";
+    let noteText    = "";
+    let buyerText   = "";
+    let confidence  = "";
     let winningHome = "";
 
-    // ── Summary with real deltas ──
     const summaryItems = [];
 
     if (priceA < priceB) {
@@ -190,7 +183,6 @@ function runComparison() {
         summaryItems.push("Both homes have the same location score.");
     }
 
-    // ── Priority logic ──
     if (priority === "price") {
         if (priceA < priceB) {
             resultText  = nameA + " is the stronger price-focused choice.";
@@ -264,7 +256,6 @@ function runComparison() {
         }
 
     } else {
-        // Balance mode — normalized scoring
         const [priceScoreA, priceScoreB]       = normalizeScore(priceA, priceB, false);
         const [spaceScoreA, spaceScoreB]       = normalizeScore(spaceA, spaceB, true);
         const [locationScoreA, locationScoreB] = normalizeScore(locationA, locationB, true);
@@ -308,7 +299,6 @@ function runComparison() {
         summaryList.appendChild(li);
     });
 
-    // Highlight winner
     if (winningHome === "A") {
         homeA.classList.add("winner");
         addRecommendedBadge(homeA);
@@ -316,7 +306,10 @@ function runComparison() {
         homeB.classList.add("winner");
         addRecommendedBadge(homeB);
     }
+
+    updateChart(priceA, priceB, spaceA, spaceB, locationA, locationB, nameA, nameB);
 }
+
 
 function addRecommendedBadge(panel) {
     const badge = document.createElement("p");
@@ -326,11 +319,87 @@ function addRecommendedBadge(panel) {
 }
 
 
+function updateChart(priceA, priceB, spaceA, spaceB, locationA, locationB, nameA, nameB) {
+    const chartSection = document.getElementById("chartSection");
+    if (!chartSection) return;
+
+    ["chartNameA", "chartNameA2", "chartNameA3"].forEach(function(id) {
+        const el = document.getElementById(id);
+        if (el) el.textContent = nameA;
+    });
+    ["chartNameB", "chartNameB2", "chartNameB3"].forEach(function(id) {
+        const el = document.getElementById(id);
+        if (el) el.textContent = nameB;
+    });
+
+    var priceMin = Math.min(priceA, priceB);
+    var priceMax = Math.max(priceA, priceB);
+    var priceRange = priceMax - priceMin;
+    var priceScoreA = priceRange === 0 ? 50 : Math.round(((priceMax - priceA) / priceRange) * 100);
+    var priceScoreB = priceRange === 0 ? 50 : Math.round(((priceMax - priceB) / priceRange) * 100);
+    if (priceA === priceB) { priceScoreA = 50; priceScoreB = 50; }
+
+    var spaceMin = Math.min(spaceA, spaceB);
+    var spaceMax = Math.max(spaceA, spaceB);
+    var spaceRange = spaceMax - spaceMin;
+    var spaceScoreA = spaceRange === 0 ? 50 : Math.round(((spaceA - spaceMin) / spaceRange) * 100);
+    var spaceScoreB = spaceRange === 0 ? 50 : Math.round(((spaceB - spaceMin) / spaceRange) * 100);
+    if (spaceA === spaceB) { spaceScoreA = 50; spaceScoreB = 50; }
+
+    var locMin = Math.min(locationA, locationB);
+    var locMax = Math.max(locationA, locationB);
+    var locRange = locMax - locMin;
+    var locScoreA = locRange === 0 ? 50 : Math.round(((locationA - locMin) / locRange) * 100);
+    var locScoreB = locRange === 0 ? 50 : Math.round(((locationB - locMin) / locRange) * 100);
+    if (locationA === locationB) { locScoreA = 50; locScoreB = 50; }
+
+    function setBar(id, score) {
+        var el = document.getElementById(id);
+        if (!el) return;
+        el.style.width = "0%";
+        requestAnimationFrame(function() {
+            requestAnimationFrame(function() {
+                el.style.width = Math.max(score, 6) + "%";
+            });
+        });
+    }
+
+    setBar("barPriceA", priceScoreA);
+    setBar("barPriceB", priceScoreB);
+    setBar("barSpaceA", spaceScoreA);
+    setBar("barSpaceB", spaceScoreB);
+    setBar("barLocA", locScoreA);
+    setBar("barLocB", locScoreB);
+
+    function setText(id, text) {
+        var el = document.getElementById(id);
+        if (el) el.textContent = text;
+    }
+
+    setText("barPriceAVal", "$" + priceA.toLocaleString());
+    setText("barPriceBVal", "$" + priceB.toLocaleString());
+    setText("barSpaceAVal", spaceA.toLocaleString() + " sqft");
+    setText("barSpaceBVal", spaceB.toLocaleString() + " sqft");
+    setText("barLocAVal", locationA + "/10");
+    setText("barLocBVal", locationB + "/10");
+
+    var priceWinner = priceA < priceB ? nameA : (priceB < priceA ? nameB : null);
+    var spaceWinner = spaceA > spaceB ? nameA : (spaceB > spaceA ? nameB : null);
+    var locWinner   = locationA > locationB ? nameA : (locationB > locationA ? nameB : null);
+
+    setText("chartPriceNote", priceWinner ? priceWinner + " is more affordable." : "Equal price.");
+    setText("chartSpaceNote", spaceWinner ? spaceWinner + " offers more space." : "Equal square footage.");
+    setText("chartLocNote",   locWinner   ? locWinner + " has the stronger location." : "Equal location scores.");
+
+    chartSection.classList.remove("hidden");
+}
+
+
 function copyResults() {
-    const result     = document.getElementById("comparisonResult");
-    const note       = document.getElementById("tradeOffText");
-    const buyerType  = document.getElementById("buyerType");
-    const confidence = document.getElementById("confidenceText");
+    const result       = document.getElementById("comparisonResult");
+    const note         = document.getElementById("tradeOffText");
+    const buyerType    = document.getElementById("buyerType");
+    const confidence   = document.getElementById("confidenceText");
     const summaryItems = document.querySelectorAll("#summaryList li");
 
     if (!result) return;
@@ -357,6 +426,7 @@ function copyResults() {
     });
 }
 
+
 function resetForm() {
     const inputs          = document.querySelectorAll("input[type='number'], input[type='text']");
     const summaryList     = document.getElementById("summaryList");
@@ -380,24 +450,25 @@ function resetForm() {
     priorityOptions.forEach(function(opt) { opt.classList.remove("active"); });
     if (priorityOptions[0]) priorityOptions[0].classList.add("active");
 
-    if (result)        result.textContent        = "Enter values to begin analysis.";
-    if (note)          note.textContent           = "";
-    if (buyerType)     buyerType.textContent      = "No buyer profile yet.";
-    if (confidenceText) confidenceText.textContent = "Confidence statement will appear here.";
-    if (summaryList)   summaryList.innerHTML      = "<li>Home A and Home B have not been compared yet.</li>";
-    if (homeA)         homeA.classList.remove("winner");
-    if (homeB)         homeB.classList.remove("winner");
+    if (result)         result.textContent         = "Enter values to begin analysis.";
+    if (note)           note.textContent            = "";
+    if (buyerType)      buyerType.textContent       = "No buyer profile yet.";
+    if (confidenceText) confidenceText.textContent  = "Confidence statement will appear here.";
+    if (summaryList)    summaryList.innerHTML       = "<li>Home A and Home B have not been compared yet.</li>";
+    if (homeA)          homeA.classList.remove("winner");
+    if (homeB)          homeB.classList.remove("winner");
+
+    const chartSection = document.getElementById("chartSection");
+    if (chartSection) chartSection.classList.add("hidden");
 }
 
-document.addEventListener("DOMContentLoaded", function() {
 
-    // Home page: set default preview text and read URL param if returning
+document.addEventListener("DOMContentLoaded", function() {
     const firstPreview = document.querySelector(".options span");
     if (firstPreview && document.getElementById("previewText")) {
         firstPreview.click();
     }
 
-    // Compare page: read priority from URL param (set by Home page)
     const params = new URLSearchParams(window.location.search);
     const urlPriority = params.get("priority");
     if (urlPriority) {
@@ -409,7 +480,6 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
-    // Live update on input
     const liveFields = document.querySelectorAll(
         "#priceA, #priceB, #spaceA, #spaceB, #locationA, #locationB, #nameA, #nameB"
     );
@@ -418,6 +488,7 @@ document.addEventListener("DOMContentLoaded", function() {
         field.addEventListener("change", runComparison);
     });
 });
+
 
 function setStay(years, element) {
     const stayField = document.getElementById("stayYears");
@@ -429,23 +500,21 @@ function setStay(years, element) {
     if (element) element.classList.add("active");
 }
 
+
 function calcMonthlyPayment(price, downPct, annualRate) {
     const principal = price * (1 - downPct / 100);
     const r = annualRate / 100 / 12;
-    const n = 360; // 30-year fixed
+    const n = 360;
     if (r === 0) return principal / n;
     return principal * (r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
 }
+
 
 function calcProjection(price, downPct, annualRate, years) {
     const downPayment = price * (downPct / 100);
     const monthly = calcMonthlyPayment(price, downPct, annualRate);
     const months = years * 12;
-
-    // Total mortgage payments made during stay
     const totalMortgagePayments = monthly * months;
-
-    // Interest paid: track amortization
     const principal = price - downPayment;
     const r = annualRate / 100 / 12;
     let balance = principal;
@@ -455,28 +524,22 @@ function calcProjection(price, downPct, annualRate, years) {
         totalInterest += interestThisMonth;
         balance -= (monthly - interestThisMonth);
     }
-
     const totalCost = downPayment + totalMortgagePayments;
-
-    return {
-        downPayment: downPayment,
-        monthly: monthly,
-        totalInterest: totalInterest,
-        totalCost: totalCost
-    };
+    return { downPayment, monthly, totalInterest, totalCost };
 }
+
 
 function fmt(num) {
     return "$" + Math.round(num).toLocaleString();
 }
 
-function runProjection() {
-    const priceA = parseFloat(document.getElementById("priceA") ? document.getElementById("priceA").value : "");
-    const priceB = parseFloat(document.getElementById("priceB") ? document.getElementById("priceB").value : "");
-    const downPct = parseFloat(document.getElementById("downPayment").value);
-    const rate = parseFloat(document.getElementById("interestRate").value);
-    const years = parseInt(document.getElementById("stayYears").value);
 
+function runProjection() {
+    const priceA  = parseFloat(document.getElementById("priceA") ? document.getElementById("priceA").value : "");
+    const priceB  = parseFloat(document.getElementById("priceB") ? document.getElementById("priceB").value : "");
+    const downPct = parseFloat(document.getElementById("downPayment").value);
+    const rate    = parseFloat(document.getElementById("interestRate").value);
+    const years   = parseInt(document.getElementById("stayYears").value);
     const resultsEl = document.getElementById("projectionResults");
 
     if (isNaN(priceA) || isNaN(priceB)) {
@@ -498,23 +561,21 @@ function runProjection() {
     const nameA = (document.getElementById("nameA") && document.getElementById("nameA").value.trim()) || "Home A";
     const nameB = (document.getElementById("nameB") && document.getElementById("nameB").value.trim()) || "Home B";
 
-    document.getElementById("projLabelA").textContent = nameA;
-    document.getElementById("projLabelB").textContent = nameB;
+    document.getElementById("projLabelA").textContent  = nameA;
+    document.getElementById("projLabelB").textContent  = nameB;
+    document.getElementById("downA").textContent       = fmt(projA.downPayment);
+    document.getElementById("monthlyA").textContent    = fmt(projA.monthly) + "/mo";
+    document.getElementById("interestA").textContent   = fmt(projA.totalInterest);
+    document.getElementById("totalA").textContent      = fmt(projA.totalCost);
+    document.getElementById("downB").textContent       = fmt(projB.downPayment);
+    document.getElementById("monthlyB").textContent    = fmt(projB.monthly) + "/mo";
+    document.getElementById("interestB").textContent   = fmt(projB.totalInterest);
+    document.getElementById("totalB").textContent      = fmt(projB.totalCost);
 
-    document.getElementById("downA").textContent    = fmt(projA.downPayment);
-    document.getElementById("monthlyA").textContent = fmt(projA.monthly) + "/mo";
-    document.getElementById("interestA").textContent = fmt(projA.totalInterest);
-    document.getElementById("totalA").textContent   = fmt(projA.totalCost);
-
-    document.getElementById("downB").textContent    = fmt(projB.downPayment);
-    document.getElementById("monthlyB").textContent = fmt(projB.monthly) + "/mo";
-    document.getElementById("interestB").textContent = fmt(projB.totalInterest);
-    document.getElementById("totalB").textContent   = fmt(projB.totalCost);
-
-    const winner = document.getElementById("projWinner");
+    const winner     = document.getElementById("projWinner");
     const winnerNote = document.getElementById("projWinnerNote");
-    const cardA = document.getElementById("projCardA");
-    const cardB = document.getElementById("projCardB");
+    const cardA      = document.getElementById("projCardA");
+    const cardB      = document.getElementById("projCardB");
 
     cardA.classList.remove("proj-card-winner");
     cardB.classList.remove("proj-card-winner");
@@ -522,15 +583,15 @@ function runProjection() {
     const diff = Math.abs(projA.totalCost - projB.totalCost);
 
     if (projA.totalCost < projB.totalCost) {
-        winner.textContent = nameA + " costs less over " + years + " years.";
+        winner.textContent     = nameA + " costs less over " + years + " years.";
         winnerNote.textContent = "You would spend " + fmt(diff) + " less on " + nameA + " over this period.";
         cardA.classList.add("proj-card-winner");
     } else if (projB.totalCost < projA.totalCost) {
-        winner.textContent = nameB + " costs less over " + years + " years.";
+        winner.textContent     = nameB + " costs less over " + years + " years.";
         winnerNote.textContent = "You would spend " + fmt(diff) + " less on " + nameB + " over this period.";
         cardB.classList.add("proj-card-winner");
     } else {
-        winner.textContent = "Both homes cost the same over " + years + " years.";
+        winner.textContent     = "Both homes cost the same over " + years + " years.";
         winnerNote.textContent = "The total cost of ownership is identical for this scenario.";
     }
 

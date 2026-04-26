@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smarter Comparisons</title>
+    <title>Compare | Smarter Comparisons</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -21,67 +21,246 @@
 
 <main>
 
-<section class="hero">
+<section class="compare-section">
     <div class="wrapper">
-        <p class="eyebrow">Property Decision Platform</p>
-        <h2>Compare homes based on what matters.</h2>
-        <p class="hero-sub">
-            Focus only on what you truly want from your future home.
+        <p class="eyebrow">Interactive Comparison</p>
+        <h2>Compare Two Homes</h2>
+        <p class="section-intro">
+            Enter the numbers below to compare two properties and see which one best aligns with the buyer's priorities.
         </p>
-        <a class="button" href="compare.html">Start Analysis</a>
+
+        <div class="compare-grid">
+            <div class="home-panel" id="homeA">
+                <p class="panel-label">Property A</p>
+                <input type="text" id="nameA" placeholder="Name or address (e.g. Oak Street House)">
+                <input type="number" id="priceA" placeholder="Price ($)">
+                <input type="number" id="spaceA" placeholder="Square Feet">
+                <div class="location-field">
+                    <input type="number" id="locationA" placeholder="Location Score (1 to 10)">
+                    <span class="tooltip-icon" tabindex="0">?<span class="tooltip-text">Rate the location from 1 (poor) to 10 (excellent). Consider commute time, nearby amenities, school ratings, and neighborhood feel.</span></span>
+                </div>
+                <p id="locationA-error" class="field-error"></p>
+                <p class="panel-note">Example: lower price, more space, suburban location.</p>
+            </div>
+
+            <div class="home-panel" id="homeB">
+                <p class="panel-label">Property B</p>
+                <input type="text" id="nameB" placeholder="Name or address (e.g. Downtown Condo)">
+                <input type="number" id="priceB" placeholder="Price ($)">
+                <input type="number" id="spaceB" placeholder="Square Feet">
+                <div class="location-field">
+                    <input type="number" id="locationB" placeholder="Location Score (1 to 10)">
+                    <span class="tooltip-icon" tabindex="0">?<span class="tooltip-text">Rate the location from 1 (poor) to 10 (excellent). Consider commute time, nearby amenities, school ratings, and neighborhood feel.</span></span>
+                </div>
+                <p id="locationB-error" class="field-error"></p>
+                <p class="panel-note">Example: higher price, smaller footprint, stronger location.</p>
+            </div>
+        </div>
+
+        <p class="balance-note"><strong>How balance is scored:</strong> Each factor (price, space, location) is normalized to a 0–100 scale relative to the two homes, then combined with equal weight. A home that is better on all three factors scores higher overall.</p>
+
+        <div class="priority-choice">
+            <p class="result-label">Select what matters most</p>
+            <div class="options compare-options">
+                <span class="active" onclick="setPriority('price', this)">Price</span>
+                <span onclick="setPriority('space', this)">Space</span>
+                <span onclick="setPriority('location', this)">Location</span>
+                <span onclick="setPriority('balance', this)">Balance</span>
+            </div>
+            <input type="hidden" id="prioritySelect" value="price">
+        </div>
+
+        <div class="analysis-controls">
+            <button class="button" onclick="runComparison()">Analyze</button>
+            <button class="button secondary-button" onclick="resetForm()">Reset</button>
+            <button class="button secondary-button" onclick="copyResults()">Copy Results</button>
+        </div>
+
+        <div class="result">
+            <p class="result-label">Recommendation</p>
+            <h3 id="comparisonResult">Enter values to begin analysis.</h3>
+            <p id="tradeOffText"></p>
+        </div>
+
+        <div class="details-grid">
+            <div>
+                <p class="result-label">Best For</p>
+                <p id="buyerType">No buyer profile yet.</p>
+            </div>
+            <div>
+                <p class="result-label">Confidence</p>
+                <p id="confidenceText">Confidence statement will appear here.</p>
+            </div>
+        </div>
+
+        <div class="summary-section">
+            <p class="result-label">Summary of Trade Offs</p>
+            <ul id="summaryList">
+                <li>Home A and Home B have not been compared yet.</li>
+            </ul>
+        </div>
+
+        <div class="chart-section hidden" id="chartSection">
+            <p class="result-label">Visual Comparison</p>
+            <p class="chart-intro">Each bar shows how each property performs relative to the other across the three factors. A full bar means it wins that category outright.</p>
+            <div class="chart-container">
+                <div class="chart-row" id="chartPrice">
+                    <p class="chart-label">Price</p>
+                    <div class="chart-bars">
+                        <div class="chart-home-row">
+                            <span class="chart-home-name" id="chartNameA">Home A</span>
+                            <div class="chart-bar-track">
+                                <div class="chart-bar bar-a" id="barPriceA"></div>
+                            </div>
+                            <span class="chart-bar-value" id="barPriceAVal"></span>
+                        </div>
+                        <div class="chart-home-row">
+                            <span class="chart-home-name" id="chartNameB">Home B</span>
+                            <div class="chart-bar-track">
+                                <div class="chart-bar bar-b" id="barPriceB"></div>
+                            </div>
+                            <span class="chart-bar-value" id="barPriceBVal"></span>
+                        </div>
+                    </div>
+                    <p class="chart-factor-note" id="chartPriceNote"></p>
+                </div>
+
+                <div class="chart-row" id="chartSpace">
+                    <p class="chart-label">Space</p>
+                    <div class="chart-bars">
+                        <div class="chart-home-row">
+                            <span class="chart-home-name" id="chartNameA2">Home A</span>
+                            <div class="chart-bar-track">
+                                <div class="chart-bar bar-a" id="barSpaceA"></div>
+                            </div>
+                            <span class="chart-bar-value" id="barSpaceAVal"></span>
+                        </div>
+                        <div class="chart-home-row">
+                            <span class="chart-home-name" id="chartNameB2">Home B</span>
+                            <div class="chart-bar-track">
+                                <div class="chart-bar bar-b" id="barSpaceB"></div>
+                            </div>
+                            <span class="chart-bar-value" id="barSpaceBVal"></span>
+                        </div>
+                    </div>
+                    <p class="chart-factor-note" id="chartSpaceNote"></p>
+                </div>
+
+                <div class="chart-row" id="chartLocation">
+                    <p class="chart-label">Location</p>
+                    <div class="chart-bars">
+                        <div class="chart-home-row">
+                            <span class="chart-home-name" id="chartNameA3">Home A</span>
+                            <div class="chart-bar-track">
+                                <div class="chart-bar bar-a" id="barLocA"></div>
+                            </div>
+                            <span class="chart-bar-value" id="barLocAVal"></span>
+                        </div>
+                        <div class="chart-home-row">
+                            <span class="chart-home-name" id="chartNameB3">Home B</span>
+                            <div class="chart-bar-track">
+                                <div class="chart-bar bar-b" id="barLocB"></div>
+                            </div>
+                            <span class="chart-bar-value" id="barLocBVal"></span>
+                        </div>
+                    </div>
+                    <p class="chart-factor-note" id="chartLocNote"></p>
+                </div>
+            </div>
+        </div>
+
     </div>
 </section>
 
-<section class="split">
-    <div class="wrapper split-grid">
-        <div>
-            <h3>Clarity over clutter</h3>
-            <p>
-                Most listings overwhelm buyers with unnecessary details. This tool simplifies the process by focusing on price, space, and location.
-            </p>
-        </div>
-        <div>
-            <h3>Understand trade offs</h3>
-            <p>
-                Every decision involves compromise. The goal is to make those trade offs clear so buyers can move forward with more confidence.
-            </p>
-        </div>
-    </div>
-</section>
-
-<section class="interactive">
+<section class="projection-section">
     <div class="wrapper">
-        <h3>Select what matters most</h3>
-        <p class="section-intro">Choose one to see how the recommendation changes.</p>
+        <p class="eyebrow">Long-Term Cost Projection</p>
+        <h2>What will this actually cost you?</h2>
+        <p class="section-intro">
+            Enter your financing details to see the true cost of ownership over time — not just the sticker price.
+        </p>
 
-        <div class="options">
-            <span class="active" onclick="setPreview('price', this)">Price</span>
-            <span onclick="setPreview('space', this)">Space</span>
-            <span onclick="setPreview('location', this)">Location</span>
-            <span onclick="setPreview('balance', this)">Balance</span>
+        <div class="projection-inputs">
+            <div class="proj-field">
+                <label for="downPayment">Down Payment (%)</label>
+                <input type="number" id="downPayment" placeholder="e.g. 20" min="1" max="99">
+            </div>
+            <div class="proj-field">
+                <label for="interestRate">Interest Rate (%)</label>
+                <input type="number" id="interestRate" placeholder="e.g. 6.5" step="0.1" min="0.1">
+            </div>
+            <div class="proj-field">
+                <label>How long do you plan to stay?</label>
+                <div class="stay-options">
+                    <span class="stay-opt active" onclick="setStay(5, this)">5 years</span>
+                    <span class="stay-opt" onclick="setStay(7, this)">7 years</span>
+                    <span class="stay-opt" onclick="setStay(10, this)">10 years</span>
+                </div>
+                <input type="hidden" id="stayYears" value="5">
+            </div>
         </div>
 
-        <p id="previewText"></p>
-    </div>
-</section>
+        <div class="analysis-controls">
+            <button class="button" onclick="runProjection()">Calculate</button>
+        </div>
 
-<section class="process">
-    <div class="wrapper process-grid">
-        <div>
-            <p class="process-number">01</p>
-            <h3>Enter home details</h3>
-            <p>Input the price, square footage, and location score for two properties.</p>
+        <div id="projectionResults" class="projection-results hidden">
+
+            <div class="proj-winner-bar">
+                <p class="result-label">Lower Total Cost</p>
+                <h3 id="projWinner"></h3>
+                <p id="projWinnerNote"></p>
+            </div>
+
+            <div class="proj-grid">
+                <div class="proj-card" id="projCardA">
+                    <p class="proj-card-label" id="projLabelA">Home A</p>
+                    <div class="proj-stat-grid">
+                        <div class="proj-stat">
+                            <p class="proj-stat-label">Monthly Payment</p>
+                            <p class="proj-stat-value" id="monthlyA"></p>
+                        </div>
+                        <div class="proj-stat">
+                            <p class="proj-stat-label">Down Payment</p>
+                            <p class="proj-stat-value" id="downA"></p>
+                        </div>
+                        <div class="proj-stat">
+                            <p class="proj-stat-label">Total Interest Paid</p>
+                            <p class="proj-stat-value" id="interestA"></p>
+                        </div>
+                        <div class="proj-stat">
+                            <p class="proj-stat-label">Total Cost of Ownership</p>
+                            <p class="proj-stat-value proj-stat-total" id="totalA"></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="proj-card" id="projCardB">
+                    <p class="proj-card-label" id="projLabelB">Home B</p>
+                    <div class="proj-stat-grid">
+                        <div class="proj-stat">
+                            <p class="proj-stat-label">Monthly Payment</p>
+                            <p class="proj-stat-value" id="monthlyB"></p>
+                        </div>
+                        <div class="proj-stat">
+                            <p class="proj-stat-label">Down Payment</p>
+                            <p class="proj-stat-value" id="downB"></p>
+                        </div>
+                        <div class="proj-stat">
+                            <p class="proj-stat-label">Total Interest Paid</p>
+                            <p class="proj-stat-value" id="interestB"></p>
+                        </div>
+                        <div class="proj-stat">
+                            <p class="proj-stat-label">Total Cost of Ownership</p>
+                            <p class="proj-stat-value proj-stat-total" id="totalB"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <p class="proj-disclaimer">Monthly payment is based on a 30-year fixed mortgage. Total cost of ownership includes the down payment plus all mortgage payments made during the selected period. Property taxes and HOA fees are not included.</p>
         </div>
-        <div>
-            <p class="process-number">02</p>
-            <h3>Choose your priority</h3>
-            <p>Select whether cost, space, location, or overall balance matters most to the buyer.</p>
-        </div>
-        <div>
-            <p class="process-number">03</p>
-            <h3>Review the analysis</h3>
-            <p>Get a recommendation, trade offs, buyer type, and a clearer understanding of value.</p>
-        </div>
+
     </div>
 </section>
 

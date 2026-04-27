@@ -307,7 +307,7 @@ function runComparison() {
         addRecommendedBadge(homeB);
     }
 
-    updateChart(priceA, priceB, spaceA, spaceB, locationA, locationB, nameA, nameB);
+    saveToHistory(resultText, noteText, buyerText, nameA, nameB, priceA, priceB, spaceA, spaceB, locationA, locationB, priority);
 }
 
 
@@ -319,79 +319,71 @@ function addRecommendedBadge(panel) {
 }
 
 
-function updateChart(priceA, priceB, spaceA, spaceB, locationA, locationB, nameA, nameB) {
-    const chartSection = document.getElementById("chartSection");
-    if (!chartSection) return;
+var comparisonHistory = [];
 
-    ["chartNameA", "chartNameA2", "chartNameA3"].forEach(function(id) {
-        const el = document.getElementById(id);
-        if (el) el.textContent = nameA;
+function saveToHistory(resultText, noteText, buyerText, nameA, nameB, priceA, priceB, spaceA, spaceB, locationA, locationB, priority) {
+    var now = new Date();
+    var timeStr = now.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
+
+    var entry = {
+        number: comparisonHistory.length + 1,
+        time: timeStr,
+        result: resultText,
+        note: noteText,
+        buyer: buyerText,
+        nameA: nameA,
+        nameB: nameB,
+        priceA: priceA,
+        priceB: priceB,
+        spaceA: spaceA,
+        spaceB: spaceB,
+        locationA: locationA,
+        locationB: locationB,
+        priority: priority
+    };
+
+    comparisonHistory.unshift(entry);
+    renderHistory();
+}
+
+function renderHistory() {
+    var section = document.getElementById("historySection");
+    var list = document.getElementById("historyList");
+    if (!section || !list) return;
+
+    section.style.display = "block";
+    list.innerHTML = "";
+
+    comparisonHistory.forEach(function(entry) {
+        var div = document.createElement("div");
+        div.className = "history-entry";
+        div.innerHTML =
+            '<div class="history-meta">' +
+                '<span class="history-number">Comparison ' + entry.number + '</span>' +
+                '<span class="history-timestamp">' + entry.time + ' &mdash; Priority: ' + entry.priority.charAt(0).toUpperCase() + entry.priority.slice(1) + '</span>' +
+            '</div>' +
+            '<p class="history-winner">' + entry.result + '</p>' +
+            '<p class="history-detail">' + entry.nameA + ': $' + entry.priceA.toLocaleString() + ' &middot; ' + entry.spaceA.toLocaleString() + ' sqft &middot; Location ' + entry.locationA + '/10</p>' +
+            '<p class="history-detail">' + entry.nameB + ': $' + entry.priceB.toLocaleString() + ' &middot; ' + entry.spaceB.toLocaleString() + ' sqft &middot; Location ' + entry.locationB + '/10</p>';
+        list.appendChild(div);
     });
-    ["chartNameB", "chartNameB2", "chartNameB3"].forEach(function(id) {
-        const el = document.getElementById(id);
-        if (el) el.textContent = nameB;
-    });
+}
 
-    var priceMin = Math.min(priceA, priceB);
-    var priceMax = Math.max(priceA, priceB);
-    var priceRange = priceMax - priceMin;
-    var priceScoreA = priceRange === 0 ? 50 : Math.round(((priceMax - priceA) / priceRange) * 100);
-    var priceScoreB = priceRange === 0 ? 50 : Math.round(((priceMax - priceB) / priceRange) * 100);
-    if (priceA === priceB) { priceScoreA = 50; priceScoreB = 50; }
+function clearHistory() {
+    comparisonHistory = [];
+    var section = document.getElementById("historySection");
+    var list = document.getElementById("historyList");
+    if (section) section.style.display = "none";
+    if (list) list.innerHTML = "";
+}
 
-    var spaceMin = Math.min(spaceA, spaceB);
-    var spaceMax = Math.max(spaceA, spaceB);
-    var spaceRange = spaceMax - spaceMin;
-    var spaceScoreA = spaceRange === 0 ? 50 : Math.round(((spaceA - spaceMin) / spaceRange) * 100);
-    var spaceScoreB = spaceRange === 0 ? 50 : Math.round(((spaceB - spaceMin) / spaceRange) * 100);
-    if (spaceA === spaceB) { spaceScoreA = 50; spaceScoreB = 50; }
-
-    var locMin = Math.min(locationA, locationB);
-    var locMax = Math.max(locationA, locationB);
-    var locRange = locMax - locMin;
-    var locScoreA = locRange === 0 ? 50 : Math.round(((locationA - locMin) / locRange) * 100);
-    var locScoreB = locRange === 0 ? 50 : Math.round(((locationB - locMin) / locRange) * 100);
-    if (locationA === locationB) { locScoreA = 50; locScoreB = 50; }
-
-    function setBar(id, score) {
-        var el = document.getElementById(id);
-        if (!el) return;
-        el.style.width = "0%";
-        requestAnimationFrame(function() {
-            requestAnimationFrame(function() {
-                el.style.width = Math.max(score, 6) + "%";
-            });
-        });
+function printResults() {
+    var resultEl = document.getElementById("comparisonResult");
+    if (!resultEl || resultEl.textContent === "Enter values to begin analysis." || resultEl.textContent === "Please fill in all fields.") {
+        alert("Please run a comparison first before printing.");
+        return;
     }
-
-    setBar("barPriceA", priceScoreA);
-    setBar("barPriceB", priceScoreB);
-    setBar("barSpaceA", spaceScoreA);
-    setBar("barSpaceB", spaceScoreB);
-    setBar("barLocA", locScoreA);
-    setBar("barLocB", locScoreB);
-
-    function setText(id, text) {
-        var el = document.getElementById(id);
-        if (el) el.textContent = text;
-    }
-
-    setText("barPriceAVal", "$" + priceA.toLocaleString());
-    setText("barPriceBVal", "$" + priceB.toLocaleString());
-    setText("barSpaceAVal", spaceA.toLocaleString() + " sqft");
-    setText("barSpaceBVal", spaceB.toLocaleString() + " sqft");
-    setText("barLocAVal", locationA + "/10");
-    setText("barLocBVal", locationB + "/10");
-
-    var priceWinner = priceA < priceB ? nameA : (priceB < priceA ? nameB : null);
-    var spaceWinner = spaceA > spaceB ? nameA : (spaceB > spaceA ? nameB : null);
-    var locWinner   = locationA > locationB ? nameA : (locationB > locationA ? nameB : null);
-
-    setText("chartPriceNote", priceWinner ? priceWinner + " is more affordable." : "Equal price.");
-    setText("chartSpaceNote", spaceWinner ? spaceWinner + " offers more space." : "Equal square footage.");
-    setText("chartLocNote",   locWinner   ? locWinner + " has the stronger location." : "Equal location scores.");
-
-    chartSection.classList.remove("hidden");
+    window.print();
 }
 
 
@@ -457,9 +449,6 @@ function resetForm() {
     if (summaryList)    summaryList.innerHTML       = "<li>Home A and Home B have not been compared yet.</li>";
     if (homeA)          homeA.classList.remove("winner");
     if (homeB)          homeB.classList.remove("winner");
-
-    const chartSection = document.getElementById("chartSection");
-    if (chartSection) chartSection.classList.add("hidden");
 }
 
 

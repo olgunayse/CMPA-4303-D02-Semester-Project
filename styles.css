@@ -404,97 +404,6 @@ input::placeholder {
     margin-bottom: 10px;
 }
 
-/* ── Visual Comparison Chart ─────────────────────────────────────────── */
-
-.chart-section {
-    margin-top: 34px;
-    padding-top: 26px;
-    border-top: 1px solid var(--line);
-}
-
-.chart-section.hidden {
-    display: none;
-}
-
-.chart-intro {
-    font-size: 0.85rem;
-    color: var(--soft);
-    margin-bottom: 28px;
-    max-width: 580px;
-}
-
-.chart-container {
-    display: flex;
-    flex-direction: column;
-    gap: 32px;
-}
-
-.chart-row {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.chart-label {
-    font-size: 0.7rem;
-    text-transform: uppercase;
-    letter-spacing: 0.12rem;
-    color: var(--accent);
-    margin: 0 0 4px 0;
-}
-
-.chart-bars {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.chart-home-row {
-    display: grid;
-    grid-template-columns: 90px 1fr 70px;
-    align-items: center;
-    gap: 14px;
-}
-
-.chart-home-name {
-    font-size: 0.78rem;
-    color: var(--soft);
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
-}
-
-.chart-bar-track {
-    height: 10px;
-    background: var(--line);
-    border-radius: 1px;
-    overflow: hidden;
-}
-
-.chart-bar {
-    height: 100%;
-    width: 0%;
-    border-radius: 1px;
-    transition: width 0.7s cubic-bezier(0.25, 0.8, 0.25, 1);
-}
-
-.bar-a { background: var(--text); }
-.bar-b { background: var(--accent); }
-
-.chart-bar-value {
-    font-size: 0.78rem;
-    color: var(--soft);
-    text-align: right;
-}
-
-.chart-factor-note {
-    font-size: 0.78rem;
-    color: var(--soft);
-    margin: 2px 0 0 0;
-    padding-left: 104px;
-    font-style: italic;
-}
-
 /* ── Cost Projection ──────────────────────────────────────────────────── */
 
 .projection-section {
@@ -630,6 +539,116 @@ input::placeholder {
     line-height: 1.6;
 }
 
+/* ── Comparison History ───────────────────────────────────────────────── */
+
+.history-section {
+    padding: 70px 0;
+    border-top: 1px solid var(--line);
+}
+
+.history-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 6px;
+}
+
+.history-entry {
+    border-bottom: 1px solid var(--line);
+    padding: 24px 0;
+}
+
+.history-entry:last-child {
+    border-bottom: none;
+}
+
+.history-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.history-number {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12rem;
+    color: var(--accent);
+}
+
+.history-timestamp {
+    font-size: 0.72rem;
+    color: var(--soft);
+}
+
+.history-winner {
+    font-size: 1rem;
+    font-weight: 400;
+    margin: 0 0 6px 0;
+}
+
+.history-detail {
+    font-size: 0.85rem;
+    color: var(--soft);
+    margin: 0;
+}
+
+/* ── Print Styles ─────────────────────────────────────────────────────── */
+
+@media print {
+    .no-print,
+    header,
+    nav,
+    .compare-grid,
+    .balance-note,
+    .priority-choice,
+    .analysis-controls,
+    .projection-section,
+    .history-section,
+    .panel-note,
+    .section-intro,
+    .eyebrow {
+        display: none !important;
+    }
+
+    body {
+        background: white;
+        color: black;
+        font-size: 12pt;
+    }
+
+    .wrapper {
+        width: 100%;
+    }
+
+    .compare-section {
+        padding: 20pt 0;
+    }
+
+    h2 {
+        font-size: 18pt;
+        margin-bottom: 16pt;
+    }
+
+    h3 {
+        font-size: 13pt;
+    }
+
+    .result-label {
+        font-size: 8pt;
+        letter-spacing: 0.1rem;
+    }
+
+    .result,
+    .details-grid,
+    .summary-section {
+        margin-top: 20pt;
+        padding-top: 16pt;
+    }
+}
+
 /* ── Responsive ───────────────────────────────────────────────────────── */
 
 @media (max-width: 768px) {
@@ -658,7 +677,8 @@ input::placeholder {
     .interactive,
     .process,
     .about-values,
-    .projection-section {
+    .projection-section,
+    .history-section {
         padding: 48px 0;
     }
 
@@ -712,13 +732,9 @@ input::placeholder {
         transform: none;
     }
 
-    .chart-home-row {
-        grid-template-columns: 70px 1fr 60px;
-        gap: 10px;
-    }
-
-    .chart-factor-note {
-        padding-left: 0;
+    .history-meta {
+        flex-direction: column;
+        gap: 4px;
     }
 }
 
@@ -748,7 +764,8 @@ input::placeholder {
     .interactive,
     .process,
     .about-values,
-    .projection-section {
+    .projection-section,
+    .history-section {
         padding: 38px 0;
     }
 

@@ -404,141 +404,6 @@ input::placeholder {
     margin-bottom: 10px;
 }
 
-/* ── Cost Projection ──────────────────────────────────────────────────── */
-
-.projection-section {
-    padding: 70px 0;
-    border-top: 1px solid var(--line);
-}
-
-.projection-inputs {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 40px;
-    margin-top: 20px;
-    margin-bottom: 10px;
-}
-
-.proj-field label {
-    display: block;
-    font-size: 0.7rem;
-    text-transform: uppercase;
-    letter-spacing: 0.12rem;
-    color: var(--accent);
-    margin-bottom: 10px;
-}
-
-.stay-options {
-    display: flex;
-    gap: 18px;
-    margin-top: 4px;
-}
-
-.stay-opt {
-    cursor: pointer;
-    font-size: 0.8rem;
-    text-transform: uppercase;
-    letter-spacing: 0.08rem;
-    border-bottom: 1px solid transparent;
-    padding-bottom: 4px;
-    transition: border-color 0.3s ease;
-    color: var(--soft);
-}
-
-.stay-opt.active {
-    border-bottom-color: var(--text);
-    color: var(--text);
-}
-
-.stay-opt:hover {
-    border-color: var(--text);
-    color: var(--text);
-}
-
-.projection-results {
-    margin-top: 46px;
-}
-
-.projection-results.hidden {
-    display: none;
-}
-
-.proj-winner-bar {
-    margin-bottom: 30px;
-    padding-bottom: 26px;
-    border-bottom: 1px solid var(--line);
-}
-
-.proj-winner-bar h3 {
-    margin-top: 0;
-    margin-bottom: 6px;
-}
-
-.proj-winner-bar p {
-    color: var(--soft);
-    margin: 0;
-}
-
-.proj-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
-}
-
-.proj-card {
-    padding: 24px 0;
-    border-top: 1px solid var(--line);
-    transition: border-color 0.3s ease, background-color 0.3s ease;
-}
-
-.proj-card-winner {
-    border-top: 2px solid var(--accent);
-    background-color: rgba(139, 115, 85, 0.06);
-    padding: 24px 16px;
-}
-
-.proj-card-label {
-    font-size: 0.7rem;
-    text-transform: uppercase;
-    letter-spacing: 0.12rem;
-    color: var(--accent);
-    margin-bottom: 18px;
-}
-
-.proj-stat-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 24px 20px;
-}
-
-.proj-stat-label {
-    font-size: 0.72rem;
-    color: var(--soft);
-    margin-bottom: 4px;
-    text-transform: uppercase;
-    letter-spacing: 0.06rem;
-}
-
-.proj-stat-value {
-    font-size: 1.1rem;
-    font-weight: 400;
-    margin: 0;
-    color: var(--text);
-}
-
-.proj-stat-total {
-    font-size: 1.3rem;
-}
-
-.proj-disclaimer {
-    margin-top: 30px;
-    font-size: 0.78rem;
-    color: var(--soft);
-    border-left: 2px solid var(--line);
-    padding-left: 14px;
-    line-height: 1.6;
-}
-
 /* ── Comparison History ───────────────────────────────────────────────── */
 
 .history-section {
@@ -605,7 +470,6 @@ input::placeholder {
     .balance-note,
     .priority-choice,
     .analysis-controls,
-    .projection-section,
     .history-section,
     .panel-note,
     .section-intro,
@@ -677,7 +541,6 @@ input::placeholder {
     .interactive,
     .process,
     .about-values,
-    .projection-section,
     .history-section {
         padding: 48px 0;
     }
@@ -685,13 +548,7 @@ input::placeholder {
     .split-grid,
     .compare-grid,
     .details-grid,
-    .process-grid,
-    .proj-grid {
-        grid-template-columns: 1fr;
-        gap: 24px;
-    }
-
-    .projection-inputs {
+    .process-grid {
         grid-template-columns: 1fr;
         gap: 24px;
     }
@@ -764,7 +621,6 @@ input::placeholder {
     .interactive,
     .process,
     .about-values,
-    .projection-section,
     .history-section {
         padding: 38px 0;
     }

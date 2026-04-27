@@ -307,7 +307,7 @@ function runComparison() {
         addRecommendedBadge(homeB);
     }
 
-    saveToHistory(resultText, noteText, buyerText, nameA, nameB, priceA, priceB, spaceA, spaceB, locationA, locationB, priority);
+    saveToHistory(resultText, nameA, nameB, priceA, priceB, spaceA, spaceB, locationA, locationB, priority);
 }
 
 
@@ -321,7 +321,7 @@ function addRecommendedBadge(panel) {
 
 var comparisonHistory = [];
 
-function saveToHistory(resultText, noteText, buyerText, nameA, nameB, priceA, priceB, spaceA, spaceB, locationA, locationB, priority) {
+function saveToHistory(resultText, nameA, nameB, priceA, priceB, spaceA, spaceB, locationA, locationB, priority) {
     var now = new Date();
     var timeStr = now.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
 
@@ -329,8 +329,6 @@ function saveToHistory(resultText, noteText, buyerText, nameA, nameB, priceA, pr
         number: comparisonHistory.length + 1,
         time: timeStr,
         result: resultText,
-        note: noteText,
-        buyer: buyerText,
         nameA: nameA,
         nameB: nameB,
         priceA: priceA,
@@ -477,112 +475,3 @@ document.addEventListener("DOMContentLoaded", function() {
         field.addEventListener("change", runComparison);
     });
 });
-
-
-function setStay(years, element) {
-    const stayField = document.getElementById("stayYears");
-    if (stayField) stayField.value = years;
-
-    document.querySelectorAll(".stay-opt").forEach(function(opt) {
-        opt.classList.remove("active");
-    });
-    if (element) element.classList.add("active");
-}
-
-
-function calcMonthlyPayment(price, downPct, annualRate) {
-    const principal = price * (1 - downPct / 100);
-    const r = annualRate / 100 / 12;
-    const n = 360;
-    if (r === 0) return principal / n;
-    return principal * (r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
-}
-
-
-function calcProjection(price, downPct, annualRate, years) {
-    const downPayment = price * (downPct / 100);
-    const monthly = calcMonthlyPayment(price, downPct, annualRate);
-    const months = years * 12;
-    const totalMortgagePayments = monthly * months;
-    const principal = price - downPayment;
-    const r = annualRate / 100 / 12;
-    let balance = principal;
-    let totalInterest = 0;
-    for (let i = 0; i < months; i++) {
-        const interestThisMonth = balance * r;
-        totalInterest += interestThisMonth;
-        balance -= (monthly - interestThisMonth);
-    }
-    const totalCost = downPayment + totalMortgagePayments;
-    return { downPayment, monthly, totalInterest, totalCost };
-}
-
-
-function fmt(num) {
-    return "$" + Math.round(num).toLocaleString();
-}
-
-
-function runProjection() {
-    const priceA  = parseFloat(document.getElementById("priceA") ? document.getElementById("priceA").value : "");
-    const priceB  = parseFloat(document.getElementById("priceB") ? document.getElementById("priceB").value : "");
-    const downPct = parseFloat(document.getElementById("downPayment").value);
-    const rate    = parseFloat(document.getElementById("interestRate").value);
-    const years   = parseInt(document.getElementById("stayYears").value);
-    const resultsEl = document.getElementById("projectionResults");
-
-    if (isNaN(priceA) || isNaN(priceB)) {
-        alert("Please enter prices for both homes in the comparison section above first.");
-        return;
-    }
-    if (isNaN(downPct) || downPct <= 0 || downPct >= 100) {
-        alert("Please enter a valid down payment percentage between 1 and 99.");
-        return;
-    }
-    if (isNaN(rate) || rate <= 0) {
-        alert("Please enter a valid interest rate.");
-        return;
-    }
-
-    const projA = calcProjection(priceA, downPct, rate, years);
-    const projB = calcProjection(priceB, downPct, rate, years);
-
-    const nameA = (document.getElementById("nameA") && document.getElementById("nameA").value.trim()) || "Home A";
-    const nameB = (document.getElementById("nameB") && document.getElementById("nameB").value.trim()) || "Home B";
-
-    document.getElementById("projLabelA").textContent  = nameA;
-    document.getElementById("projLabelB").textContent  = nameB;
-    document.getElementById("downA").textContent       = fmt(projA.downPayment);
-    document.getElementById("monthlyA").textContent    = fmt(projA.monthly) + "/mo";
-    document.getElementById("interestA").textContent   = fmt(projA.totalInterest);
-    document.getElementById("totalA").textContent      = fmt(projA.totalCost);
-    document.getElementById("downB").textContent       = fmt(projB.downPayment);
-    document.getElementById("monthlyB").textContent    = fmt(projB.monthly) + "/mo";
-    document.getElementById("interestB").textContent   = fmt(projB.totalInterest);
-    document.getElementById("totalB").textContent      = fmt(projB.totalCost);
-
-    const winner     = document.getElementById("projWinner");
-    const winnerNote = document.getElementById("projWinnerNote");
-    const cardA      = document.getElementById("projCardA");
-    const cardB      = document.getElementById("projCardB");
-
-    cardA.classList.remove("proj-card-winner");
-    cardB.classList.remove("proj-card-winner");
-
-    const diff = Math.abs(projA.totalCost - projB.totalCost);
-
-    if (projA.totalCost < projB.totalCost) {
-        winner.textContent     = nameA + " costs less over " + years + " years.";
-        winnerNote.textContent = "You would spend " + fmt(diff) + " less on " + nameA + " over this period.";
-        cardA.classList.add("proj-card-winner");
-    } else if (projB.totalCost < projA.totalCost) {
-        winner.textContent     = nameB + " costs less over " + years + " years.";
-        winnerNote.textContent = "You would spend " + fmt(diff) + " less on " + nameB + " over this period.";
-        cardB.classList.add("proj-card-winner");
-    } else {
-        winner.textContent     = "Both homes cost the same over " + years + " years.";
-        winnerNote.textContent = "The total cost of ownership is identical for this scenario.";
-    }
-
-    resultsEl.classList.remove("hidden");
-}

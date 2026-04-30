@@ -634,4 +634,38 @@ input::placeholder {
     #previewText {
         font-size: 0.96rem;
     }
+    .compare-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+label {
+  display: block;
+  margin-top: 12px;
+}
+
+input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 4px;
+}
+
+button {
+  margin-top: 16px;
+  padding: 10px 14px;
+  cursor: pointer;
+}
+
+.results {
+  margin-top: 30px;
+  padding: 16px;
+  border: 1px solid #ccc;
+}
+
+@media (max-width: 700px) {
+  .compare-grid {
+    grid-template-columns: 1fr;
+  }
+}
 }

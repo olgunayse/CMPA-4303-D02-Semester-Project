@@ -1,116 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Compare Homes Smarter</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compare | Smarter Comparisons</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-  <header class="site-header">
-    <div class="container">
-      <h1>Compare Homes Smarter</h1>
-      <nav>
-        <a href="index.html">Home</a>
-        <a href="compare.html">Compare</a>
-      </nav>
+<header>
+    <div class="wrapper header-flex">
+        <h1 class="site-title">Smarter Comparisons</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="compare.html">Compare</a>
+            <a href="about.html">About</a>
+        </nav>
     </div>
-  </header>
+</header>
 
-  <main class="container">
+<main>
 
-    <section class="hero">
-      <h2>Agent Home Comparison Tool</h2>
-      <p>
-        Enter two homes to compare monthly costs, tradeoffs, buyer fit, and what an agent should emphasize to the client.
-      </p>
-    </section>
+<section class="compare-section">
+    <div class="wrapper">
+        <p class="eyebrow">Interactive Comparison</p>
+        <h2>Compare Two Homes</h2>
+        <p class="section-intro">
+            Enter the numbers below to compare two properties and see which one best aligns with the buyer's priorities.
+        </p>
 
-    <section class="compare-grid">
+        <div class="compare-grid">
+            <div class="home-panel" id="homeA">
+                <p class="panel-label">Property A</p>
+                <input type="text" id="nameA" placeholder="Name or address (e.g. Oak Street House)">
+                <input type="number" id="priceA" placeholder="Price ($)">
+                <input type="number" id="spaceA" placeholder="Square Feet">
+                <div class="location-field">
+                    <input type="number" id="locationA" placeholder="Location Score (1 to 10)">
+                    <span class="tooltip-icon" tabindex="0">?<span class="tooltip-text">Rate the location from 1 (poor) to 10 (excellent). Consider commute time, nearby amenities, school ratings, and neighborhood feel.</span></span>
+                </div>
+                <p id="locationA-error" class="field-error"></p>
+                <p class="panel-note">Example: lower price, more space, suburban location.</p>
+            </div>
 
-      <div class="compare-card">
-        <h3>Home A</h3>
+            <div class="home-panel" id="homeB">
+                <p class="panel-label">Property B</p>
+                <input type="text" id="nameB" placeholder="Name or address (e.g. Downtown Condo)">
+                <input type="number" id="priceB" placeholder="Price ($)">
+                <input type="number" id="spaceB" placeholder="Square Feet">
+                <div class="location-field">
+                    <input type="number" id="locationB" placeholder="Location Score (1 to 10)">
+                    <span class="tooltip-icon" tabindex="0">?<span class="tooltip-text">Rate the location from 1 (poor) to 10 (excellent). Consider commute time, nearby amenities, school ratings, and neighborhood feel.</span></span>
+                </div>
+                <p id="locationB-error" class="field-error"></p>
+                <p class="panel-note">Example: higher price, smaller footprint, stronger location.</p>
+            </div>
+        </div>
 
-        <label>Address</label>
-        <input type="text" id="addressA" placeholder="Example: Dallas, TX">
+        <p class="balance-note"><strong>How balance is scored:</strong> Each factor (price, space, location) is normalized to a 0–100 scale relative to the two homes, then combined with equal weight. A home that is better on all three factors scores higher overall.</p>
 
-        <label>Price</label>
-        <input type="number" id="priceA" placeholder="350000">
+        <div class="priority-choice">
+            <p class="result-label">Select what matters most</p>
+            <div class="options compare-options">
+                <span class="active" onclick="setPriority('price', this)">Price</span>
+                <span onclick="setPriority('space', this)">Space</span>
+                <span onclick="setPriority('location', this)">Location</span>
+                <span onclick="setPriority('balance', this)">Balance</span>
+            </div>
+            <input type="hidden" id="prioritySelect" value="price">
+        </div>
 
-        <label>Square Feet</label>
-        <input type="number" id="sqftA" placeholder="1800">
+        <div class="analysis-controls">
+            <button class="button" onclick="runComparison()">Analyze</button>
+            <button class="button secondary-button no-print" onclick="resetForm()">Reset</button>
+            <button class="button secondary-button no-print" onclick="copyResults()">Copy Results</button>
+            <button class="button secondary-button no-print" onclick="printResults()">Print Results</button>
+        </div>
 
-        <label>Bedrooms</label>
-        <input type="number" id="bedsA" placeholder="3">
+        <div class="result">
+            <p class="result-label">Recommendation</p>
+            <h3 id="comparisonResult">Enter values to begin analysis.</h3>
+            <p id="tradeOffText"></p>
+        </div>
 
-        <label>Location Score 1-10</label>
-        <input type="number" id="locationA" placeholder="8">
+        <div class="details-grid">
+            <div>
+                <p class="result-label">Best For</p>
+                <p id="buyerType">No buyer profile yet.</p>
+            </div>
+            <div>
+                <p class="result-label">Confidence</p>
+                <p id="confidenceText">Confidence statement will appear here.</p>
+            </div>
+        </div>
 
-        <label>Monthly HOA</label>
-        <input type="number" id="hoaA" placeholder="100">
-      </div>
+        <div class="summary-section">
+            <p class="result-label">Summary of Trade Offs</p>
+            <ul id="summaryList">
+                <li>Home A and Home B have not been compared yet.</li>
+            </ul>
+        </div>
 
-      <div class="compare-card">
-        <h3>Home B</h3>
+    </div>
+</section>
 
-        <label>Address</label>
-        <input type="text" id="addressB" placeholder="Example: Plano, TX">
+<section class="history-section no-print" id="historySection" style="display:none;">
+    <div class="wrapper">
+        <div class="history-header">
+            <p class="eyebrow">Comparison History</p>
+            <button class="button secondary-button" onclick="clearHistory()">Clear History</button>
+        </div>
+        <p class="section-intro">Each comparison you run is saved here for the session so you can review and compare past results.</p>
+        <div id="historyList"></div>
+    </div>
+</section>
 
-        <label>Price</label>
-        <input type="number" id="priceB" placeholder="410000">
+</main>
 
-        <label>Square Feet</label>
-        <input type="number" id="sqftB" placeholder="2200">
-
-        <label>Bedrooms</label>
-        <input type="number" id="bedsB" placeholder="4">
-
-        <label>Location Score 1-10</label>
-        <input type="number" id="locationB" placeholder="9">
-
-        <label>Monthly HOA</label>
-        <input type="number" id="hoaB" placeholder="150">
-      </div>
-
-    </section>
-
-    <section class="compare-card">
-      <h3>Loan Assumptions</h3>
-
-      <label>Down Payment Percent</label>
-      <input type="number" id="downPayment" placeholder="10">
-
-      <label>Interest Rate Percent</label>
-      <input type="number" id="interestRate" placeholder="7">
-
-      <label>Estimated Property Tax Percent</label>
-      <input type="number" id="taxRate" placeholder="2">
-
-      <label>Monthly Insurance Estimate</label>
-      <input type="number" id="insurance" placeholder="150">
-
-      <div class="button-row">
-        <button onclick="compareHomes()">Compare Homes</button>
-        <button onclick="resetForm()">Reset</button>
-      </div>
-    </section>
-
-    <section id="results" class="results-card">
-      <h2>Comparison Results</h2>
-      <p id="monthlyA"></p>
-      <p id="monthlyB"></p>
-      <p id="tradeoff"></p>
-      <p id="buyerType"></p>
-      <p id="agentSummary"></p>
-    </section>
-
-  </main>
-
-  <footer class="site-footer">
-    <p>Compare Homes Smarter</p>
-  </footer>
-
-  <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>

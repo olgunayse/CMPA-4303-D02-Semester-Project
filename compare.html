@@ -26,34 +26,71 @@
         <p class="eyebrow">Interactive Comparison</p>
         <h2>Compare Two Homes</h2>
         <p class="section-intro">
-            Enter the numbers below to compare two properties and see which one best aligns with the buyer's priorities.
+            Enter the details below. The tool will calculate the true monthly cost for each home and tell you which one actually costs less to own — not just which one has the lower listing price.
         </p>
 
         <div class="compare-grid">
+
+            <!-- PROPERTY A -->
             <div class="home-panel" id="homeA">
                 <p class="panel-label">Property A</p>
+
                 <input type="text" id="nameA" placeholder="Name or address (e.g. Oak Street House)">
                 <input type="number" id="priceA" placeholder="Price ($)">
                 <input type="number" id="spaceA" placeholder="Square Feet">
+
                 <div class="location-field">
                     <input type="number" id="locationA" placeholder="Location Score (1 to 10)">
                     <span class="tooltip-icon" tabindex="0">?<span class="tooltip-text">Rate the location from 1 (poor) to 10 (excellent). Consider commute time, nearby amenities, school ratings, and neighborhood feel.</span></span>
                 </div>
                 <p id="locationA-error" class="field-error"></p>
+
+                <p class="panel-section-label">Monthly Cost Details</p>
+                <input type="number" id="downA" placeholder="Down Payment ($)">
+                <input type="number" id="rateA" placeholder="Interest Rate (e.g. 6.8)">
+                <input type="number" id="taxA" placeholder="Annual Property Tax Rate % (e.g. 1.2)">
+                <input type="number" id="hoaA" placeholder="Monthly HOA Fee ($ or 0 if none)">
+
                 <p class="panel-note">Example: lower price, more space, suburban location.</p>
             </div>
 
+            <!-- PROPERTY B -->
             <div class="home-panel" id="homeB">
                 <p class="panel-label">Property B</p>
+
                 <input type="text" id="nameB" placeholder="Name or address (e.g. Downtown Condo)">
                 <input type="number" id="priceB" placeholder="Price ($)">
                 <input type="number" id="spaceB" placeholder="Square Feet">
+
                 <div class="location-field">
                     <input type="number" id="locationB" placeholder="Location Score (1 to 10)">
                     <span class="tooltip-icon" tabindex="0">?<span class="tooltip-text">Rate the location from 1 (poor) to 10 (excellent). Consider commute time, nearby amenities, school ratings, and neighborhood feel.</span></span>
                 </div>
                 <p id="locationB-error" class="field-error"></p>
+
+                <p class="panel-section-label">Monthly Cost Details</p>
+                <input type="number" id="downB" placeholder="Down Payment ($)">
+                <input type="number" id="rateB" placeholder="Interest Rate (e.g. 6.8)">
+                <input type="number" id="taxB" placeholder="Annual Property Tax Rate % (e.g. 1.2)">
+                <input type="number" id="hoaB" placeholder="Monthly HOA Fee ($ or 0 if none)">
+
                 <p class="panel-note">Example: higher price, smaller footprint, stronger location.</p>
+            </div>
+
+        </div>
+
+        <!-- Monthly cost result display -->
+        <div class="monthly-cost-row" id="monthlyCostRow" style="display:none;">
+            <div class="monthly-cost-card">
+                <p class="result-label">Monthly Cost — <span id="monthlyNameA">Home A</span></p>
+                <p class="monthly-cost-number" id="monthlyA">—</p>
+                <p class="monthly-cost-note">Mortgage + tax + insurance + HOA</p>
+            </div>
+            <div class="monthly-cost-vs">vs</div>
+            <div class="monthly-cost-card">
+                <p class="result-label">Monthly Cost — <span id="monthlyNameB">Home B</span></p>
+                <p class="monthly-cost-number" id="monthlyB">—</p>
+                <p class="monthly-cost-note">Mortgage + tax + insurance + HOA</p>
             </div>
         </div>
 

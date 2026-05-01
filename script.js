@@ -14,10 +14,10 @@ function setPreview(type, element) {
     }
 
     const messages = {
-        price: "Lower price increases flexibility and long term financial stability.",
-        space: "More space improves comfort and long term usability.",
+        price:    "Lower price increases flexibility and long-term financial stability.",
+        space:    "More space improves comfort and long-term usability.",
         location: "Better location enhances lifestyle and resale value.",
-        balance: "Balanced decisions consider cost, livability, and overall lifestyle fit together."
+        balance:  "Balanced decisions consider cost, livability, and overall lifestyle fit together."
     };
 
     text.textContent = messages[type];
@@ -94,6 +94,40 @@ function normalizeScore(valA, valB, higherIsBetter) {
 }
 
 
+// ── MONTHLY COST CALCULATOR ───────────────────────────────────────────────────
+// Takes a home's price, down payment, interest rate, tax rate, and HOA
+// and returns the estimated total monthly cost to own the home.
+// This is the key feature — it shows what the home actually costs per month,
+// not just what the listing price is.
+
+function calculateMonthly(price, down, rate, taxRate, hoa) {
+
+    var loanAmount = price - down;
+    var monthlyRate = (rate / 100) / 12;
+    var numPayments = 30 * 12; // 30-year mortgage
+
+    // Standard mortgage formula (principal + interest)
+    var mortgage = 0;
+    if (monthlyRate > 0) {
+        mortgage = loanAmount * (monthlyRate * Math.pow(1 + monthlyRate, numPayments))
+                             / (Math.pow(1 + monthlyRate, numPayments) - 1);
+    } else {
+        mortgage = loanAmount / numPayments;
+    }
+
+    // Property tax (annual rate divided by 12 for monthly)
+    var tax = (price * (taxRate / 100)) / 12;
+
+    // Home insurance estimate (~0.5% of home value per year)
+    var insurance = (price * 0.005) / 12;
+
+    // Add everything together
+    var total = mortgage + tax + insurance + hoa;
+
+    return Math.round(total);
+}
+
+
 function runComparison() {
     const priceAField    = document.getElementById("priceA");
     const priceBField    = document.getElementById("priceB");
@@ -131,11 +165,12 @@ function runComparison() {
 
     if (isNaN(priceA) || isNaN(priceB) || isNaN(spaceA) || isNaN(spaceB) ||
         isNaN(locationA) || isNaN(locationB)) {
-        result.textContent         = "Please fill in all fields.";
+        result.textContent         = "Enter values to begin analysis.";
         note.textContent           = "";
         buyerType.textContent      = "No buyer profile yet.";
         confidenceText.textContent = "Confidence statement will appear here.";
         summaryList.innerHTML      = "<li>Home A and Home B have not been compared yet.</li>";
+        document.getElementById("monthlyCostRow").style.display = "none";
         return;
     }
 
@@ -151,6 +186,29 @@ function runComparison() {
     const nameA = getLabel("nameA", "Home A");
     const nameB = getLabel("nameB", "Home B");
 
+    // ── MONTHLY COST CALCULATION ──────────────────────────────────────────────
+    // Read the extra monthly cost fields (use 0 if left blank)
+    var downA = parseFloat(document.getElementById("downA").value) || 0;
+    var rateA = parseFloat(document.getElementById("rateA").value) || 6.8;
+    var taxA  = parseFloat(document.getElementById("taxA").value)  || 1.2;
+    var hoaA  = parseFloat(document.getElementById("hoaA").value)  || 0;
+
+    var downB = parseFloat(document.getElementById("downB").value) || 0;
+    var rateB = parseFloat(document.getElementById("rateB").value) || 6.8;
+    var taxB  = parseFloat(document.getElementById("taxB").value)  || 1.2;
+    var hoaB  = parseFloat(document.getElementById("hoaB").value)  || 0;
+
+    var monthlyA = calculateMonthly(priceA, downA, rateA, taxA, hoaA);
+    var monthlyB = calculateMonthly(priceB, downB, rateB, taxB, hoaB);
+
+    // Show the monthly cost cards
+    var monthlyCostRow = document.getElementById("monthlyCostRow");
+    monthlyCostRow.style.display = "grid";
+    document.getElementById("monthlyNameA").textContent = nameA;
+    document.getElementById("monthlyNameB").textContent = nameB;
+    document.getElementById("monthlyA").textContent = "$" + monthlyA.toLocaleString() + "/mo";
+    document.getElementById("monthlyB").textContent = "$" + monthlyB.toLocaleString() + "/mo";
+
     let resultText  = "";
     let noteText    = "";
     let buyerText   = "";
@@ -159,14 +217,47 @@ function runComparison() {
 
     const summaryItems = [];
 
+    // ── SUMMARY BULLETS ───────────────────────────────────────────────────────
+
+    // Price summary
     if (priceA < priceB) {
-        summaryItems.push("Price: " + nameA + " costs " + formatPrice(priceB - priceA) + " less. That gap affects the monthly mortgage payment and how much savings the buyer keeps after closing.");
+        var priceDiff = priceB - priceA;
+        if (priceDiff < 10000) {
+            summaryItems.push("Price: " + nameA + " is slightly cheaper, but the gap is small enough that it probably won't feel significant over time. Focus on space and location instead.");
+        } else if (priceDiff < 50000) {
+            summaryItems.push("Price: " + nameA + " costs " + formatPrice(priceDiff) + " less. That affects the monthly mortgage payment and how much the buyer keeps in savings after closing.");
+        } else {
+            summaryItems.push("Price: " + nameA + " costs " + formatPrice(priceDiff) + " less — a significant gap. Unless " + nameB + " offers something the buyer truly cannot find elsewhere, the lower price is hard to ignore.");
+        }
     } else if (priceB < priceA) {
-        summaryItems.push("Price: " + nameB + " costs " + formatPrice(priceA - priceB) + " less. That gap affects the monthly mortgage payment and how much savings the buyer keeps after closing.");
+        var priceDiff = priceA - priceB;
+        if (priceDiff < 10000) {
+            summaryItems.push("Price: " + nameB + " is slightly cheaper, but the gap is small enough that it probably won't feel significant over time. Focus on space and location instead.");
+        } else if (priceDiff < 50000) {
+            summaryItems.push("Price: " + nameB + " costs " + formatPrice(priceDiff) + " less. That affects the monthly mortgage payment and how much the buyer keeps in savings after closing.");
+        } else {
+            summaryItems.push("Price: " + nameB + " costs " + formatPrice(priceDiff) + " less — a significant gap. Unless " + nameA + " offers something the buyer truly cannot find elsewhere, the lower price is hard to ignore.");
+        }
     } else {
         summaryItems.push("Price: Both homes cost the same. The decision comes down to space and location.");
     }
 
+    // Monthly cost summary — this is the new insight the tool provides
+    var monthlyDiff = Math.abs(monthlyA - monthlyB);
+    var cheaperMonthly = monthlyA < monthlyB ? nameA : nameB;
+    var pricierMonthly = monthlyA < monthlyB ? nameB : nameA;
+
+    if (monthlyDiff > 0) {
+        if (monthlyA < monthlyB && priceA > priceB) {
+            summaryItems.push("Monthly Cost: Even though " + nameA + " has a higher listing price, it actually costs " + formatPrice(monthlyDiff) + " less per month once mortgage, taxes, insurance, and HOA are factored in. The cheaper listing is not always the cheaper home.");
+        } else if (monthlyB < monthlyA && priceB > priceA) {
+            summaryItems.push("Monthly Cost: Even though " + nameB + " has a higher listing price, it actually costs " + formatPrice(monthlyDiff) + " less per month once mortgage, taxes, insurance, and HOA are factored in. The cheaper listing is not always the cheaper home.");
+        } else {
+            summaryItems.push("Monthly Cost: " + cheaperMonthly + " costs " + formatPrice(monthlyDiff) + " less per month to own. Over 5 years that adds up to " + formatPrice(monthlyDiff * 60) + " — a number worth putting in front of the buyer.");
+        }
+    }
+
+    // Space summary
     if (spaceA > spaceB) {
         summaryItems.push("Space: " + nameA + " has " + Math.abs(spaceA - spaceB).toLocaleString() + " more square feet. That could mean an extra bedroom, a home office, or just more room to grow into.");
     } else if (spaceB > spaceA) {
@@ -175,6 +266,7 @@ function runComparison() {
         summaryItems.push("Space: Both homes are the same size. Size is not a factor in this comparison.");
     }
 
+    // Location summary
     if (locationA > locationB) {
         summaryItems.push("Location: " + nameA + " has a stronger location score. Location affects the daily commute, school district, and what the home is worth when it comes time to sell. It is the one thing a buyer cannot change after moving in.");
     } else if (locationB > locationA) {
@@ -182,6 +274,8 @@ function runComparison() {
     } else {
         summaryItems.push("Location: Both homes score equally. Focus on price and space to separate them.");
     }
+
+    // ── PRIORITY LOGIC ────────────────────────────────────────────────────────
 
     if (priority === "price") {
         if (priceA < priceB) {
@@ -307,7 +401,7 @@ function runComparison() {
         addRecommendedBadge(homeB);
     }
 
-    saveToHistory(resultText, nameA, nameB, priceA, priceB, spaceA, spaceB, locationA, locationB, priority);
+    saveToHistory(resultText, nameA, nameB, priceA, priceB, spaceA, spaceB, locationA, locationB, priority, monthlyA, monthlyB);
 }
 
 
@@ -321,7 +415,7 @@ function addRecommendedBadge(panel) {
 
 var comparisonHistory = [];
 
-function saveToHistory(resultText, nameA, nameB, priceA, priceB, spaceA, spaceB, locationA, locationB, priority) {
+function saveToHistory(resultText, nameA, nameB, priceA, priceB, spaceA, spaceB, locationA, locationB, priority, monthlyA, monthlyB) {
     var now = new Date();
     var timeStr = now.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
 
@@ -333,6 +427,8 @@ function saveToHistory(resultText, nameA, nameB, priceA, priceB, spaceA, spaceB,
         nameB: nameB,
         priceA: priceA,
         priceB: priceB,
+        monthlyA: monthlyA,
+        monthlyB: monthlyB,
         spaceA: spaceA,
         spaceB: spaceB,
         locationA: locationA,
@@ -361,8 +457,8 @@ function renderHistory() {
                 '<span class="history-timestamp">' + entry.time + ' &mdash; Priority: ' + entry.priority.charAt(0).toUpperCase() + entry.priority.slice(1) + '</span>' +
             '</div>' +
             '<p class="history-winner">' + entry.result + '</p>' +
-            '<p class="history-detail">' + entry.nameA + ': $' + entry.priceA.toLocaleString() + ' &middot; ' + entry.spaceA.toLocaleString() + ' sqft &middot; Location ' + entry.locationA + '/10</p>' +
-            '<p class="history-detail">' + entry.nameB + ': $' + entry.priceB.toLocaleString() + ' &middot; ' + entry.spaceB.toLocaleString() + ' sqft &middot; Location ' + entry.locationB + '/10</p>';
+            '<p class="history-detail">' + entry.nameA + ': $' + entry.priceA.toLocaleString() + ' &middot; ' + entry.spaceA.toLocaleString() + ' sqft &middot; Location ' + entry.locationA + '/10 &middot; ~$' + entry.monthlyA.toLocaleString() + '/mo</p>' +
+            '<p class="history-detail">' + entry.nameB + ': $' + entry.priceB.toLocaleString() + ' &middot; ' + entry.spaceB.toLocaleString() + ' sqft &middot; Location ' + entry.locationB + '/10 &middot; ~$' + entry.monthlyB.toLocaleString() + '/mo</p>';
         list.appendChild(div);
     });
 }
@@ -384,17 +480,23 @@ function printResults() {
     window.print();
 }
 
-
 function copyResults() {
     const result       = document.getElementById("comparisonResult");
     const note         = document.getElementById("tradeOffText");
     const buyerType    = document.getElementById("buyerType");
     const confidence   = document.getElementById("confidenceText");
     const summaryItems = document.querySelectorAll("#summaryList li");
+    const monthlyA     = document.getElementById("monthlyA");
+    const monthlyB     = document.getElementById("monthlyB");
+    const nameA        = document.getElementById("monthlyNameA");
+    const nameB        = document.getElementById("monthlyNameB");
 
     if (!result) return;
 
     let text = "SMARTER COMPARISONS — RESULTS\n\n";
+    if (monthlyA && monthlyB) {
+        text += "Monthly Cost: " + (nameA ? nameA.textContent : "Home A") + " " + monthlyA.textContent + " | " + (nameB ? nameB.textContent : "Home B") + " " + monthlyB.textContent + "\n\n";
+    }
     text += "Recommendation: " + result.textContent + "\n";
     if (note && note.textContent) text += note.textContent + "\n";
     text += "\n" + (buyerType ? buyerType.textContent : "") + "\n";
@@ -415,7 +517,6 @@ function copyResults() {
         alert("Could not copy. Please select and copy the results manually.");
     });
 }
-
 
 function resetForm() {
     const inputs          = document.querySelectorAll("input[type='number'], input[type='text']");
@@ -447,6 +548,8 @@ function resetForm() {
     if (summaryList)    summaryList.innerHTML       = "<li>Home A and Home B have not been compared yet.</li>";
     if (homeA)          homeA.classList.remove("winner");
     if (homeB)          homeB.classList.remove("winner");
+
+    document.getElementById("monthlyCostRow").style.display = "none";
 }
 
 
@@ -468,7 +571,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     const liveFields = document.querySelectorAll(
-        "#priceA, #priceB, #spaceA, #spaceB, #locationA, #locationB, #nameA, #nameB"
+        "#priceA, #priceB, #spaceA, #spaceB, #locationA, #locationB, #nameA, #nameB, #downA, #downB, #rateA, #rateB, #taxA, #taxB, #hoaA, #hoaB"
     );
     liveFields.forEach(function(field) {
         field.addEventListener("input", runComparison);

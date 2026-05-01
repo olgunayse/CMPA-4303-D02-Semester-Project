@@ -34,6 +34,9 @@ function runComparison() {
 
     let locationA = getValue("locationA");
     let locationB = getValue("locationB");
+   
+    let commuteA = getValue("commuteA");
+    let commuteB = getValue("commuteB");
 
     let downA = getValue("downA");
     let downB = getValue("downB");
@@ -96,6 +99,16 @@ function runComparison() {
         summary.push("Home A has a better location.");
     } else if (locationB > locationA) {
         summary.push("Home B has a better location.");
+    }
+    // COMMUTE TIME
+    if (commuteA && commuteB) {
+    if (commuteA < commuteB) {
+        summary.push("Home A has a shorter commute.");
+    } else if (commuteB < commuteA) {
+        summary.push("Home B has a shorter commute.");
+    } else {
+        summary.push("Both homes have the same commute time.");
+    }
     }
 
     // PRICE

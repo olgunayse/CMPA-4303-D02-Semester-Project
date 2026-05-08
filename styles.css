@@ -1,8 +1,3 @@
-/* =============================================
-   SMARTER COMPARISONS — STYLESHEET
-   Aesthetic: Dark editorial luxury (Caelus Air)
-   ============================================= */
-
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap');
 
 :root {
@@ -22,7 +17,6 @@
     --nav-height: 72px;
 }
 
-/* --- Reset --- */
 *, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
@@ -57,14 +51,15 @@ a {
     color: inherit;
 }
 
-ul { list-style: none; padding: 0; }
+ul {
+    list-style: none;
+    padding: 0;
+}
 
 p {
     line-height: 1.7;
     margin-top: 0;
 }
-
-/* --- Header & Nav --- */
 
 header {
     position: fixed;
@@ -95,7 +90,6 @@ header {
     text-transform: uppercase;
     color: var(--color-accent);
     margin: 0;
-    text-decoration: none;
 }
 
 nav {
@@ -116,14 +110,12 @@ nav a:hover {
     color: var(--color-accent);
 }
 
-/* --- Typography --- */
-
 h2 {
     font-family: var(--font-display);
-    font-size: clamp(2rem, 4vw, 3rem);
+    font-size: clamp(2.4rem, 5vw, 4.5rem);
     font-weight: 300;
-    margin: 0 0 15px 0;
-    line-height: 1.1;
+    margin: 0 0 18px 0;
+    line-height: 1;
     letter-spacing: 0.01em;
 }
 
@@ -144,8 +136,6 @@ h3 {
     margin-bottom: 18px;
 }
 
-/* --- Button --- */
-
 .button {
     border: 1px solid var(--color-accent);
     background: transparent;
@@ -156,7 +146,6 @@ h3 {
     letter-spacing: 0.2em;
     color: var(--color-accent);
     transition: background 0.25s ease, color 0.25s ease;
-    text-decoration: none;
     display: inline-block;
     font-family: var(--font-body);
     font-weight: 400;
@@ -177,8 +166,6 @@ h3 {
     color: var(--color-text);
     border-color: var(--color-text-muted);
 }
-
-/* --- Hero --- */
 
 .hero {
     min-height: 100vh;
@@ -204,25 +191,79 @@ h3 {
     pointer-events: none;
 }
 
-.hero .wrapper {
+.hero-grid {
+    display: grid;
+    grid-template-columns: 0.95fr 1.05fr;
+    gap: 60px;
+    align-items: center;
     padding-top: var(--nav-height);
+    position: relative;
+    z-index: 2;
     animation: fadeUp 0.9s ease both;
+}
+
+.hero-text {
+    position: relative;
+    z-index: 3;
 }
 
 .hero-sub {
     color: var(--color-text-muted);
-    max-width: 480px;
+    max-width: 520px;
     margin-bottom: 2.5rem;
     font-size: 1rem;
     line-height: 1.8;
 }
 
-/* --- Sections --- */
+.hero-image-card {
+    position: relative;
+    border: 1px solid var(--color-border);
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.03);
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.35);
+}
+
+.hero-image-card::before {
+    content: '';
+    position: absolute;
+    top: -22px;
+    right: -22px;
+    width: 140px;
+    height: 140px;
+    border-top: 1px solid var(--color-accent);
+    border-right: 1px solid var(--color-accent);
+    opacity: 0.6;
+}
+
+.hero-image-card img {
+    width: 100%;
+    height: 520px;
+    object-fit: cover;
+    filter: brightness(0.85) contrast(1.05);
+}
+
+.image-caption {
+    position: absolute;
+    left: 28px;
+    bottom: 28px;
+    max-width: 310px;
+    padding: 16px 18px;
+    background: rgba(13, 13, 26, 0.78);
+    border: 1px solid var(--color-border);
+    backdrop-filter: blur(8px);
+}
+
+.image-caption p {
+    font-size: 0.82rem;
+    color: var(--color-accent-light);
+    margin: 0;
+}
 
 .split,
 .interactive,
 .process,
-.about-values {
+.about-values,
+.feature-band {
     padding: 7rem 0;
     border-top: 1px solid var(--color-border);
 }
@@ -240,7 +281,22 @@ h3 {
     line-height: 1.85;
 }
 
-/* --- Interactive Options --- */
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+}
+
+.feature-card {
+    padding: 2rem;
+    border: 1px solid var(--color-border);
+    background-color: var(--color-surface);
+}
+
+.feature-card p {
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+}
 
 .options {
     display: flex;
@@ -277,8 +333,6 @@ h3 {
     font-size: 0.95rem;
 }
 
-/* --- Process --- */
-
 .process-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -301,8 +355,6 @@ h3 {
     margin-bottom: 14px;
 }
 
-/* --- Compare & About Sections --- */
-
 .compare-section,
 .about-section {
     padding: 7rem 0;
@@ -320,8 +372,6 @@ h3 {
     font-size: 0.95rem;
     line-height: 1.85;
 }
-
-/* --- Compare Grid --- */
 
 .compare-grid {
     display: grid;
@@ -364,8 +414,6 @@ h3 {
     margin-top: 8px;
 }
 
-/* --- Inputs --- */
-
 input,
 select {
     display: block;
@@ -400,8 +448,6 @@ input::placeholder {
     border-bottom-color: rgba(201, 169, 110, 0.4);
     margin-bottom: 20px;
 }
-
-/* --- Tooltip --- */
 
 .location-field {
     position: relative;
@@ -463,8 +509,6 @@ input::placeholder {
     min-height: 1rem;
 }
 
-/* --- Panel Section Label --- */
-
 .panel-section-label {
     font-size: 0.68rem;
     text-transform: uppercase;
@@ -474,8 +518,6 @@ input::placeholder {
     border-top: 1px solid var(--color-border);
     padding-top: 16px;
 }
-
-/* --- Monthly Cost Row --- */
 
 .monthly-cost-row {
     display: grid;
@@ -516,8 +558,6 @@ input::placeholder {
     text-align: center;
 }
 
-/* --- Balance Note --- */
-
 .balance-note {
     font-size: 0.85rem;
     color: var(--color-text-muted);
@@ -526,8 +566,6 @@ input::placeholder {
     margin: 1.5rem 0 0 0;
     line-height: 1.7;
 }
-
-/* --- Priority & Analysis Controls --- */
 
 .priority-choice {
     margin-top: 2rem;
@@ -544,8 +582,6 @@ input::placeholder {
     align-items: center;
     margin-top: 2rem;
 }
-
-/* --- Results --- */
 
 .result {
     margin-top: 3rem;
@@ -613,8 +649,6 @@ input::placeholder {
     top: 6px;
 }
 
-/* --- Comparison History --- */
-
 .history-section {
     padding: 5rem 0;
     border-top: 1px solid var(--color-border);
@@ -671,8 +705,6 @@ input::placeholder {
     margin: 0;
 }
 
-/* --- About Section --- */
-
 .about-section h2 {
     margin-bottom: 1.5rem;
 }
@@ -688,8 +720,6 @@ input::placeholder {
     margin-bottom: 10px;
 }
 
-/* --- Footer --- */
-
 footer {
     padding: 2rem 0;
     border-top: 1px solid var(--color-border);
@@ -703,14 +733,17 @@ footer p {
     color: var(--color-text-muted);
 }
 
-/* --- Animation --- */
-
 @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(24px); }
-    to   { opacity: 1; transform: translateY(0); }
-}
+    from {
+        opacity: 0;
+        transform: translateY(24px);
+    }
 
-/* --- Print --- */
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 
 @media print {
     .no-print,
@@ -734,20 +767,44 @@ footer p {
         font-family: Georgia, serif;
     }
 
-    .wrapper { width: 100%; }
-    .compare-section { padding: 20pt 0; }
-    h2 { font-size: 18pt; margin-bottom: 16pt; }
-    h3 { font-size: 13pt; }
-    .result-label { font-size: 8pt; }
-    .result, .details-grid, .summary-section { margin-top: 20pt; padding-top: 16pt; }
+    .wrapper {
+        width: 100%;
+    }
+
+    .compare-section {
+        padding: 20pt 0;
+    }
+
+    h2 {
+        font-size: 18pt;
+        margin-bottom: 16pt;
+    }
+
+    h3 {
+        font-size: 13pt;
+    }
+
+    .result-label {
+        font-size: 8pt;
+    }
+
+    .result,
+    .details-grid,
+    .summary-section {
+        margin-top: 20pt;
+        padding-top: 16pt;
+    }
 }
 
-/* --- Responsive --- */
-
 @media (max-width: 768px) {
-    .wrapper { width: 92%; }
+    .wrapper {
+        width: 92%;
+    }
 
-    header { padding: 0; }
+    header {
+        height: auto;
+        padding: 0;
+    }
 
     .header-flex {
         flex-direction: column;
@@ -757,7 +814,9 @@ footer p {
         height: auto;
     }
 
-    nav { gap: 14px; }
+    nav {
+        gap: 14px;
+    }
 
     .hero,
     .compare-section,
@@ -766,8 +825,29 @@ footer p {
     .interactive,
     .process,
     .about-values,
-    .history-section {
+    .history-section,
+    .feature-band {
         padding: 4rem 0;
+    }
+
+    .hero {
+        padding-top: 7rem;
+    }
+
+    .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+        padding-top: 0;
+    }
+
+    .hero-image-card img {
+        height: 330px;
+    }
+
+    .image-caption {
+        position: static;
+        max-width: none;
+        margin-top: 12px;
     }
 
     .compare-section {
@@ -777,7 +857,8 @@ footer p {
     .split-grid,
     .compare-grid,
     .details-grid,
-    .process-grid {
+    .process-grid,
+    .feature-grid {
         grid-template-columns: 1fr;
         gap: 24px;
     }
@@ -787,8 +868,13 @@ footer p {
         text-align: center;
     }
 
-    h2 { font-size: 1.8rem; }
-    h3 { font-size: 1.1rem; }
+    h2 {
+        font-size: 2rem;
+    }
+
+    h3 {
+        font-size: 1.1rem;
+    }
 
     .analysis-controls {
         flex-direction: column;
@@ -808,8 +894,13 @@ footer p {
 }
 
 @media (max-width: 480px) {
-    .wrapper { width: 94%; }
-    h2 { font-size: 1.55rem; }
+    .wrapper {
+        width: 94%;
+    }
+
+    h2 {
+        font-size: 1.75rem;
+    }
 
     .site-title {
         font-size: 0.85rem;

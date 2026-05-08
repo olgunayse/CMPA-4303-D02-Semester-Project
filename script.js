@@ -1,5 +1,30 @@
 let historyList = [];
 
+function setPreview(type, element) {
+    var options = document.querySelectorAll(".options span");
+    var text = document.getElementById("previewText");
+
+    options.forEach(function(opt) {
+        opt.classList.remove("active");
+    });
+
+    if (element) {
+        element.classList.add("active");
+    }
+
+    if (!text) return;
+
+    if (type === "price") {
+        text.textContent = "Lower price increases flexibility and long-term financial stability.";
+    } else if (type === "space") {
+        text.textContent = "More space improves comfort and long-term usability.";
+    } else if (type === "location") {
+        text.textContent = "Better location enhances lifestyle and resale value.";
+    } else if (type === "balance") {
+        text.textContent = "Balanced decisions consider cost, livability, and overall lifestyle fit together.";
+    }
+}
+
 function getValue(id) {
     return Number(document.getElementById(id).value) || 0;
 }

@@ -26,7 +26,9 @@ function setPreview(type, element) {
 }
 
 function getValue(id) {
-    return Number(document.getElementById(id).value) || 0;
+    var el = document.getElementById(id);
+    if (!el) return 0;
+    return Number(el.value) || 0;
 }
 
 function calculateMonthly(price, down, rate, tax, hoa) {

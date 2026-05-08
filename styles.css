@@ -867,3 +867,91 @@ footer p {
     margin-bottom: 20px;
     color: var(--accent);
 }
+
+/* ── Compare Page Improvements ────────────────────────────────────────── */
+
+/* More padding and a stronger top border on each panel */
+.home-panel {
+    padding: 2.5rem 2rem !important;
+    border-top: 2px solid var(--color-accent) !important;
+}
+
+/* Inputs get a subtle background so they stand out */
+input,
+select {
+    background: rgba(255,255,255,0.03) !important;
+    padding: 14px 10px !important;
+    border-bottom: 1px solid rgba(201, 169, 110, 0.25) !important;
+    border-radius: 2px;
+}
+
+input:focus {
+    background: rgba(201, 169, 110, 0.05) !important;
+    border-bottom-color: var(--color-accent) !important;
+}
+
+/* More breathing room between compare grid and results */
+.compare-section .wrapper {
+    padding-top: 2rem;
+    padding-bottom: 4rem;
+}
+
+/* Result box gets a background to stand out */
+.result {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border) !important;
+    border-top: 2px solid var(--color-accent) !important;
+    padding: 2rem !important;
+    margin-top: 2.5rem !important;
+}
+
+/* Details grid cards */
+.details-grid {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    padding: 2rem;
+    margin-top: 1.5rem !important;
+}
+
+/* Summary section */
+.summary-section {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    padding: 2rem;
+    margin-top: 1.5rem !important;
+    border-top: none !important;
+}
+
+.summary-section li {
+    padding: 10px 0;
+    border-bottom: 1px solid var(--color-border-dim);
+    padding-left: 1rem;
+    position: relative;
+}
+
+.summary-section li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--color-accent);
+}
+
+/* Analyze button stands out more */
+.button:first-child {
+    background: var(--color-accent);
+    color: var(--color-bg);
+    border-color: var(--color-accent);
+    font-weight: 500;
+}
+
+.button:first-child:hover {
+    background: var(--color-accent-light);
+    border-color: var(--color-accent-light);
+}
+
+/* Section intro text */
+.compare-section .section-intro {
+    max-width: 580px;
+    margin-bottom: 2.5rem;
+    color: var(--color-text-muted);
+}

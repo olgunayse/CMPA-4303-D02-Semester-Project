@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About | Smarter Comparisons</title>
+    <title>Smarter Comparisons</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
@@ -24,47 +24,67 @@
 
 <main>
 
-<section class="about-section">
+<section class="hero">
     <div class="wrapper">
-        <p class="eyebrow">Project Purpose</p>
-        <h2>The Approach</h2>
-
-        <p>
-            Real estate data tends to confuse rather than assist buyers and this tool eliminates distractions while identifying important differences.
+        <p class="eyebrow">Property Decision Platform</p>
+        <h2>Compare homes based on what matters.</h2>
+        <p class="hero-sub">
+            Focus only on what you truly want from your future home.
         </p>
-
-        <p>
-            The goal of the tool is not to find the "best" property, but rather, determine which property best matches the buyer's own priorities, such as the price, size and location.
-        </p>
-
-        <p>
-            By simplifying comparison, buyers can easily identify trade offs between properties and have the ability to effectively convey to others what is most important to them and make informed buying decisions when purchasing real estate.
-        </p>
+        <a class="button" href="compare.html">Start Analysis</a>
     </div>
 </section>
 
-<!-- Full width image -->
-<div class="about-image-wrap">
-    <img
-        src="https://images.unsplash.com/photo-1480074568708-e7b720bb3f09?w=1200&q=80"
-        alt="A row of suburban homes on a sunny street"
-        class="about-image"
-    >
-</div>
-
-<section class="about-values">
+<section class="split">
     <div class="wrapper split-grid">
         <div>
-            <h3>Why it matters</h3>
+            <h3>Clarity over clutter</h3>
             <p>
-                Buyers often compare homes emotionally, but this project helps bring structure to the process. It makes differences easier to understand.
+                Most listings overwhelm buyers with unnecessary details. This tool simplifies the process by focusing on price, space, and location.
             </p>
         </div>
         <div>
-            <h3>What it supports</h3>
+            <h3>Understand trade offs</h3>
             <p>
-                This tool is designed to support decision-making, not replace it. It helps buyers and agents discuss value more clearly and with less confusion.
+                Every decision involves compromise. The goal is to make those trade offs clear so buyers can move forward with more confidence.
             </p>
+        </div>
+    </div>
+</section>
+
+<section class="interactive">
+    <div class="wrapper">
+        <p class="eyebrow">Preview</p>
+        <h3>Select what matters most</h3>
+        <p class="section-intro">Choose one to see how the recommendation changes.</p>
+
+        <div class="options">
+            <span class="active" onclick="setPreview('price', this)">Price</span>
+            <span onclick="setPreview('space', this)">Space</span>
+            <span onclick="setPreview('location', this)">Location</span>
+            <span onclick="setPreview('balance', this)">Balance</span>
+        </div>
+
+        <p id="previewText"></p>
+    </div>
+</section>
+
+<section class="process">
+    <div class="wrapper process-grid">
+        <div>
+            <p class="process-number">01</p>
+            <h3>Enter home details</h3>
+            <p>Input the price, square footage, and location score for two properties.</p>
+        </div>
+        <div>
+            <p class="process-number">02</p>
+            <h3>Choose your priority</h3>
+            <p>Select whether cost, space, location, or overall balance matters most to the buyer.</p>
+        </div>
+        <div>
+            <p class="process-number">03</p>
+            <h3>Review the analysis</h3>
+            <p>Get a recommendation, trade offs, buyer type, and a clearer understanding of value.</p>
         </div>
     </div>
 </section>
@@ -77,5 +97,6 @@
     </div>
 </footer>
 
+<script src="script.js"></script>
 </body>
 </html>

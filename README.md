@@ -6,7 +6,7 @@ Smarter Comparisons is a real estate comparison website that helps users compare
 
 ## Why does it exist?
 
-I wanted to create a project related to real estate because that is an area I am familiar with. Buyers usually compare homes using more than one factor, so I wanted to build something that organizes those differences in a simpler way.
+I chose to build a real estate comparison platform because buying a home involves balancing many financial and lifestyle factors at once. The project focuses on simplifying those comparisons into a clearer and more organized experience for buyers and agents.
 
 The main purpose of the project is to help users understand that the lower listing price is not always the better deal. Monthly cost can change depending on taxes, HOA fees, interest rate, and down payment.
 

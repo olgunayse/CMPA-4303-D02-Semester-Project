@@ -24,8 +24,6 @@ Another problem I encountered during this project was that I could have planned 
 
 ## Things I learned
 
-If I could do the whole project again, I would have worked harder to ensure that JavaScript is fully functional before I made any changes to the way the project looked. Making all the changes I made to the CSS while solving problems related to JavaScript events/functions has made it very difficult to solve one issue while another is still unresolved.
-
-Another issue I discovered as I worked on this project was how I could have much better planned the scope of the project than I did. I had developed new ideas for how I wanted to expand or work on the project before I actually finished with what I wanted to add to the project from start to finish. Throughout the development process, there were situations where I was expending greater effort thinking about how to design and present visually a site than I was developing that site.
+As I worked on this project, I discovered how I could have much better planned the scope of the project than I did. I had developed new ideas for how I wanted to expand or work on the project before I actually finished with what I wanted to add to the project from start to finish. Throughout the development process, there were situations where I was expending greater effort thinking about how to design and present visually a site than I was developing that site.
 
 Another important point of learning for me with this project was how much value there is in small design elements of any web page, i.e., spacing, font, color, and picture. Individually, these elements may seem trivial, but when added together, they can greatly impact the professional look and feel of a site. Consideration of these design elements has produced a significantly more cohesive result than what I had when I first started developing this website.

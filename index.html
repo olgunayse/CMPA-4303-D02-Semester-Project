@@ -3,141 +3,341 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Smarter Comparisons</title>
+
     <link rel="icon" href="favicon.png">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
 
 <header>
     <div class="wrapper header-flex">
-        <a href="index.html" class="site-title">Smarter Comparisons</a>
+
+        <a href="index.html" class="site-title">
+            Smarter Comparisons
+        </a>
+
         <nav>
             <a href="index.html">Home</a>
             <a href="compare.html">Compare</a>
             <a href="about.html">About</a>
         </nav>
+
     </div>
 </header>
 
 <main>
 
-<section class="hero">
-    <div class="wrapper">
-        <p class="eyebrow">Property Decision Platform</p>
-        <h2>Compare homes based on what matters.</h2>
-        <p class="hero-sub">
-            Focus only on what you truly want from your future home.
-        </p>
-        <a class="button" href="compare.html">Start Analysis</a>
-    </div>
-</section>
+    <!-- HERO -->
 
-<section class="split">
-    <div class="wrapper split-grid-image">
-        <div class="split-text">
-            <h3>Clarity over clutter</h3>
-            <p>
-                Most listings overwhelm buyers with unnecessary details. This tool simplifies the process by focusing on price, space, location, and monthly cost.
+    <section class="hero">
+        <div class="wrapper">
+
+            <p class="eyebrow">
+                Property Decision Platform
             </p>
 
-            <h3 class="spaced-heading">Understand trade offs</h3>
-            <p>
-                Every decision involves compromise. The goal is to make those trade offs clear so buyers can move forward with more confidence.
+            <h2>
+                Compare properties using monthly cost, location, space, and long term value.
+            </h2>
+
+            <p class="hero-sub">
+                Analyze trade offs between affordability, commute time, location quality, and overall ownership cost.
             </p>
-        </div>
 
-        <div class="split-image">
-            <img src="property-main.png" alt="Modern residential property">
-        </div>
-    </div>
-</section>
+            <a class="button" href="compare.html">
+                Start Analysis
+            </a>
 
-<section class="featured-home">
-    <div class="wrapper split-grid-image">
-        <div class="split-image">
-            <img src="modern-home.png" alt="Modern home exterior">
         </div>
+    </section>
 
-        <div class="split-text">
-            <p class="eyebrow">Example Comparison</p>
-            <h3>Why monthly cost matters more than listing price</h3>
-            <p>
-                A lower listing price does not always mean a home is more affordable long term. Property taxes, HOA fees, insurance, and interest rates can completely change the monthly cost.
+    <!-- SPLIT SECTION -->
+
+    <section class="split">
+        <div class="wrapper split-grid-image">
+
+            <div class="split-text">
+
+                <h3>
+                    Clarity over clutter
+                </h3>
+
+                <p>
+                    Most property listings overwhelm buyers with unnecessary information. This platform simplifies the process by focusing on the factors that usually matter most when comparing homes.
+                </p>
+
+                <h3 class="spaced-heading">
+                    Understand trade offs
+                </h3>
+
+                <p>
+                    Every home purchase involves compromise. The goal of this project is to make those trade offs easier to understand through clearer comparisons and ownership cost analysis.
+                </p>
+
+            </div>
+
+            <div class="split-image">
+                <img src="property-main.png" alt="Modern residential property">
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FEATURED SECTION -->
+
+    <section class="featured-home">
+        <div class="wrapper split-grid-image">
+
+            <div class="split-image">
+                <img src="modern-home.png" alt="Modern home exterior">
+            </div>
+
+            <div class="split-text">
+
+                <p class="eyebrow">
+                    Example Comparison
+                </p>
+
+                <h3>
+                    Why monthly cost matters more than listing price
+                </h3>
+
+                <p>
+                    A lower listing price does not always mean a home is more affordable long term. Interest rates, taxes, insurance, and HOA fees can significantly change the actual monthly ownership cost.
+                </p>
+
+                <a class="button" href="compare.html">
+                    Try the Comparison Tool
+                </a>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- INTERACTIVE -->
+
+    <section class="interactive">
+        <div class="wrapper">
+
+            <p class="eyebrow">
+                Preview
             </p>
-            <a class="button" href="compare.html">Try the Comparison Tool</a>
-        </div>
-    </div>
-</section>
 
-<section class="interactive">
-    <div class="wrapper">
-        <p class="eyebrow">Preview</p>
-        <h3>Select what matters most</h3>
-        <p class="section-intro">Choose one to see how the recommendation changes.</p>
+            <h3>
+                Select what matters most
+            </h3>
 
-        <div class="options">
-            <span class="active" onclick="setPreview('price', this)">Price</span>
-            <span onclick="setPreview('space', this)">Space</span>
-            <span onclick="setPreview('location', this)">Location</span>
-            <span onclick="setPreview('balance', this)">Balance</span>
-        </div>
+            <p class="section-intro">
+                Different priorities can completely change which property makes more sense financially and practically.
+            </p>
 
-        <p id="previewText"></p>
-    </div>
-</section>
+            <div class="options">
 
-<section class="process">
-    <div class="wrapper process-grid">
-        <div>
-            <div class="process-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                    <path d="M3 9.5L12 3l9 6.5V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5z"/>
-                    <path d="M9 21V12h6v9"/>
-                </svg>
+                <span class="active" onclick="setPreview('price', this)">
+                    Price
+                </span>
+
+                <span onclick="setPreview('space', this)">
+                    Space
+                </span>
+
+                <span onclick="setPreview('location', this)">
+                    Location
+                </span>
+
+                <span onclick="setPreview('balance', this)">
+                    Balance
+                </span>
+
             </div>
-            <p class="process-number">01</p>
-            <h3>Enter home details</h3>
-            <p>Input the price, square footage, commute time, and location score for two properties.</p>
-        </div>
 
-        <div>
-            <div class="process-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                    <circle cx="12" cy="12" r="10"/>
-                    <line x1="12" y1="8" x2="12" y2="12"/>
-                    <line x1="12" y1="16" x2="12.01" y2="16"/>
-                </svg>
-            </div>
-            <p class="process-number">02</p>
-            <h3>Choose your priority</h3>
-            <p>Select whether cost, space, location, or overall balance matters most to the buyer.</p>
-        </div>
+            <p id="previewText"></p>
 
-        <div>
-            <div class="process-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
-                </svg>
-            </div>
-            <p class="process-number">03</p>
-            <h3>Review the analysis</h3>
-            <p>Get a recommendation, trade offs, buyer type, and a clearer understanding of value.</p>
         </div>
-    </div>
-</section>
+    </section>
+
+    <!-- PROCESS -->
+
+    <section class="process">
+        <div class="wrapper process-grid">
+
+            <div>
+
+                <div class="process-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                         width="32"
+                         height="32"
+                         viewBox="0 0 24 24"
+                         fill="none"
+                         stroke="currentColor"
+                         stroke-width="1.5">
+
+                        <path d="M3 9.5L12 3l9 6.5V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5z"/>
+                        <path d="M9 21V12h6v9"/>
+
+                    </svg>
+                </div>
+
+                <p class="process-number">
+                    01
+                </p>
+
+                <h3>
+                    Enter home details
+                </h3>
+
+                <p>
+                    Input property information including price, square footage, location score, commute time, and ownership costs.
+                </p>
+
+            </div>
+
+            <div>
+
+                <div class="process-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                         width="32"
+                         height="32"
+                         viewBox="0 0 24 24"
+                         fill="none"
+                         stroke="currentColor"
+                         stroke-width="1.5">
+
+                        <circle cx="12" cy="12" r="10"/>
+                        <line x1="12" y1="8" x2="12" y2="12"/>
+                        <line x1="12" y1="16" x2="12.01" y2="16"/>
+
+                    </svg>
+                </div>
+
+                <p class="process-number">
+                    02
+                </p>
+
+                <h3>
+                    Choose your priority
+                </h3>
+
+                <p>
+                    Decide whether affordability, location, space, or overall balance matters most for the comparison.
+                </p>
+
+            </div>
+
+            <div>
+
+                <div class="process-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg"
+                         width="32"
+                         height="32"
+                         viewBox="0 0 24 24"
+                         fill="none"
+                         stroke="currentColor"
+                         stroke-width="1.5">
+
+                        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+
+                    </svg>
+                </div>
+
+                <p class="process-number">
+                    03
+                </p>
+
+                <h3>
+                    Review the analysis
+                </h3>
+
+                <p>
+                    Receive recommendations, ownership cost comparisons, score analysis, and clearer insight into long term value.
+                </p>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- NEW MARKET SECTION -->
+
+    <section class="market-note">
+        <div class="wrapper">
+
+            <p class="eyebrow">
+                Decision Factors
+            </p>
+
+            <h3>
+                What affects long term affordability?
+            </h3>
+
+            <p class="section-intro">
+                Listing price alone does not determine whether a property is financially realistic long term. Ownership costs can change significantly depending on taxes, interest rates, and recurring fees.
+            </p>
+
+            <div class="market-grid">
+
+                <div class="market-card">
+
+                    <h4>
+                        Interest Rate
+                    </h4>
+
+                    <p>
+                        Even small changes in mortgage rates can significantly increase monthly payments over time and affect the total amount paid for the property.
+                    </p>
+
+                </div>
+
+                <div class="market-card">
+
+                    <h4>
+                        Property Tax
+                    </h4>
+
+                    <p>
+                        Homes with lower listing prices may still become more expensive monthly if property taxes are considerably higher in that area.
+                    </p>
+
+                </div>
+
+                <div class="market-card">
+
+                    <h4>
+                        HOA Fees
+                    </h4>
+
+                    <p>
+                        Monthly HOA costs can impact affordability and should be included when comparing the true cost of ownership between properties.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+    </section>
 
 </main>
 
 <footer>
     <div class="wrapper">
-        <p>© 2026 Smarter Comparisons. A property decision tool.</p>
+        <p>
+            © 2026 Smarter Comparisons. A property decision tool.
+        </p>
     </div>
 </footer>
 
 <script src="script.js"></script>
+
 </body>
 </html>

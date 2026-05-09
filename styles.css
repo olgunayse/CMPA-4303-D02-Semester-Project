@@ -1287,3 +1287,25 @@ input:focus {
     border: none;
     filter: grayscale(100%) contrast(105%);
 }
+/* ─────────────────────────────────────────────
+   Monthly Cost Grid
+───────────────────────────────────────────── */
+
+.cost-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    margin-top: 1rem;
+}
+
+.cost-grid .icon-input-wrap {
+    margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+
+    .cost-grid {
+        grid-template-columns: 1fr;
+    }
+
+}

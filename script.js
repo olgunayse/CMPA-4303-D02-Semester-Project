@@ -166,15 +166,49 @@ function runComparison() {
     document.getElementById("scoreCardA").classList.remove("score-card-winner");
     document.getElementById("scoreCardB").classList.remove("score-card-winner");
 
-    if (totalScoreA > totalScoreB) {
-        document.getElementById("badgeA").style.display = "block";
-        document.getElementById("scoreCardA").classList.add("score-card-winner");
-        document.getElementById("homeA").classList.add("winner");
-    } else if (totalScoreB > totalScoreA) {
-        document.getElementById("badgeB").style.display = "block";
-        document.getElementById("scoreCardB").classList.add("score-card-winner");
-        document.getElementById("homeB").classList.add("winner");
+   var winner = "";
+
+if (priority === "price") {
+    if (monthlyA < monthlyB) {
+        winner = "A";
+    } else if (monthlyB < monthlyA) {
+        winner = "B";
     }
+}
+
+else if (priority === "space") {
+    if (spaceA > spaceB) {
+        winner = "A";
+    } else if (spaceB > spaceA) {
+        winner = "B";
+    }
+}
+
+else if (priority === "location") {
+    if (locationA > locationB) {
+        winner = "A";
+    } else if (locationB > locationA) {
+        winner = "B";
+    }
+}
+
+else if (priority === "balance") {
+    if (totalScoreA > totalScoreB) {
+        winner = "A";
+    } else if (totalScoreB > totalScoreA) {
+        winner = "B";
+    }
+}
+
+if (winner === "A") {
+    document.getElementById("badgeA").style.display = "block";
+    document.getElementById("scoreCardA").classList.add("score-card-winner");
+    document.getElementById("homeA").classList.add("winner");
+} else if (winner === "B") {
+    document.getElementById("badgeB").style.display = "block";
+    document.getElementById("scoreCardB").classList.add("score-card-winner");
+    document.getElementById("homeB").classList.add("winner");
+}
 
     document.getElementById("barChartSection").style.display = "block";
     document.getElementById("legendNameA").textContent = nameA;

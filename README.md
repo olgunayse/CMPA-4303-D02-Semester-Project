@@ -32,6 +32,6 @@ https://github.com/olgunayse/CMPA-4303-D02-Semester-Project
 
 Project 02 is a much more complete version of the original project. In Project 01, the comparison mostly focused on basic numbers like price, square footage, and location score. For Project 02, I added a monthly cost calculator so the tool compares the actual estimated cost of owning each home.
 
-I also added more details to the comparison, including down payment, interest rate, property tax, HOA fees, and commute time. The results section now gives users a clearer recommendation, trade off summary, buyer type, confidence statement, score cards, and a visual factor comparison.
+I also added more details to the comparison, including down payment, interest rate, property tax, HOA fees, and commute time. The results section now gives users a clearer recommendation, trade off summary, buyer profile suggestion, score cards, comparison history, and monthly ownership cost analysis.
 
 The design also improved from Project 01. I added property images, a more polished layout, a consistent dark and gold color palette, better spacing, and a more complete homepage. I also added a comparison history section and print option so the tool feels more useful for a real user.

@@ -13,7 +13,7 @@ The monthly cost feature worked better than I expected and became the strongest 
 
 I also think the overall design turned out well. The pages feel consistent, the layout is organized, and the property images helped the homepage feel less empty. I liked that the final version looked much more polished than the earlier versions of the project.
 
-The compare page also ended up becoming more interactive than I originally planned. Adding score cards, charts, comparison history, and the print feature made the project feel more complete without making it overly complicated.
+The compare page also ended up becoming more interactive than I originally planned. Adding score cards, interactive comparison features, comparison history, and the print feature made the project feel more complete without making it overly complicated.
 
 ## Things I would have changed
 

@@ -120,10 +120,6 @@ function runComparison() {
     var nameB = document.getElementById("nameB").value.trim() || "Home B";
     var priority = document.getElementById("prioritySelect").value;
 
-    document.querySelectorAll(".recommended-badge").forEach(function(badge) {
-        badge.remove();
-    });
-
     document.getElementById("homeA").classList.remove("winner");
     document.getElementById("homeB").classList.remove("winner");
 
@@ -132,7 +128,6 @@ function runComparison() {
         document.getElementById("tradeOffText").textContent = "";
         document.getElementById("buyerType").textContent = "No buyer profile yet.";
         document.getElementById("scoreCardsRow").style.display = "none";
-        document.getElementById("barChartSection").style.display = "none";
         document.getElementById("monthlyCostRow").style.display = "none";
         return;
     }
@@ -166,71 +161,31 @@ function runComparison() {
     document.getElementById("scoreCardA").classList.remove("score-card-winner");
     document.getElementById("scoreCardB").classList.remove("score-card-winner");
 
-   var winner = "";
+    var winner = "";
 
-if (priority === "price") {
-    if (monthlyA < monthlyB) {
-        winner = "A";
-    } else if (monthlyB < monthlyA) {
-        winner = "B";
+    if (priority === "price") {
+        if (monthlyA < monthlyB) winner = "A";
+        else if (monthlyB < monthlyA) winner = "B";
+    } else if (priority === "space") {
+        if (spaceA > spaceB) winner = "A";
+        else if (spaceB > spaceA) winner = "B";
+    } else if (priority === "location") {
+        if (locationA > locationB) winner = "A";
+        else if (locationB > locationA) winner = "B";
+    } else if (priority === "balance") {
+        if (totalScoreA > totalScoreB) winner = "A";
+        else if (totalScoreB > totalScoreA) winner = "B";
     }
-}
 
-else if (priority === "space") {
-    if (spaceA > spaceB) {
-        winner = "A";
-    } else if (spaceB > spaceA) {
-        winner = "B";
+    if (winner === "A") {
+        document.getElementById("badgeA").style.display = "block";
+        document.getElementById("scoreCardA").classList.add("score-card-winner");
+        document.getElementById("homeA").classList.add("winner");
+    } else if (winner === "B") {
+        document.getElementById("badgeB").style.display = "block";
+        document.getElementById("scoreCardB").classList.add("score-card-winner");
+        document.getElementById("homeB").classList.add("winner");
     }
-}
-
-else if (priority === "location") {
-    if (locationA > locationB) {
-        winner = "A";
-    } else if (locationB > locationA) {
-        winner = "B";
-    }
-}
-
-else if (priority === "balance") {
-    if (totalScoreA > totalScoreB) {
-        winner = "A";
-    } else if (totalScoreB > totalScoreA) {
-        winner = "B";
-    }
-}
-
-if (winner === "A") {
-    document.getElementById("badgeA").style.display = "block";
-    document.getElementById("scoreCardA").classList.add("score-card-winner");
-    document.getElementById("homeA").classList.add("winner");
-} else if (winner === "B") {
-    document.getElementById("badgeB").style.display = "block";
-    document.getElementById("scoreCardB").classList.add("score-card-winner");
-    document.getElementById("homeB").classList.add("winner");
-}
-
-    document.getElementById("barChartSection").style.display = "block";
-    document.getElementById("legendNameA").textContent = nameA;
-    document.getElementById("legendNameB").textContent = nameB;
-
-    var maxCost = Math.max(monthlyA, monthlyB);
-    document.getElementById("barCostA").style.width = Math.round((monthlyA / maxCost) * 100) + "%";
-    document.getElementById("barCostB").style.width = Math.round((monthlyB / maxCost) * 100) + "%";
-    document.getElementById("barCostAVal").textContent = "$" + monthlyA.toLocaleString();
-    document.getElementById("barCostBVal").textContent = "$" + monthlyB.toLocaleString();
-
-    var maxSpace = Math.max(spaceA, spaceB);
-    document.getElementById("barSpaceA").style.width = Math.round((spaceA / maxSpace) * 100) + "%";
-    document.getElementById("barSpaceB").style.width = Math.round((spaceB / maxSpace) * 100) + "%";
-    document.getElementById("barSpaceAVal").textContent = spaceA.toLocaleString() + " sqft";
-    document.getElementById("barSpaceBVal").textContent = spaceB.toLocaleString() + " sqft";
-
-    var maxLoc = Math.max(locationA, locationB, 1);
-    document.getElementById("barLocA").style.width = Math.round((locationA / maxLoc) * 100) + "%";
-    document.getElementById("barLocB").style.width = Math.round((locationB / maxLoc) * 100) + "%";
-    document.getElementById("barLocAVal").textContent = locationA + "/10";
-    document.getElementById("barLocBVal").textContent = locationB + "/10";
 
     var result = "";
     var tradeoff = "";
@@ -251,9 +206,7 @@ if (winner === "A") {
             tradeoff = "The monthly costs are the same, so space, location, and commute time may be better deciding factors.";
             buyer = "Better for a buyer who wants to compare lifestyle needs beyond cost.";
         }
-    }
-
-    else if (priority === "space") {
+    } else if (priority === "space") {
         if (spaceA > spaceB) {
             result = nameA + " is the better choice for space.";
             tradeoff = nameA + " has " + (spaceA - spaceB).toLocaleString() + " more square feet than " + nameB + ".";
@@ -267,9 +220,7 @@ if (winner === "A") {
             tradeoff = "Because the square footage is equal, monthly cost, location, and commute time may be better deciding factors.";
             buyer = "Better for a buyer who wants to compare other factors besides size.";
         }
-    }
-
-    else if (priority === "location") {
+    } else if (priority === "location") {
         if (locationA > locationB) {
             result = nameA + " is the better choice for location.";
             tradeoff = nameA + " has a stronger location score than " + nameB + ".";
@@ -283,9 +234,7 @@ if (winner === "A") {
             tradeoff = "Because the location scores are equal, monthly cost, space, and commute time may be better deciding factors.";
             buyer = "Better for a buyer who is weighing lifestyle and financial trade offs together.";
         }
-    }
-
-    else if (priority === "balance") {
+    } else if (priority === "balance") {
         if (totalScoreA > totalScoreB) {
             result = nameA + " is the stronger overall choice.";
             tradeoff = nameA + " has the higher overall score when monthly cost, space, and location are considered together.";
@@ -417,7 +366,6 @@ function resetForm() {
 
     document.getElementById("monthlyCostRow").style.display = "none";
     document.getElementById("scoreCardsRow").style.display = "none";
-    document.getElementById("barChartSection").style.display = "none";
 
     document.getElementById("homeA").classList.remove("winner");
     document.getElementById("homeB").classList.remove("winner");
@@ -441,7 +389,7 @@ function copyResults() {
     var buyer = document.getElementById("buyerType").textContent;
     var items = document.querySelectorAll("#summaryList li");
 
-    var text = "SMARTER COMPARISONS\n\n" + result + "\n" + tradeoff + "\n\n" + buyer + "\n\nSummary:\n";
+    var text = "SMARTER COMPARISONS\n\n" + result + "\n" + tradeoff + "\n\nBest For: " + buyer + "\n\nSummary:\n";
 
     items.forEach(function(li) {
         text += "- " + li.textContent + "\n";

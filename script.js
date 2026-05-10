@@ -66,9 +66,13 @@ function calculateMonthly(price, down, rate, tax, hoa) {
     var payments = 30 * 12;
     var mortgage = 0;
 
+    if (loan < 0) {
+        loan = 0;
+    }
+
     if (monthlyRate > 0) {
         mortgage = loan * (monthlyRate * Math.pow(1 + monthlyRate, payments)) /
-        (Math.pow(1 + monthlyRate, payments) - 1);
+            (Math.pow(1 + monthlyRate, payments) - 1);
     } else {
         mortgage = loan / payments;
     }
@@ -114,6 +118,7 @@ function runComparison() {
 
     var nameA = document.getElementById("nameA").value.trim() || "Home A";
     var nameB = document.getElementById("nameB").value.trim() || "Home B";
+    var priority = document.getElementById("prioritySelect").value;
 
     document.querySelectorAll(".recommended-badge").forEach(function(badge) {
         badge.remove();
@@ -123,7 +128,9 @@ function runComparison() {
     document.getElementById("homeB").classList.remove("winner");
 
     if (!priceA || !priceB || !spaceA || !spaceB) {
-        document.getElementById("comparisonResult").textContent = "Enter values to begin analysis.";
+        document.getElementById("comparisonResult").textContent = "Enter price and square footage for both homes to begin analysis.";
+        document.getElementById("tradeOffText").textContent = "";
+        document.getElementById("buyerType").textContent = "No buyer profile yet.";
         document.getElementById("scoreCardsRow").style.display = "none";
         document.getElementById("barChartSection").style.display = "none";
         document.getElementById("monthlyCostRow").style.display = "none";
@@ -196,30 +203,84 @@ function runComparison() {
     var buyer = "";
     var summary = [];
 
-    if (monthlyA < monthlyB) {
-        result = nameA + " costs less per month to own.";
-        tradeoff = nameA + " costs $" + (monthlyB - monthlyA).toLocaleString() + " less per month once mortgage, tax, insurance, and HOA are factored in. Over 5 years, that is $" + ((monthlyB - monthlyA) * 60).toLocaleString() + " in savings.";
-        buyer = "Better for a buyer who wants to keep monthly costs as low as possible.";
-    } else if (monthlyB < monthlyA) {
-        result = nameB + " costs less per month to own.";
-        tradeoff = nameB + " costs $" + (monthlyA - monthlyB).toLocaleString() + " less per month once mortgage, tax, insurance, and HOA are factored in. Over 5 years, that is $" + ((monthlyA - monthlyB) * 60).toLocaleString() + " in savings.";
-        buyer = "Better for a buyer who wants to keep monthly costs as low as possible.";
-    } else {
-        result = "Both homes cost about the same per month.";
-        tradeoff = "Monthly costs are equal. Focus on space, location, and commute time to make the decision.";
-        buyer = "Depends on personal lifestyle priorities.";
+    if (priority === "price") {
+        if (monthlyA < monthlyB) {
+            result = nameA + " is the better choice for affordability.";
+            tradeoff = nameA + " costs $" + (monthlyB - monthlyA).toLocaleString() + " less per month once mortgage, tax, insurance, and HOA are included. Over 5 years, that is $" + ((monthlyB - monthlyA) * 60).toLocaleString() + " in savings.";
+            buyer = "Better for a buyer who wants the lower monthly ownership cost.";
+        } else if (monthlyB < monthlyA) {
+            result = nameB + " is the better choice for affordability.";
+            tradeoff = nameB + " costs $" + (monthlyA - monthlyB).toLocaleString() + " less per month once mortgage, tax, insurance, and HOA are included. Over 5 years, that is $" + ((monthlyA - monthlyB) * 60).toLocaleString() + " in savings.";
+            buyer = "Better for a buyer who wants the lower monthly ownership cost.";
+        } else {
+            result = "Both homes are about equal for affordability.";
+            tradeoff = "The monthly costs are the same, so space, location, and commute time may be better deciding factors.";
+            buyer = "Better for a buyer who wants to compare lifestyle needs beyond cost.";
+        }
+    }
+
+    else if (priority === "space") {
+        if (spaceA > spaceB) {
+            result = nameA + " is the better choice for space.";
+            tradeoff = nameA + " has " + (spaceA - spaceB).toLocaleString() + " more square feet than " + nameB + ".";
+            buyer = "Better for a buyer who wants more room, storage, flexibility, or long-term usability.";
+        } else if (spaceB > spaceA) {
+            result = nameB + " is the better choice for space.";
+            tradeoff = nameB + " has " + (spaceB - spaceA).toLocaleString() + " more square feet than " + nameA + ".";
+            buyer = "Better for a buyer who wants more room, storage, flexibility, or long-term usability.";
+        } else {
+            result = "Both homes offer the same amount of space.";
+            tradeoff = "Because the square footage is equal, monthly cost, location, and commute time may be better deciding factors.";
+            buyer = "Better for a buyer who wants to compare other factors besides size.";
+        }
+    }
+
+    else if (priority === "location") {
+        if (locationA > locationB) {
+            result = nameA + " is the better choice for location.";
+            tradeoff = nameA + " has a stronger location score than " + nameB + ".";
+            buyer = "Better for a buyer who values commute, nearby amenities, neighborhood feel, or resale potential.";
+        } else if (locationB > locationA) {
+            result = nameB + " is the better choice for location.";
+            tradeoff = nameB + " has a stronger location score than " + nameA + ".";
+            buyer = "Better for a buyer who values commute, nearby amenities, neighborhood feel, or resale potential.";
+        } else {
+            result = "Both homes have the same location score.";
+            tradeoff = "Because the location scores are equal, monthly cost, space, and commute time may be better deciding factors.";
+            buyer = "Better for a buyer who is weighing lifestyle and financial trade offs together.";
+        }
+    }
+
+    else if (priority === "balance") {
+        if (totalScoreA > totalScoreB) {
+            result = nameA + " is the stronger overall choice.";
+            tradeoff = nameA + " has the higher overall score when monthly cost, space, and location are considered together.";
+            buyer = "Better for a buyer who wants the most balanced option across cost, space, and location.";
+        } else if (totalScoreB > totalScoreA) {
+            result = nameB + " is the stronger overall choice.";
+            tradeoff = nameB + " has the higher overall score when monthly cost, space, and location are considered together.";
+            buyer = "Better for a buyer who wants the most balanced option across cost, space, and location.";
+        } else {
+            result = "Both homes are equally balanced overall.";
+            tradeoff = "The total scores are the same, so the better choice depends on the buyer's personal priorities.";
+            buyer = "Better for a buyer who wants to review the trade offs more closely before deciding.";
+        }
     }
 
     if (spaceA > spaceB) {
         summary.push(nameA + " has " + (spaceA - spaceB).toLocaleString() + " more square feet.");
     } else if (spaceB > spaceA) {
         summary.push(nameB + " has " + (spaceB - spaceA).toLocaleString() + " more square feet.");
+    } else {
+        summary.push("Both homes have the same square footage.");
     }
 
     if (locationA > locationB) {
         summary.push(nameA + " has a stronger location score.");
     } else if (locationB > locationA) {
         summary.push(nameB + " has a stronger location score.");
+    } else if (locationA && locationB) {
+        summary.push("Both homes have the same location score.");
     }
 
     if (commuteA && commuteB) {
@@ -227,6 +288,8 @@ function runComparison() {
             summary.push(nameA + " has a shorter commute by " + (commuteB - commuteA) + " minutes each way.");
         } else if (commuteB < commuteA) {
             summary.push(nameB + " has a shorter commute by " + (commuteA - commuteB) + " minutes each way.");
+        } else {
+            summary.push("Both homes have the same commute time.");
         }
     }
 
@@ -234,6 +297,16 @@ function runComparison() {
         summary.push(nameA + " has a lower listing price by $" + (priceB - priceA).toLocaleString() + ".");
     } else if (priceB < priceA) {
         summary.push(nameB + " has a lower listing price by $" + (priceA - priceB).toLocaleString() + ".");
+    } else {
+        summary.push("Both homes have the same listing price.");
+    }
+
+    if (monthlyA < monthlyB) {
+        summary.push(nameA + " has the lower estimated monthly cost.");
+    } else if (monthlyB < monthlyA) {
+        summary.push(nameB + " has the lower estimated monthly cost.");
+    } else {
+        summary.push("Both homes have the same estimated monthly cost.");
     }
 
     document.getElementById("comparisonResult").textContent = result;
@@ -342,9 +415,11 @@ function copyResults() {
 
     navigator.clipboard.writeText(text).then(function() {
         var btn = document.querySelector(".button[onclick='copyResults()']");
+
         if (btn) {
             var original = btn.textContent;
             btn.textContent = "Copied!";
+
             setTimeout(function() {
                 btn.textContent = original;
             }, 2000);

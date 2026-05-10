@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Compare | Smarter Comparisons</title>
 
+    <link rel="icon" href="favicon.png">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
@@ -183,10 +185,6 @@
             </div>
         </div>
 
-        <p class="balance-note">
-            <strong>How balance is scored:</strong> Each factor is normalized to a 0 to 100 scale relative to the two homes, then combined with equal weight. A home that is better on all three factors scores higher overall.
-        </p>
-
         <div class="priority-choice">
             <p class="result-label">Select what matters most</p>
 
@@ -199,6 +197,10 @@
 
             <input type="hidden" id="prioritySelect" value="price">
         </div>
+
+        <p class="balance-note">
+            <strong>How balance is scored:</strong> Each factor is normalized to a 0 to 100 scale relative to the two homes, then combined with equal weight. A home that is better on all three factors scores higher overall.
+        </p>
 
         <div class="analysis-controls">
             <button class="button" onclick="runComparison()">Analyze</button>
